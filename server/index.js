@@ -14,7 +14,7 @@ const cors = require('cors')
 const models = require('./models/models')
 
 // router && middleware
-const router = require('./routes/index')
+const router = require('./router/index')
 const errorHandler = require('./middleware/errorHandlingMiddleware')
 
 // utils
