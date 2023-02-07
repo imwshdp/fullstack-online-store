@@ -108,22 +108,13 @@ class ProductController {
   }
 
   async getAll(req, res, next) {
-    let { categoryId, limit, page } = req.query;
+    let { categoryId } = req.query;
 
     if (!categoryId)
       throw ApiError.badRequest('Некорректные данные')
 
-    // trying to get limit and page query parameters
-    limit = limit || 9
-    page = page || 1
-
-    // variables declaration and offset calculation
-    let products, offset = page * limit - limit;
-
-    products = await Product.findAndCountAll({
+    const products = await Product.findAll({
       where: { categoryId },
-      limit,
-      offset
     })
 
     return res.json(products);
