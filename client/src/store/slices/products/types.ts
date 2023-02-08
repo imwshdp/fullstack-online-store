@@ -1,4 +1,4 @@
-export type TProduct = {
+export interface Product {
   id: number;
   name: string;
   price: number;
@@ -7,13 +7,25 @@ export type TProduct = {
   categoryId: number;
 }
 
-export type TCategory = {
+export interface Category {
   id: number;
   name: string;
 }
 
-export type ProductsState = {
-  categories: TCategory[] | [];
-  products: TProduct[] | [];
-  selectedCategory: TCategory | {};
+export interface ProductsState {
+  categories: Category[] | null;
+  products: Product[] | null;
+  selectedCategory: Category | null;
+
+  loading: boolean;
+  error: null | string;
+}
+
+// ???
+export interface UserData {
+  name: string;
+}
+
+export interface Token {
+  token: string;
 }

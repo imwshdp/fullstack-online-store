@@ -2,6 +2,7 @@ const ApiError = require('../error/ApiError')
 const { Category } = require('../models/models')
 
 class CategoryController {
+  // CREATE (name) => (Category Object | ApiError)
   async create(req, res, next) {
     const { name } = req.body;
 

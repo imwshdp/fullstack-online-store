@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import useAppDispatch from './hooks/useAppDispatch';
 import useAppSelector from './hooks/useAppSelector';
-import { setUser } from './store/slices/user';
+import { login, registration } from './store/slices/user/actions';
 
 const App: React.FC = () => {
 
@@ -11,12 +11,7 @@ const App: React.FC = () => {
   console.log(user)
 
   useEffect(() => {
-    dispatch(setUser({
-      id: 1,
-      email: 'mail',
-      password: '111',
-      role: 'USER',
-    }))
+    dispatch(login({email: 'admin@mail.ru', password: 'qwerty'}))
   }, []);
 
   return (
