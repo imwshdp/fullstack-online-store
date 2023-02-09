@@ -2,13 +2,9 @@ const ApiError = require('../error/ApiError');
 const { Category } = require('../models/models');
 
 class CategoryController {
-<<<<<<< Updated upstream
-  async create(req, res, next) {
-=======
 
   // CREATE (name) => (status 204)
   async create(req, res) {
->>>>>>> Stashed changes
     const { name } = req.body;
 
     if (!name) {

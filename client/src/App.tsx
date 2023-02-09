@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const userState = useAppSelector(state => state.user);
   const prodState = useAppSelector(state => state.products);
 
-  console.log("categories state: ", prodState.categories)
+  console.log("categories state: ", prodState.categories);
 
   useEffect(() => {
     dispatch(login({email: 'admin@mail.ru', password: 'qwerty'}))
