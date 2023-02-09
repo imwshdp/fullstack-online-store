@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { createCategory } from './actions';
+import { createCategory, deleteCategory, fetchCategories } from './actions';
 import { ProductsState, Category, Product } from './types';
 
 const initialState: ProductsState = {
@@ -21,22 +21,10 @@ const setError = (state: ProductsState, action: PayloadAction<string | undefined
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    // setCategories(state, action: PayloadAction<Category[]>) {
-    //   state.categories = action.payload;
-    // },
-
-    // setProducts(state, action: PayloadAction<Product[]>) {
-    //   state.products = action.payload;
-    // },
-
-    // setSelectedCategory(state, action: PayloadAction<Category>) {
-    //   state.selectedCategory = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      // create category
+      // category creating
       .addCase(createCategory.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -51,6 +39,27 @@ const productsSlice = createSlice({
         state.loading = false;
       })
       .addCase(createCategory.rejected, (state, action) => setError(state, action))
+
+      // categories fetching
+      .addCase(fetchCategories.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => setError(state, action))
+
+      // category deleting
+      .addCase(deleteCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(deleteCategory.rejected, (state, action) => setError(state, action))
   }
 });
 

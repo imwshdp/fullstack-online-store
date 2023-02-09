@@ -18,14 +18,9 @@ export interface ProductsState {
   selectedCategory: Category | null;
 
   loading: boolean;
-  error: null | string;
+  error: string | null;
 }
 
-// ???
 export interface UserData {
   name: string;
-}
-
-export interface Token {
-  token: string;
 }

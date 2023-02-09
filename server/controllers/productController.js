@@ -1,51 +1,55 @@
-const uuid = require('uuid')
-const path = require('path')
+const uuid = require('uuid');
+const path = require('path');
 
 const ApiError = require('../error/ApiError')
 const { Product, ProductInfo, ProductImage, ProductReview } = require('../models/models')
 
 class ProductController {
-  async create(req, res, next) {
-    let { name, price, categoryId, info, images } = req.body;
-    const { imgMobile, imgDesktop } = req.files;
 
-    if (!name || !price || !categoryId || !imgMobile || !imgDesktop || !isFinite(price))
-      throw ApiError.badRequest('Некорректные данные')
+  // CREATE (name, price, category id, info, images) => (status 204)
+  async create(req, res) {
+    let { name, price, categoryId, info, images } = req.body;
+
+    const { imgMobile, imgDesktop } = req.files;
+    if (!name || !price || !categoryId || !imgMobile || !imgDesktop || !isFinite(price)) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const candidate = await Product.findOne({
       where: { name }
-    })
-    if (candidate)
-      throw ApiError.badRequest('Товар с таким названием уже есть в каталоге')
+    });
+    if (candidate) {
+      throw ApiError.badRequest('Товар с таким названием уже есть в каталоге');
+    }
 
     // saving images to local storage
-    let fileNameMobile = uuid.v4() + '-mobile.jpg'
-    imgMobile.mv(path.resolve(__dirname, '..', 'static', fileNameMobile))
+    let fileNameMobile = uuid.v4() + '-mobile.jpg';
+    imgMobile.mv(path.resolve(__dirname, '..', 'static', fileNameMobile));
 
-    let fileNameDesktop = uuid.v4() + '-desktop.jpg'
-    imgDesktop.mv(path.resolve(__dirname, '..', 'static', fileNameDesktop))
+    let fileNameDesktop = uuid.v4() + '-desktop.jpg';
+    imgDesktop.mv(path.resolve(__dirname, '..', 'static', fileNameDesktop));
 
-    // instance creation
+    // product creation
     const product = await Product.create({
       name,
       price,
       categoryId,
       imgMobile: fileNameMobile,
       imgDesktop: fileNameDesktop,
-    })
+    });
 
     // images info saving
     await ProductImage.create({
       image: fileNameMobile,
       productId: product.id,
       primary: true,
-    })
+    });
 
     await ProductImage.create({
       image: fileNameDesktop,
       productId: product.id,
       primary: true,
-    })
+    });
 
     // info instances creation
     if (info) {
@@ -74,57 +78,65 @@ class ProductController {
       })
     }
 
-    return res.json(product);
+    return res.status(204).json();
   }
 
-  async delete(req, res, next) {
+  // DELETE (id) => (status 204)
+  async delete(req, res) {
     const { id } = req.body;
 
-    if (!id)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!id) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     // instance destroying
     const destroyed = await Product.destroy({
       where: { id }
-    })
-    if (!destroyed)
-      throw ApiError.internal('Удаление несуществующего товара')
+    });
+    if (!destroyed) {
+      throw ApiError.internal('Удаление несуществующего товара');
+    }
 
     // info destroying
     await ProductInfo.destroy({
       where: {
         productId: id,
       }
-    })
+    });
 
     // extra images destroying
     await ProductImage.destroy({
       where: {
         productId: id,
       }
-    })
+    });
 
-    return res.json(destroyed);
+    return res.status(204).json();
   }
 
-  async getAll(req, res, next) {
+  // GET (category id) => (products)
+  async getAll(req, res) {
     let { categoryId } = req.query;
 
-    if (!categoryId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!categoryId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const products = await Product.findAll({
       where: { categoryId },
-    })
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     return res.json(products);
   }
 
-  async getOne(req, res, next) {
+  // GET (id) => (product)
+  async getOne(req, res) {
     const { id } = req.params;
 
-    if (!id)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!id) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const product = await Product.findOne({
       where: { id },
@@ -132,8 +144,9 @@ class ProductController {
         { model: ProductInfo, as: 'info' },
         { model: ProductImage, as: 'image' },
         { model: ProductReview, as: 'review' },
-      ]
-    })
+      ],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     return res.json(product);
   }

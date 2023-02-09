@@ -1,6 +1,6 @@
 import { registration, login, check } from './actions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserState } from './types';
+import { User, UserState } from './types';
 
 const initialState: UserState = {
   user: null,
@@ -44,6 +44,7 @@ const userSlice = createSlice({
 
         state.loading = false;
         state.error = null;
+        console.log("state: ", state.user)
       })
       .addCase(login.rejected, (state, action) => setError(state, action))
 

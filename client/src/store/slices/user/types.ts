@@ -1,7 +1,6 @@
 export interface User {
   id: number;
   email: string;
-  password: string;
   role: string;
 }
 
@@ -10,7 +9,7 @@ export interface UserState {
   isUserAuth: boolean;
 
   loading: boolean;
-  error: null | string;
+  error: string | null;
 }
 
 export interface UserData {
