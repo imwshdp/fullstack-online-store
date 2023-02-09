@@ -1,67 +1,73 @@
-const ApiError = require('../error/ApiError')
-const { ProductReview } = require('../models/models')
+const ApiError = require('../error/ApiError');
+const { ProductReview } = require('../models/models');
 
 class ProductReviewController {
-  async create(req, res, next) {
+
+  // CREATE (product id, user id, score, review) => (status 204)
+  async create(req, res) {
     const { productId, userId, score, review } = req.body;
 
-    if (!review || !productId || !userId || !score)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!review || !productId || !userId || !score) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const candidate = await ProductReview.findOne({
       where: {
         productId,
         userId,
-      }
-    })
-
-    let newReview
+      },
+    });
 
     // rewrite review or create new
     if (candidate) {
-      newReview = await ProductReview.upsert({
+      await ProductReview.upsert({
         id: candidate.id,
         review: review,
         score: score,
-      })
-      return res.json(newReview[0]);
+      });
 
     } else {
-      newReview = await ProductReview.create({
+      await ProductReview.create({
         productId,
         userId,
         score,
         review,
-      })
-      return res.json(newReview);
+      });
     }
+
+    return res.status(204).json();
   }
 
-  async delete(req, res, next) {
+  // DELETE (product id, user id) => (status 204)
+  async delete(req, res) {
     const { productId, userId } = req.body;
 
-    if (!productId || !userId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !userId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
-    const destroyed = await ProductReview.destroy({
+    await ProductReview.destroy({
       where: {
         productId,
         userId,
       }
-    })
+    });
 
-    return res.json(destroyed);
+    return res.status(204).json();
   }
 
+  // GET (product id) => (reviews)
   async getAll(req, res) {
     const { productId } = req.query;
 
-    if (!productId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const reviews = await ProductReview.findAll({
       where: { productId },
-    })
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     return res.json(reviews);
   }

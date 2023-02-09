@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-const ApiError = require('../error/ApiError')
-const { User, Basket } = require('../models/models')
+const ApiError = require('../error/ApiError');
+const { User, Basket } = require('../models/models');
 
 const generateJwt = (id, email, role) => {
   return jwt.sign(
@@ -13,34 +13,51 @@ const generateJwt = (id, email, role) => {
 }
 
 class UserController {
+<<<<<<< Updated upstream
   async registration(req, res, next) {
+=======
+
+  // REGISTRATION (email, password, role) => (token)
+  async registration(req, res) {
+>>>>>>> Stashed changes
     const { email, password, role } = req.body;
 
-    if (!email || !password)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!email || !password) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
-    const candidate = await User.findOne({ where: { email } })
-    if (candidate)
-      throw next(ApiError.badRequest('Пользователь с данным адресом электронной почты уже зарегистрирован'))
+    const candidate = await User.findOne({
+      where: { email }
+    });
+    if (candidate) {
+      throw ApiError.badRequest('Пользователь с данным адресом электронной почты уже зарегистрирован');
+    }
 
     // user instance creation
-    const hashPassword = await bcrypt.hash(password, 5)
-    const user = await User.create({ email, role, password: hashPassword })
+    const hashPassword = await bcrypt.hash(password, 5);
+    const user = await User.create({ email, role, password: hashPassword });
 
     // basket instance creation
-    const basket = await Basket.create({ userId: user.id })
+    const basket = await Basket.create({ userId: user.id });
 
     // user token creation
-    const token = generateJwt(user.id, user.email, user.role)
+    const token = generateJwt(user.id, user.email, user.role);
     return res.json({ token });
   }
 
+<<<<<<< Updated upstream
   async login(req, res, next) {
+=======
+  // LOGIN (email, password) => (token)
+  async login(req, res) {
+>>>>>>> Stashed changes
     const { email, password } = req.body;
 
-    if (!email || !password)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!email || !password) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
+<<<<<<< Updated upstream
     const user = await User.findOne({ where: { email } })
     if (!user)
       throw ApiError.badRequest('Пользователь с таким адресом электронной почты не найден')
@@ -48,13 +65,32 @@ class UserController {
     let comparePassword = bcrypt.compareSync(password, user.password)
     if (!comparePassword)
       throw ApiError.badRequest('Неверные данные для входа')
+=======
+    const user = await User.findOne({
+      where: { email },
+    });
+    if (!user) {
+      throw ApiError.internal('Пользователь с таким адресом электронной почты не найден');
+    }
 
-    const token = generateJwt(user.id, user.email, user.role)
+    let comparePassword = bcrypt.compareSync(password, user.password);
+    if (!comparePassword) {
+      throw ApiError.internal('Неверные данные для входа');
+    }
+>>>>>>> Stashed changes
+
+    const token = generateJwt(user.id, user.email, user.role);
     return res.json({ token });
   }
 
+<<<<<<< Updated upstream
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email, req.user.role)
+=======
+  // CHECK (id, email, role) => (token)
+  async check(req, res) {
+    const token = generateJwt(req.user.id, req.user.email, req.user.role);
+>>>>>>> Stashed changes
     return res.json({ token });
   }
 }
