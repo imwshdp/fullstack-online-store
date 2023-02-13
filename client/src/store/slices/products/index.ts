@@ -1,15 +1,16 @@
+import { createProduct, deleteProduct, fetchProduct, fetchProducts } from './actions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { createCategory, deleteCategory, fetchCategories } from './actions';
-import { ProductsState, Category, Product } from './types';
+import { ProductsState } from './types';
 
 const initialState: ProductsState = {
-  categories: null,
   products: null,
-  selectedCategory: null,
+  activeProduct: null,
+
   loading: false,
   error: null,
 }
 
+// helpes
 const setError = (state: ProductsState, action: PayloadAction<string | undefined>) => {
   if (action.payload) {
     state.loading = false;
@@ -18,48 +19,47 @@ const setError = (state: ProductsState, action: PayloadAction<string | undefined
   }
 }
 
+const setLoading = (state: ProductsState) => {
+  state.loading = true;
+  state.error = null;
+}
+
+// slice
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // category creating
-      .addCase(createCategory.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createCategory.fulfilled, (state, action) => {
-        if (state.categories) {
-          state.categories.push(action.payload);
-        } else {
-          state.categories = [action.payload];
-        }
-
+      // product creating
+      .addCase(createProduct.pending, (state) => setLoading(state))
+      .addCase(createProduct.fulfilled, (state) => {
         state.loading = false;
       })
-      .addCase(createCategory.rejected, (state, action) => setError(state, action))
+      .addCase(createProduct.rejected, (state, action) => setError(state, action))
 
-      // categories fetching
-      .addCase(fetchCategories.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.categories = action.payload;
+      // product deleting
+      .addCase(deleteProduct.pending, (state) => setLoading(state))
+      .addCase(deleteProduct.fulfilled, (state) => {
         state.loading = false;
       })
-      .addCase(fetchCategories.rejected, (state, action) => setError(state, action))
+      .addCase(deleteProduct.rejected, (state, action) => setError(state, action))
 
-      // category deleting
-      .addCase(deleteCategory.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(deleteCategory.fulfilled, (state, action) => {
+      // products fetching
+      .addCase(fetchProducts.pending, (state) => setLoading(state))
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.products = action.payload;
         state.loading = false;
       })
-      .addCase(deleteCategory.rejected, (state, action) => setError(state, action))
+      .addCase(fetchProducts.rejected, (state, action) => setError(state, action))
+
+      // active product fetching
+      .addCase(fetchProduct.pending, (state) => setLoading(state))
+      .addCase(fetchProduct.fulfilled, (state, action) => {
+        state.activeProduct = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchProduct.rejected, (state, action) => setError(state, action))
   }
 });
 

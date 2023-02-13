@@ -5,10 +5,12 @@ import { User, UserState } from './types';
 const initialState: UserState = {
   user: null,
   isUserAuth: false,
+
   loading: false,
   error: null,
 }
 
+// helpers
 const setError = (state: UserState, action: PayloadAction<string | undefined>) => {
   if (action.payload) {
     state.loading = false;
@@ -17,6 +19,12 @@ const setError = (state: UserState, action: PayloadAction<string | undefined>) =
   }
 }
 
+const setLoading = (state: UserState) => {
+  state.loading = true;
+  state.error = null;
+}
+
+// slice
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -24,35 +32,25 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // registration
-      .addCase(registration.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(registration.pending, (state) => setLoading(state))
       .addCase(registration.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(registration.rejected, (state, action) => setError(state, action))
 
       // login
-      .addCase(login.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(login.pending, (state) => setLoading(state))
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isUserAuth = true;
 
         state.loading = false;
         state.error = null;
-        console.log("state: ", state.user)
       })
       .addCase(login.rejected, (state, action) => setError(state, action))
 
       // check
-      .addCase(check.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      .addCase(check.pending, (state) => setLoading(state))
       .addCase(check.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isUserAuth = true;

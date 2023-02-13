@@ -1,42 +1,61 @@
-import { apiUrls } from './../../../utils/apiUrls';
-import { Category, UserData } from './types';
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Product, CreateData, GetData, DeleteData, GetOneData, DetailedProduct } from './types';
 import { $privateHost, $publicHost } from "../../../api";
+import { apiUrls } from '../../../utils/apiUrls';
 
-export const createCategory = createAsyncThunk<Category, UserData, { rejectValue: string }>(
-  'products/createCategory',
-  async ({ name }, { rejectWithValue }) => {
+export const createProduct = createAsyncThunk<undefined, CreateData, { rejectValue: string }>(
+  'products/createProduct',
+  async ({ name, price, categoryId, info, images }: CreateData, { rejectWithValue }) => {
     try {
-      const { data } = await $privateHost.post<Category>(apiUrls.categories, name);
-      return data as Category;
-
-    } catch (err: any) {
-      return rejectWithValue(err.response.data.message)
-    }
-  }
-);
-
-export const fetchCategories = createAsyncThunk<Category[], undefined, { rejectValue: string }>(
-  'products/fetchCategory',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await $publicHost.get<Category[]>(apiUrls.categories);
-      return data as Category[];
-
-    } catch (err: any) {
-      return rejectWithValue(err.response.data.message)
-    }
-  }
-);
-
-export const deleteCategory = createAsyncThunk<boolean, UserData, { rejectValue: string }>(
-  'products/deleteCategory',
-  async ({ name }, { rejectWithValue }) => {
-    try {
-      const { data } = await $privateHost.delete<boolean>(apiUrls.categories, {
-        data: { name }
+      await $privateHost.post(apiUrls.products, {
+        name,
+        price,
+        categoryId,
+        info,
+        images,
       });
-      return data as boolean;
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectValue: string }>(
+  'products/deleteProduct',
+  async ({ id }: DeleteData, { rejectWithValue }) => {
+    try {
+      await $privateHost.delete(apiUrls.products, {
+        data: { id }
+      });
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const fetchProducts = createAsyncThunk<Product[], GetData, { rejectValue: string }>(
+  'products/getProducts',
+  async ({ categoryId }: GetData, { rejectWithValue }) => {
+    try {
+      const { data } = await $publicHost.get<Product[]>(apiUrls.products, {
+        params: { categoryId }
+      });
+      return data as Product[];
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const fetchProduct = createAsyncThunk<DetailedProduct, GetOneData, { rejectValue: string }>(
+  'products/getProduct',
+  async ({ id }: GetOneData, { rejectWithValue }) => {
+    try {
+      const { data } = await $publicHost.get<DetailedProduct>(apiUrls.products + '/' + id);
+      return data as DetailedProduct;
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

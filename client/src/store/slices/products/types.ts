@@ -7,20 +7,43 @@ export interface Product {
   categoryId: number;
 }
 
-export interface Category {
+export interface DetailedProduct {
   id: number;
   name: string;
+  price: number;
+  imgMobile: string;
+  imgDesktop: string;
+  categoryId: number;
+
+  info: any[];
+  images: any[];
+  review: any[];
 }
 
 export interface ProductsState {
-  categories: Category[] | null;
   products: Product[] | null;
-  selectedCategory: Category | null;
+  activeProduct: DetailedProduct | null;
 
   loading: boolean;
   error: string | null;
 }
 
-export interface UserData {
+export interface CreateData {
   name: string;
+  price: number;
+  categoryId: number;
+  info: any[] | null;
+  images: any[] | null;
+}
+
+export interface DeleteData {
+  id: number;
+}
+
+export interface GetData {
+  categoryId: number;
+}
+
+export interface GetOneData {
+  id: number;
 }
