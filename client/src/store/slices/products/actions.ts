@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Product, CreateData, GetData, DeleteData, GetOneData, DetailedProduct } from './types';
-import { $privateHost, $publicHost } from "../../../api";
-import { apiUrls } from '../../../utils/apiUrls';
+import { $privateHost, $publicHost } from "api";
+import { apiUrls } from 'utils/apiUrls';
 
 export const createProduct = createAsyncThunk<undefined, CreateData, { rejectValue: string }>(
   'products/createProduct',

@@ -1,6 +1,7 @@
-import { registration, login, check } from './actions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { User, UserState } from './types';
+import { registration, login, check } from './actions';
+import { setError, setLoading } from 'utils/asyncSetters';
 
 const initialState: UserState = {
   user: null,
@@ -8,20 +9,6 @@ const initialState: UserState = {
 
   loading: false,
   error: null,
-}
-
-// helpers
-const setError = (state: UserState, action: PayloadAction<string | undefined>) => {
-  if (action.payload) {
-    state.loading = false;
-    state.error = action.payload;
-    console.log(action.payload)
-  }
-}
-
-const setLoading = (state: UserState) => {
-  state.loading = true;
-  state.error = null;
 }
 
 // slice

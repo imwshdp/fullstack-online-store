@@ -1,15 +1,14 @@
+import { ErrorState } from "utils/asyncSetters";
+
 export interface User {
   id: number;
   email: string;
   role: string;
 }
 
-export interface UserState {
+export interface UserState extends ErrorState {
   user: User | null;
   isUserAuth: boolean;
-
-  loading: boolean;
-  error: string | null;
 }
 
 export interface UserData {

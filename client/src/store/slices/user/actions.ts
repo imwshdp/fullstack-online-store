@@ -1,8 +1,8 @@
-import jwt_decode from "jwt-decode";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { $publicHost } from "../../../api";
+import jwt_decode from "jwt-decode";
 import { Token, User, UserData } from './types';
-import { apiUrls } from './../../../utils/apiUrls';
+import { $publicHost } from "api";
+import { apiUrls } from 'utils/apiUrls';
 
 const configureUser = (data: Token): User => {
   const decoded: User = jwt_decode(data.token);

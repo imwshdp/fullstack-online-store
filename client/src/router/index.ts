@@ -1,7 +1,13 @@
-export interface IRoute {
+import Shop from "pages/Shop";
+import Basket from "pages/Basket";
+import Orders from "pages/Orders";
+import Product from "pages/Product";
+import AdminPanel from "pages/AdminPanel";
+import Authentication from "pages/Authentication";
+
+export interface Route {
   path: string;
-  exact?: boolean;
-  // element: React.ComponentType;
+  element: React.ComponentType;
 }
 
 export const RouteNames = {
@@ -15,41 +21,41 @@ export const RouteNames = {
   REDIRECT_ROUTE: '*',
 }
 
-export const privateRoutes: IRoute[] = [
-  {
-    path: RouteNames.ADMIN_ROUTE,
-    exact: true,
-    // element: Admin,
-  },
-  {
-    path: RouteNames.BASKET_ROUTE,
-    // element: Basket,
-  },
-  {
-    path: RouteNames.ORDER_ROUTE,
-    // 
-  },
-]
-
-export const publicRoutes: IRoute[] = [
+export const publicRoutes: Route[] = [
   {
     path: RouteNames.SHOP_ROUTE,
-    // element: Shop,
+    element: Shop,
   },
   {
     path: RouteNames.LOGIN_ROUTE,
-    // element: Auth,
+    element: Authentication,
   },
   {
     path: RouteNames.REGISTRATION_ROUTE,
-    // element: Auth,
+    element: Authentication,
   },
   {
     path: RouteNames.PRODUCT_ROUTE + '/:id',
-    // element: DevicePage,
+    element: Product,
   },
   {
     path: RouteNames.REDIRECT_ROUTE,
-    // element: Shop,
+    element: Shop,
   },
-]
+];
+
+export const privateRoutes: Route[] = [
+  ...publicRoutes,
+  {
+    path: RouteNames.ADMIN_ROUTE,
+    element: AdminPanel,
+  },
+  {
+    path: RouteNames.BASKET_ROUTE,
+    element: Basket,
+  },
+  {
+    path: RouteNames.ORDER_ROUTE,
+    element: Orders,
+  },
+];

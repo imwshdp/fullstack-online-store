@@ -1,6 +1,7 @@
-import { createProduct, deleteProduct, fetchProduct, fetchProducts } from './actions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ProductsState } from './types';
+import { createProduct, deleteProduct, fetchProduct, fetchProducts } from './actions';
+import { setError, setLoading } from 'utils/asyncSetters';
 
 const initialState: ProductsState = {
   products: null,
@@ -8,20 +9,6 @@ const initialState: ProductsState = {
 
   loading: false,
   error: null,
-}
-
-// helpes
-const setError = (state: ProductsState, action: PayloadAction<string | undefined>) => {
-  if (action.payload) {
-    state.loading = false;
-    state.error = action.payload;
-    console.log(action.payload)
-  }
-}
-
-const setLoading = (state: ProductsState) => {
-  state.loading = true;
-  state.error = null;
 }
 
 // slice

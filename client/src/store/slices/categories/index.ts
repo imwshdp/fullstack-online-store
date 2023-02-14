@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { createCategory, deleteCategory, fetchCategories } from './actions';
 import { CategoriesState } from './types';
+import { createCategory, deleteCategory, fetchCategories } from './actions';
+import { setError, setLoading } from 'utils/asyncSetters';
 
 const initialState: CategoriesState = {
   categories: null,
@@ -8,20 +9,6 @@ const initialState: CategoriesState = {
 
   loading: false,
   error: null,
-}
-
-// helpes
-const setError = (state: CategoriesState, action: PayloadAction<string | undefined>) => {
-  if (action.payload) {
-    state.loading = false;
-    state.error = action.payload;
-    console.log(action.payload)
-  }
-}
-
-const setLoading = (state: CategoriesState) => {
-  state.loading = true;
-  state.error = null;
 }
 
 // slice

@@ -1,3 +1,5 @@
+import { ErrorState } from 'utils/asyncSetters';
+
 export interface Product {
   id: number;
   name: string;
@@ -20,12 +22,9 @@ export interface DetailedProduct {
   review: any[];
 }
 
-export interface ProductsState {
+export interface ProductsState extends ErrorState {
   products: Product[] | null;
   activeProduct: DetailedProduct | null;
-
-  loading: boolean;
-  error: string | null;
 }
 
 export interface CreateData {
