@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router';
 
 import useAppSelector from 'hooks/useAppSelector';
 import { RouteNames } from 'router';
-// import css from "./index.module.css";
+
+import css from "./index.module.css";
 
 const Navbar: React.FC = () => {
 
@@ -12,17 +13,17 @@ const Navbar: React.FC = () => {
   const { isUserAuth } = useAppSelector(state => state.user)
 
   return (
-    <nav>
+    <nav className={css.navbar}>
       {isUserAuth
       ?
         <>
-          <div style={{padding: 5, border: "1px solid red"}} onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
-          <div style={{padding: 5, border: "1px solid red"}} onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</div>
-          <div style={{padding: 5, border: "1px solid red"}} onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</div>
+          <div className={css.link} onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
+          <div className={css.link} onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</div>
+          <div className={css.link} onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</div>
         </>
       :
       <>
-        <div style={{padding: 5, border: "1px solid red"}} onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
+        <div className={css.link} onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
       </>
       }
     </nav>

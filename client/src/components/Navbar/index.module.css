@@ -1,8 +1,28 @@
-div {
-  width: fit-content;
+/* панель управления в шапке */
+.navbar {
+  display: none;
 }
 
-.link {
-  border: 1px solid green;
-  padding: 5px;
+/* десктопная версия */
+@media (min-width: 750px) {
+
+  .navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 0 auto;
+
+    margin-right: 15%;
+
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .navbar>div {
+    margin: 0 3% 0 3%;
+    cursor: pointer;
+  }
+
+  .navbar>div:last-child {
+    margin-right: 0;
+  }
 }

@@ -9,7 +9,9 @@ import { fetchProduct, fetchProducts } from 'store/slices/products/actions';
 import { createCategory, deleteCategory, fetchCategories } from 'store/slices/categories/actions';
 
 import AppRouter from 'components/AppRouter';
-import Navbar from 'components/Navbar';
+import Header from 'components/Header';
+
+import './resources/styles/index.css';
 
 const App: React.FC = () => {
 
@@ -34,7 +36,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Header />
       <AppRouter />
     </BrowserRouter>
   );
