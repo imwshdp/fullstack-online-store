@@ -1,0 +1,15 @@
+select {
+  width: 100%;
+  margin-top: 3%;
+  padding: 5px 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+/* desktop */
+@media (min-width: 750px) {
+  select {
+    width: 40%;
+    margin: 0;
+  }
+}

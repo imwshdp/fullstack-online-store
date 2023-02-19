@@ -1,26 +1,43 @@
-/* контейнер с логотипом и названием приложения */
-.logo,
-.logo>a {
+/* mobile */
+.Logo,
+.Logo>a {
   display: flex;
+  flex-flow: row wrap;
 }
 
-.logotype>img {
+.Logo {
+  justify-self: center;
+}
+
+.Logotype>img {
   max-height: 150px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* главный заголовок с названием магазина */
-.title {
+.Title {
   display: flex;
   flex-flow: column wrap;
   flex: 1 0 auto;
   align-self: center;
 }
 
-/* десктопная версия */
+h1 span {
+  display: flex;
+  font-family: var(--bubbleFont);
+  font-size: 1em;
+  color: var(--pink);
+  text-shadow: 1.5px 3px 6px var(--gray);
+}
+
+h1 span:last-child {
+  font-size: 1.1em;
+  color: var(--gray);
+}
+
+/* desktop */
 @media (min-width: 750px) {
-  .logo {
+  .Logo {
     margin-left: 15%;
   }
 }

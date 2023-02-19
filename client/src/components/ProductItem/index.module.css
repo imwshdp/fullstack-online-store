@@ -1,0 +1,25 @@
+/* container */
+.Item {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  border: thin solid var(--lightgray);
+}
+
+/* item image */
+.Item img {
+  width: 100%;
+  height: auto;
+}
+
+/* item info panel */
+.ItemNav {
+  display: flex;
+}
+
+.ItemNav :last-child {
+  display: inherit;
+  margin-left: auto;
+  border: 2px solid blue;
+}

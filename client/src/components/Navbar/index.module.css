@@ -1,12 +1,12 @@
-/* панель управления в шапке */
-.navbar {
+/* mobile */
+.Navbar {
   display: none;
 }
 
-/* десктопная версия */
+/* desktop */
 @media (min-width: 750px) {
 
-  .navbar {
+  .Navbar {
     display: flex;
     flex-flow: row nowrap;
     flex: 1 0 auto;
@@ -17,12 +17,12 @@
     align-items: center;
   }
 
-  .navbar>div {
+  .Navbar>div {
     margin: 0 3% 0 3%;
     cursor: pointer;
   }
 
-  .navbar>div:last-child {
+  .Navbar>div:last-child {
     margin-right: 0;
   }
 }

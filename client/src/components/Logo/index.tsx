@@ -4,16 +4,19 @@ import css from "./index.module.css";
 
 const Logo: React.FC = () => {
   return (
-    <section className={css.logo}>
-      <a href="#" className={css.logotype}>
+    <section className={css.Logo}>
+      
+      <a href="#" className={css.Logotype}>
         <img src={logotype} alt="logotype"></img>
       </a>
-      <a href="#" className={css.title}>
+
+      <a href="#" className={css.Title}>
         <h1>
           <span>Alice Bunny</span>
           <span>Shop</span>
         </h1>
       </a>
+      
     </section>
   );
 }

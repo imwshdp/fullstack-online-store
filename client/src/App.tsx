@@ -10,6 +10,7 @@ import { createCategory, deleteCategory, fetchCategories } from 'store/slices/ca
 
 import AppRouter from 'components/AppRouter';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 import './resources/styles/index.css';
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Header />
       <AppRouter />
+      <Footer />
     </BrowserRouter>
   );
 }

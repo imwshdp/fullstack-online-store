@@ -1,0 +1,10 @@
+.PageHeader {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 70%;
+
+  align-self: center;
+  align-items: center;
+
+  border-bottom: 2px solid var(--lightgray);
+}
