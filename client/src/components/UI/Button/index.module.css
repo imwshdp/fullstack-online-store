@@ -1,0 +1,12 @@
+button {
+  display: flex;
+  padding: 5px 15px;
+
+  align-items: center;
+  background-color: var(--lightgray);
+
+  border: 1px solid var(--dark);
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+}

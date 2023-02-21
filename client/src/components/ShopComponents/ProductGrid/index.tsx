@@ -1,5 +1,5 @@
-import ProductItem from 'components/ProductItem';
 import React from 'react';
+import ProductItem from 'components/ShopComponents/ProductItem';
 import css from './index.module.css';
 
 const ProductGrid: React.FC = () => {

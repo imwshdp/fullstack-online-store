@@ -1,0 +1,65 @@
+.Menu,
+.MenuActive {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  bottom: 50px;
+}
+
+.Menu {
+  transform: translateX(-160%);
+  transition: transform .3s ease-in-out;
+}
+
+.MenuActive {
+  transform: translateX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.Blur {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+
+  position: absolute;
+  left: 60%
+}
+
+.MenuContent {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 60%;
+  height: 100%;
+  background: white;
+
+  margin-top: 50px;
+  align-items: center;
+
+  border-right: 1px solid var(--lightgray);
+}
+
+.MenuContent * {
+  padding: 15px;
+  text-align: center;
+}
+
+.Header {
+  width: 70%;
+
+  margin-top: 30px;
+  font-size: 1.5rem;
+
+  border-bottom: 2px solid var(--lightgray);
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+}
+
+.Link {
+  border-bottom: 1px solid var(--lightgray);
+  cursor: pointer;
+}

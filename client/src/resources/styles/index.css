@@ -36,20 +36,17 @@ a {
 
 .Main {
   display: flex;
-  flex: 1 0 auto;
   flex-flow: column nowrap;
-  
-  width: 100%;
-  min-height: calc(100vh - 300px);
 
-  border: 1px solid lime;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+
+  border: 1px solid blue;
 }
 
 /* desktop */
 @media (min-width: 750px) {
-
-  footer {
-    /* height: fit-content; */
-    background: var(--footerColor);
+  .Main {
+    min-height: calc(100vh - 300px);
   }
 }

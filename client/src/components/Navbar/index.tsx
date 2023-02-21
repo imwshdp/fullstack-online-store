@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 
-import useAppSelector from 'hooks/useAppSelector';
 import { RouteNames } from 'router';
+import useAppSelector from 'hooks/useAppSelector';
 
 import css from "./index.module.css";
 

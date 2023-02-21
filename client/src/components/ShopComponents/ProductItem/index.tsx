@@ -1,5 +1,5 @@
-import useAppSelector from 'hooks/useAppSelector';
 import React, { useState } from 'react';
+import useAppSelector from 'hooks/useAppSelector';
 
 import pic from 'resources/assets/min.jpg'
 import fullPic from 'resources/assets/p.jpg'

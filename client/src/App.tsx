@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
+import { RouteNames } from 'router';
 import { login, registration } from 'store/slices/user/actions';
 import { fetchProduct, fetchProducts } from 'store/slices/products/actions';
 import { createCategory, deleteCategory, fetchCategories } from 'store/slices/categories/actions';
@@ -11,8 +12,15 @@ import { createCategory, deleteCategory, fetchCategories } from 'store/slices/ca
 import AppRouter from 'components/AppRouter';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import MobileNavbar from 'components/MobileNavbar';
+import MobileMenu from 'components/MobileMenu';
 
 import './resources/styles/index.css';
+
+interface ExtraLinks {
+  value: string;
+  link: string;
+}
 
 const App: React.FC = () => {
 
@@ -35,11 +43,31 @@ const App: React.FC = () => {
     // dispatch(fetchCategories())
   }, []);
 
+  // mobile menu
+  const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
+
+  const [extraLinks, setExtraLinks] = useState<ExtraLinks[]>([
+    {value: "Обо мне", link: RouteNames.REDIRECT_ROUTE},
+    {value: "Каталог", link: RouteNames.SHOP_ROUTE},
+    {value: "Мои заказы", link: RouteNames.ORDER_ROUTE},    
+  ])
+
   return (
     <BrowserRouter>
       <Header />
       <AppRouter />
       <Footer />
+
+      <MobileNavbar
+        setIsMenuActive={setIsMenuActive}
+        isMenuActive={isMenuActive}
+      />
+      <MobileMenu
+        header={'Меню'}
+        items={extraLinks}
+        isMenuActive={isMenuActive}
+        setIsMenuActive={setIsMenuActive}
+      />
     </BrowserRouter>
   );
 }

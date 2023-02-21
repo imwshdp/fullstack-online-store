@@ -3,7 +3,6 @@
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-
   border: thin solid var(--lightgray);
 }
 
@@ -22,4 +21,10 @@
   display: inherit;
   margin-left: auto;
   border: 2px solid blue;
+}
+
+@media (min-width: 500px) {
+  .Item {
+    max-width: 300px;
+  }
 }

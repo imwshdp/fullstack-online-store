@@ -21,6 +21,11 @@
   display: none;
 }
 
+/* contextual editing of component styles */
+.MainFilter select {
+  margin-top: 10px;
+}
+
 /* desktop */
 @media (min-width: 750px) {
 
@@ -51,5 +56,16 @@
     width: 25px;
     margin: 5px;
     background: lightcoral;
+  }
+
+  /* contextual editing of component styles */
+  .MainFilter input {
+    width: 50%;
+    margin-right: 3%;
+  }
+
+  .MainFilter select {
+    width: 40%;
+    margin: 0;
   }
 }

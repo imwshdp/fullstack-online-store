@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProductGrid from 'components/ProductGrid';
+import ProductGrid from 'components/ShopComponents/ProductGrid';
 import PageHeader from 'components/PageHeader';
 import FilterPanel from 'components/FilterPanel';
 

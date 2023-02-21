@@ -13,8 +13,12 @@ const FilterPanel: React.FC = () => {
     <section className={css.FilterPanel}>
         
       <div className={css.MainFilter}>
-        <Input>Введите название</Input>
-        <Select>{OptionsArray}</Select>
+        <Input>
+          Введите название
+        </Input>
+        <Select>
+          {OptionsArray}
+        </Select>
       </div>
 
       <div className={css.ViewPanel}>

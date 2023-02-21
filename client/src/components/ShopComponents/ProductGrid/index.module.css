@@ -1,3 +1,4 @@
+/* mobile */
 .ProductsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
@@ -7,16 +8,21 @@
   width: 100%;
   height: auto;
   margin: 3% 0 3% 0%;
+
   justify-items: center;
+
+  /* border: 1px solid red; */
 }
 
-/* adaptive item sizes */
+/* desktop */
 @media (min-width: 500px) {
   .ProductsContainer {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    width: 80%;
-    margin-left: 10%;
-    padding: 0 5% 0 5%;
+    width: 70%;
+    margin-left: 15%;
+
+    /* padding: 0 1% 0 1%; */
+    /* justify-items: ???; */
   }
 }
 
@@ -24,7 +30,5 @@
   .ProductsContainer {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2em;
-    width: 80%;
-    margin-left: 10%;
   }
 }
