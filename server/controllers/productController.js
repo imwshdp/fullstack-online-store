@@ -10,6 +10,8 @@ class ProductController {
   async create(req, res) {
     let { name, price, categoryId, info, images } = req.body;
 
+    console.log(`${name}, ${price}`);
+
     const { imgMobile, imgDesktop } = req.files;
     if (!name || !price || !categoryId || !imgMobile || !imgDesktop || !isFinite(price)) {
       throw ApiError.badRequest('Некорректные данные');
@@ -117,15 +119,18 @@ class ProductController {
   // GET (category id) => (products)
   async getAll(req, res) {
     let { categoryId } = req.query;
+    let products;
 
-    if (!categoryId) {
-      throw ApiError.badRequest('Некорректные данные');
+    if (categoryId) {
+      products = await Product.findAll({
+        where: { categoryId },
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
+    } else {
+      products = await Product.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
     }
-
-    const products = await Product.findAll({
-      where: { categoryId },
-      attributes: { exclude: ['createdAt', 'updatedAt'] },
-    });
 
     return res.json(products);
   }

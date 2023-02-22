@@ -1,0 +1,15 @@
+.AddProductSectionWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: center;
+  width: 70%;
+
+  margin-top: 50px;
+
+  text-align: center;
+  border: 1px solid red;
+}
+
+div>* {
+  margin-top: 10px;
+}

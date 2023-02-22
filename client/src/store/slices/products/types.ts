@@ -4,21 +4,23 @@ export interface Product {
   id: number;
   name: string;
   price: number;
-  imgMobile: string;
-  imgDesktop: string;
   categoryId: number;
+
+  imgMobile: File;
+  imgDesktop: File;
 }
 
 export interface DetailedProduct {
   id: number;
   name: string;
   price: number;
-  imgMobile: string;
-  imgDesktop: string;
   categoryId: number;
 
+  imgMobile: File;
+  imgDesktop: File;
+
+  images: File[];
   info: any[];
-  images: any[];
   review: any[];
 }
 
@@ -31,8 +33,12 @@ export interface CreateData {
   name: string;
   price: number;
   categoryId: number;
-  info: any[] | null;
-  images: any[] | null;
+
+  imgMobile: File;
+  imgDesktop: File;
+
+  // images: File[] | null;
+  // info: any[] | null;
 }
 
 export interface DeleteData {
@@ -40,7 +46,7 @@ export interface DeleteData {
 }
 
 export interface GetData {
-  categoryId: number;
+  categoryId: number | null;
 }
 
 export interface GetOneData {

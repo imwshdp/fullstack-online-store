@@ -8,6 +8,9 @@
 
   --navbarColor: rgba(245, 245, 245);
   --footerColor: #f3f3f3;
+
+  --applyColor: #90EE90;
+  --cancelColor: #F08080;
 }
 
 html,

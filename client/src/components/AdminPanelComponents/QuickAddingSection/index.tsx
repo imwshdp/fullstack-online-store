@@ -5,21 +5,26 @@ import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import QuickAddingPanel from '../QuickAddingPanel';
+import { CategoriesState } from 'store/slices/categories/types';
 
 import css from "./index.module.css";
 
-const QuickAddingSection: React.FC = () => {
+interface TProps {
+  header: string;
+  state: CategoriesState;
+}
 
-  const dispatch = useAppDispatch();
-  const categoriesState = useAppSelector(state => state.categories);
+const QuickAddingSection: React.FC<TProps> = ({header, state}) => {
 
   const categoryName = useInput('');
 
   return (
     <section className={css.Panel}>
+      <h1>{header}</h1>
       <QuickAddingPanel
         inputState={categoryName}
         placeholder={"Введите название категории..."}
+        state={state}
       />
     </section>
   );

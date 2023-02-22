@@ -17,7 +17,6 @@ const useInput = (initialValue: string): ReturnedValue => {
     value,
     onChange,
   }
-
 }
 
 export default useInput;

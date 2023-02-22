@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import "./index.module.css";
 
 interface TProps {
@@ -12,8 +12,8 @@ interface TProps {
 const Button: React.FC<TProps & React.PropsWithChildren> = ({children, width, height, color, onclick}) => {
   return (
     <button
-      style={{width, height, backgroundColor: color}}
-      onClick={() => onclick}
+      style={{minWidth: width, minHeight: height, backgroundColor: color}}
+      onClick={onclick}
     >
       {children}
     </button>

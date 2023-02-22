@@ -5,14 +5,26 @@ import { apiUrls } from 'utils/apiUrls';
 
 export const createProduct = createAsyncThunk<undefined, CreateData, { rejectValue: string }>(
   'products/createProduct',
-  async ({ name, price, categoryId, info, images }: CreateData, { rejectWithValue }) => {
+  async ({
+    name,
+    price,
+    categoryId,
+    imgMobile,
+    imgDesktop,
+    // info,
+    // images
+  }: CreateData, { rejectWithValue }) => {
     try {
       await $privateHost.post(apiUrls.products, {
         name,
         price,
         categoryId,
-        info,
-        images,
+
+        imgMobile,
+        imgDesktop,
+
+        // info,
+        // images,
       });
 
     } catch (err: any) {
@@ -35,6 +47,7 @@ export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectVal
   }
 );
 
+// categoryId = null if we need to fetch all categories
 export const fetchProducts = createAsyncThunk<Product[], GetData, { rejectValue: string }>(
   'products/getProducts',
   async ({ categoryId }: GetData, { rejectWithValue }) => {
