@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useDebounce from './useDebounce';
 
 interface ReturnedValue {
   value: string;
@@ -11,6 +12,7 @@ const useInput = (initialValue: string): ReturnedValue => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    // useDebounce(setValue(e.target.value), 500);
   }
 
   return {

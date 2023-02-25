@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from "./index.module.css"
 
-const ButtonLoader = () => {
+const ButtonLoader: React.FC = () => {
   return (
     <div className={css.Loader} />
   );

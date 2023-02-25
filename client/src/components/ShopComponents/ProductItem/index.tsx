@@ -1,41 +1,32 @@
 import React, { useState } from 'react';
-import useAppSelector from 'hooks/useAppSelector';
-
-import pic from 'resources/assets/min.jpg'
-import fullPic from 'resources/assets/p.jpg'
-
+import { Product } from 'store/slices/products/types';
 import css from "./index.module.css"
 
-interface TProps {
-  id: number;
-}
-
-// const ProductItem: React.FC<TProps> = (id) => {
-  const ProductItem: React.FC = () => {
-
-  // const [item, setItem] = useState();
-  // const productsState = useAppSelector(state => state.products);
-
-  // setItem(productsState.products[id]);
-
-  let ItemArray = ["Костюм", 4000]
+const ProductItem: React.FC<Product> = ({
+  id,
+  name,
+  price,
+  categoryId,
+  imgDesktop,
+  imgMobile,
+}) => {
 
   return (
     <div className={css.Item}>
       <a href="#">
         <picture>
-          <source srcSet={pic} media="(min-width: 1024px)"></source>
-          <source srcSet={fullPic} media="(max-width: 500px)"></source>
-          <img src={pic} alt="Item"></img>
+          <source srcSet={process.env.REACT_APP_API_URL as string + imgDesktop} media="(min-width: 1024px)"></source>
+          <source srcSet={process.env.REACT_APP_API_URL as string + imgMobile} media="(max-width: 500px)"></source>
+          <img src={process.env.REACT_APP_API_URL as string + imgDesktop} alt="Item"></img>
         </picture>
       </a>
 
       <div className={css.ItemNav}>
-        <b>{ItemArray[1]} Р</b>
+        <b>{price} Р</b>
         <button>add</button>
       </div>
                         
-      <a href="#"><b>{ItemArray[0]}</b></a>
+      <a href="#"><b>{name}</b></a>
     </div>
   );
 }

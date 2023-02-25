@@ -14,19 +14,18 @@ const Shop = () => {
   const productsState = useAppSelector(state => state.products);
 
   useEffect(() => {
-    setTimeout(() => {
-      // dispatch(fetchProducts({categoryId: null}));
-      // console.log("state of products: ", productsState.products);
-    }, 500)
+    dispatch(fetchProducts({categoryId: null}));
   }, [])
 
   return (
-    <section className='Main'>
-        <PageHeader>
-          Товары
-        </PageHeader>
-        <FilterPanel />
-        <ProductGrid />
+    <section className='Main'>      
+      <PageHeader>
+        Товары
+      </PageHeader>
+      <FilterPanel />
+      <ProductGrid
+        state={productsState.products}
+      />
     </section>
   );
 }

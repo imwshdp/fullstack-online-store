@@ -1,5 +1,4 @@
 import React from 'react';
-
 import logotype from 'resources/assets/logo.png';
 import css from "./index.module.css";
 

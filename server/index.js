@@ -1,21 +1,14 @@
 require('dotenv').config()
 
-// express
-const express = require('express')
-const fileUpload = require('express-fileupload')
+const express = require('express') // express
+const sequelize = require('./db') // sequelize
+const cors = require('cors') // cors
 
-// sequelize
-const sequelize = require('./db')
+const fileUpload = require('express-fileupload') // express file uploader
 
-// cors
-const cors = require('cors')
-
-// models
-const models = require('./models/models')
-
-// router && middleware import
-const router = require('./router/index')
-const errorHandler = require('./middleware/errorHandlingMiddleware')
+const models = require('./models/models') // models
+const router = require('./router/index') // router
+const errorHandler = require('./middleware/errorHandlingMiddleware') // error handling middleware
 
 // utils
 const path = require('path')
@@ -26,14 +19,15 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// router
-app.use('/api', router)
-
 // middleware
 app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload())
+
+// router & error handler using
+app.use('/api', router)
 app.use(errorHandler)
 
+// test message
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'working' })
 })

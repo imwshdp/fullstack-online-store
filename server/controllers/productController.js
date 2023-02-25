@@ -10,9 +10,12 @@ class ProductController {
   async create(req, res) {
     let { name, price, categoryId, info, images } = req.body;
 
-    console.log(`${name}, ${price}`);
+    console.log("DATA: ", `${name}, ${price}`);
 
     const { imgMobile, imgDesktop } = req.files;
+
+    console.log("IMAGES: ", `${imgMobile}, ${imgDesktop}`);
+
     if (!name || !price || !categoryId || !imgMobile || !imgDesktop || !isFinite(price)) {
       throw ApiError.badRequest('Некорректные данные');
     }

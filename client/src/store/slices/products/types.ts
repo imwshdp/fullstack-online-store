@@ -1,5 +1,11 @@
 import { ErrorState } from 'utils/asyncSetters';
 
+export interface ProductInfo {
+  title: string;
+  description: string;
+  id: number;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -20,8 +26,8 @@ export interface DetailedProduct {
   imgDesktop: File;
 
   images: File[];
-  info: any[];
-  review: any[];
+  info: ProductInfo[];
+  // review: any[];
 }
 
 export interface ProductsState extends ErrorState {
@@ -37,8 +43,8 @@ export interface CreateData {
   imgMobile: File;
   imgDesktop: File;
 
-  // images: File[] | null;
-  // info: any[] | null;
+  images: File[] | null;
+  info: ProductInfo[] | null;
 }
 
 export interface DeleteData {

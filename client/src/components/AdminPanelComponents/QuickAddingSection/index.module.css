@@ -6,8 +6,8 @@
   margin-top: 30px;
   align-items: center;
   align-self: center;
-
   text-align: center;
 
-  border: 1px solid red;
+  padding: 1%;
+  border: 1px solid var(--dark);
 }

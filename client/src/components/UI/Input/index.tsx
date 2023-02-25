@@ -3,7 +3,6 @@ import "./index.module.css";
 
 interface TProps {
   children?: string | undefined;
-
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
