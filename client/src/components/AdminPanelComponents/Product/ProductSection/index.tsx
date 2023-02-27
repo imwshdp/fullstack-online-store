@@ -11,61 +11,58 @@ import FileInput from 'components/UI/FileInput';
 import Button from 'components/UI/Button';
 import ButtonLoader from 'components/GeneralComponents/ButtonLoader';
 import css from "./index.module.css";
+import useAppSelector from 'hooks/useAppSelector';
 
 interface TProps {
-  state: ProductsState;
   header: string;
 }
 
-const ProductSection: React.FC<TProps> = ({state, header}) => {
+const ProductSection: React.FC<TProps> = ({header}) => {
 
+  // store dispatch and selector
   const dispatch = useAppDispatch();
+  const state = useAppSelector(state => state.categories);
 
-  // states of main inputs
+  // panel states
   const productName = useInput('');
   const productPrice = useInput('');
   const productCategoryId = useInput('');
-
-  // states of file uploaders
   const [imgMobile, setImageMobile] = useState<File>({} as File);
   const [imgDesktop, setImageDesktop] = useState<File>({} as File);
+
+  // modal visibility
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  
+  // modal content
+  const [info, setInfo] = useState<ProductInfo[]>([]);
+  const [images, setImages] = useState<FileWithId[]>([]);
 
   // state changing functions
   const selectDesktopFile = (event: ChangeEvent) => {
     const files = (event.target as HTMLInputElement).files as FileList;
     setImageDesktop(files[0]);
   }
+
   const selectMobileFile = (event: ChangeEvent) => {
     const files = (event.target as HTMLInputElement).files as FileList;
     setImageMobile(files[0]);
   }
 
-  // modal visibility state
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-
-  // modal handling function
   const openModal = () => setModalVisible(true);
 
-  // modal content states (extra images and info)
-  const [info, setInfo] = useState<ProductInfo[]>([]);
-  const [images, setImages] = useState<FileWithId[]>([]);
-
-  // applying data sending
+  // requesting function
   const addProduct = () => {
     const data = new FormData();
+
     data.append('name', productName.value)
     data.append('price', productPrice.value)
     data.append('categoryId', productCategoryId.value)
-
     data.append('imgDesktop', imgDesktop)
     data.append('imgMobile', imgMobile)
-
     data.append('info', JSON.stringify(info))
 
-    // executing files without ids
-    for(let i = 0; i < images.length; i++) {
+    for(let i = 0; i < images.length; i++)
       data.append('images', images[i].file)
-    }
     
     dispatch(createProduct(data));
   };
@@ -77,7 +74,7 @@ const ProductSection: React.FC<TProps> = ({state, header}) => {
     <section className={css.Section}>
       <h1>{header}</h1>
 
-      <div className={css.ProductPanel}>
+      <div className={css.Panel}>
 
         <Input {...productName}>Название товара</Input>
         <Input {...productPrice}>Цена товара</Input>
@@ -108,10 +105,7 @@ const ProductSection: React.FC<TProps> = ({state, header}) => {
             onclick={addProduct}
             width={80}
           >
-            { isLoading
-              ? <ButtonLoader/>
-              : "Добавить"
-            }
+            { isLoading ? <ButtonLoader/> : "Добавить" }
           </Button>
         </div>
 

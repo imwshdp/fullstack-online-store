@@ -3,15 +3,14 @@ import * as React from 'react';
 import useInput from 'hooks/useInput';
 import { CategoriesState } from 'store/slices/categories/types';
 
-import CategoryPanel from '../CategoryPanel';
+import CategoryPanel from 'components/AdminPanelComponents/Category/CategoryPanel';
 import css from "./index.module.css";
 
 interface TProps {
   header: string;
-  state: CategoriesState;
 }
 
-const CategorySection: React.FC<TProps> = ({header, state}) => {
+const CategorySection: React.FC<TProps> = ({header}) => {
 
   const categoryName = useInput('');
 
@@ -21,7 +20,6 @@ const CategorySection: React.FC<TProps> = ({header, state}) => {
       <CategoryPanel
         inputState={categoryName}
         placeholder={"Введите название категории..."}
-        state={state}
       />
     </section>
   );

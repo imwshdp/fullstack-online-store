@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Basket = () => {
+const Basket: React.FC = () => {
   return (
     <div>
       Страница корзины

@@ -1,0 +1,28 @@
+.Section,
+.Panel,
+.Item {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1%;
+  text-align: center;
+}
+
+.Section {
+  width: 70%;
+  max-width: 1000px;
+
+  margin: 50px 0;
+  align-self: center;
+  align-content: center;
+
+  border: thin solid var(--dark);
+}
+
+.Item {
+  flex: 1 0 auto;
+  margin: 1%;
+  padding: 20px;
+
+  border: thin solid var(--lightgray);
+  cursor: pointer;
+}

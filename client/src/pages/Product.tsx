@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Product = () => {
+const Product: React.FC = () => {
   return (
     <section className='Main'>      
       <section>

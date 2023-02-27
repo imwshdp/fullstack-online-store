@@ -3,8 +3,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
 import Button from 'components/UI/Button';
-import ProductModalProp from '../ProductModalProp';
-import ProductModalImage from '../ProductModalImage';
+import ProductModalProp from 'components/AdminPanelComponents/Product/ProductModalProp';
+import ProductModalImage from 'components/AdminPanelComponents/Product/ProductModalImage';
 import css from "./index.module.css";
 
 interface TProps {

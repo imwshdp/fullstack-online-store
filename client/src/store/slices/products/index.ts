@@ -15,7 +15,11 @@ const initialState: ProductsState = {
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveProduct(state, action) {
+      state.activeProduct = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // product creating
@@ -50,4 +54,5 @@ const productsSlice = createSlice({
   }
 });
 
+export const { setActiveProduct } = productsSlice.actions;
 export default productsSlice.reducer;

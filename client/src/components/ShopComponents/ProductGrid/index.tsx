@@ -4,18 +4,17 @@ import { Product } from 'store/slices/products/types';
 import ProductItem from 'components/ShopComponents/ProductItem';
 import Loader from 'components/GeneralComponents/Loader';
 import css from './index.module.css';
+import useAppSelector from 'hooks/useAppSelector';
 
-interface TProps {
-  state: Product[] | null;
-}
+const ProductGrid: React.FC = () => {
 
-const ProductGrid: React.FC<TProps> = ({state}) => {
+  const state = useAppSelector(state => state.products);
 
   return (
     <main className={css.ProductsContainer}>
-      {state
+      {state.products
       ?
-        state.map(item =>
+        state.products.map(item =>
           <ProductItem
             key={item.id}
             id={item.id}

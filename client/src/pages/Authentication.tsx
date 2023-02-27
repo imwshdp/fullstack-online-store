@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Authentication = () => {
+const Authentication: React.FC = () => {
   return (
     <div>
       Страница Аутентификации

@@ -1,15 +1,21 @@
-.Section {
+.Section,
+.Panel,
+.Buttons {
   display: flex;
   flex-flow: column nowrap;
+  padding: 1%;
+  text-align: center;
+}
+
+.Section {
   width: 70%;
   max-width: 1000px;
 
-  margin: 50px 0;
+  margin-top: 50px;
   padding: 1%;
   align-self: center;
   align-content: center;
 
-  text-align: center;
   border: thin solid var(--dark);
 }
 
@@ -29,10 +35,8 @@
   margin-bottom: 0;
 }
 
-.ProductPanel,
+.Panel,
 .Buttons {
-  display: flex;
-  flex-flow: inherit;
   align-items: center;
 }
 
