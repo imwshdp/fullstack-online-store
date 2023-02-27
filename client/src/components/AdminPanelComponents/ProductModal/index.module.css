@@ -1,3 +1,4 @@
+/* modal background */
 .Modal {
   position: fixed;
   top: 0;
@@ -8,6 +9,7 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+/* centering the modal */
 .Modal.active {
   display: flex;
   margin: 0;
@@ -15,23 +17,33 @@
   align-items: center;
 }
 
+.Modal.active * {
+  margin: 5px;
+}
+
+/* modal content */
 .ModalContent {
   display: flex;
   flex-flow: column nowrap;
 
   width: 70%;
+  max-width: 750px;
+  min-height: 150px;
+  max-height: 80vh;
   padding: 25px;
 
   color: black;
   background-color: aliceblue;
-  border: 1px solid var(--dark)
+  border: 1px solid var(--dark);
+  overflow-y: scroll;
 }
 
-.NewProp {
+/* adding buttons section */
+.AddInputsButtons {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
-.NewProp>* {
-  margin: 5px;
+.AddInputsButtons>* {
+  flex: 1 0 auto;
 }

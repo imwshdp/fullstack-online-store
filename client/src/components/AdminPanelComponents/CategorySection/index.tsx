@@ -1,12 +1,9 @@
 import * as React from 'react';
 
 import useInput from 'hooks/useInput';
-import useAppDispatch from 'hooks/useAppDispatch';
-import useAppSelector from 'hooks/useAppSelector';
-
-import QuickAddingPanel from '../QuickAddingPanel';
 import { CategoriesState } from 'store/slices/categories/types';
 
+import CategoryPanel from '../CategoryPanel';
 import css from "./index.module.css";
 
 interface TProps {
@@ -14,14 +11,14 @@ interface TProps {
   state: CategoriesState;
 }
 
-const QuickAddingSection: React.FC<TProps> = ({header, state}) => {
+const CategorySection: React.FC<TProps> = ({header, state}) => {
 
   const categoryName = useInput('');
 
   return (
-    <section className={css.Panel}>
+    <section className={css.Section}>
       <h1>{header}</h1>
-      <QuickAddingPanel
+      <CategoryPanel
         inputState={categoryName}
         placeholder={"Введите название категории..."}
         state={state}
@@ -30,4 +27,4 @@ const QuickAddingSection: React.FC<TProps> = ({header, state}) => {
   );
 }
 
-export default QuickAddingSection;
+export default CategorySection;

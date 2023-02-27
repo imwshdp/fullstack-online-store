@@ -10,6 +10,7 @@ const $privateHost = axios.create({
 
 const authInterceptor = (config: any) => {
   config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
+  config.headers['Content-Type'] = 'multipart/form-data';
   return config;
 }
 

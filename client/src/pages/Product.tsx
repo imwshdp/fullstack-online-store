@@ -2,9 +2,14 @@ import * as React from 'react';
 
 const Product = () => {
   return (
-    <div>
-      Страница товара
-    </div>
+    <section className='Main'>      
+      <section>
+
+      </section>
+      <aside>
+        
+      </aside>
+    </section>
   );
 }
 

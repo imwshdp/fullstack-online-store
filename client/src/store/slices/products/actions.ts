@@ -1,17 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Product, CreateData, GetData, DeleteData, GetOneData, DetailedProduct } from './types';
+import { Product, GetData, DeleteData, GetOneData, DetailedProduct } from './types';
 import { $privateHost, $publicHost } from "api";
 import { apiUrls } from 'utils/apiUrls';
 
-export const createProduct = createAsyncThunk<undefined, CreateData, { rejectValue: string }>(
+export const createProduct = createAsyncThunk<undefined, FormData, { rejectValue: string }>(
   'products/createProduct',
-  async (data: CreateData, { rejectWithValue }) => {
+  async (data: FormData, { rejectWithValue }) => {
     try {
-      await $privateHost.post(apiUrls.products, data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      await $privateHost.post(apiUrls.products, data);
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import PageHeader from 'components/GeneralComponents/PageHeader';
-import QuickAddingSection from 'components/AdminPanelComponents/QuickAddingSection';
+import CategorySection from 'components/AdminPanelComponents/CategorySection';
 import useAppSelector from 'hooks/useAppSelector';
-import ProductAddingSection from 'components/AdminPanelComponents/ProductAddingSection';
+import ProductSection from 'components/AdminPanelComponents/ProductSection';
 
 const AdminPanel = () => {
 
@@ -16,12 +16,12 @@ const AdminPanel = () => {
         Панель Администратора
       </PageHeader>
 
-      <QuickAddingSection
+      <CategorySection
         state={categoriesState}
         header="Добавить / Удалить категорию"
       />
 
-      <ProductAddingSection
+      <ProductSection
         state={productsState}
         header="Добавить товар"
       />

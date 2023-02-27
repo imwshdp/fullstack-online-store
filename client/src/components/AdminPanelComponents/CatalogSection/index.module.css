@@ -1,0 +1,14 @@
+.Section {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 70%;
+  max-width: 1000px;
+
+  margin-top: 50px;
+  padding: 1%;
+  align-self: center;
+  align-content: center;
+
+  text-align: center;
+  border: thin solid var(--dark);
+}

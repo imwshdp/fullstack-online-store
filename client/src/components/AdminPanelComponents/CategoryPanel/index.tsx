@@ -18,7 +18,7 @@ interface TProps {
   }
 }
 
-const QuickAddingPanel: React.FC<TProps> = ({inputState, placeholder, state}) => {
+const CategoryPanel: React.FC<TProps> = ({inputState, placeholder, state}) => {
 
   const dispatch = useAppDispatch();
 
@@ -60,4 +60,4 @@ const QuickAddingPanel: React.FC<TProps> = ({inputState, placeholder, state}) =>
   );
 }
 
-export default QuickAddingPanel;
+export default CategoryPanel;

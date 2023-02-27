@@ -8,13 +8,8 @@ class ProductController {
 
   // CREATE (name, price, category id, info, images) => (status 204)
   async create(req, res) {
-    let { name, price, categoryId, info, images } = req.body;
-
-    console.log("DATA: ", `${name}, ${price}`);
-
-    const { imgMobile, imgDesktop } = req.files;
-
-    console.log("IMAGES: ", `${imgMobile}, ${imgDesktop}`);
+    let { name, price, categoryId, info } = req.body;
+    const { imgMobile, imgDesktop, images } = req.files;
 
     if (!name || !price || !categoryId || !imgMobile || !imgDesktop || !isFinite(price)) {
       throw ApiError.badRequest('Некорректные данные');
@@ -28,8 +23,8 @@ class ProductController {
     }
 
     // saving images to local storage
-    let fileNameMobile = uuid.v4() + '-mobile.jpg';
-    imgMobile.mv(path.resolve(__dirname, '..', 'static', fileNameMobile));
+    let fileNameMobile = uuid.v4() + '-mobile.jpg'
+    imgMobile.mv(path.resolve(__dirname, '..', 'static', fileNameMobile))
 
     let fileNameDesktop = uuid.v4() + '-desktop.jpg';
     imgDesktop.mv(path.resolve(__dirname, '..', 'static', fileNameDesktop));
@@ -70,17 +65,30 @@ class ProductController {
 
     // image instances creation
     if (images) {
-      images = JSON.parse(images)
-      images.forEach(image => {
-        let fileName = v4() + '.jpg'
-        image.mv(resolve(__dirname, '..', 'static', fileName))
 
-        ProductImage.create({
-          image: fileName,
-          productId: product.id,
-          primary: false,
+      if(Array.isArray(images)) {
+
+        images.forEach(image => {
+          let fileName = uuid.v4() + '.jpg'
+          image.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+          ProductImage.create({
+            image: fileName,
+            productId: product.id,
+            primary: false,
+          })
         })
-      })
+
+      } else {
+          let fileName = uuid.v4() + '.jpg'
+          images.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+          ProductImage.create({
+            image: fileName,
+            productId: product.id,
+            primary: false,
+          })
+      }
     }
 
     return res.status(204).json();
@@ -92,14 +100,6 @@ class ProductController {
 
     if (!id) {
       throw ApiError.badRequest('Некорректные данные');
-    }
-
-    // instance destroying
-    const destroyed = await Product.destroy({
-      where: { id }
-    });
-    if (!destroyed) {
-      throw ApiError.internal('Удаление несуществующего товара');
     }
 
     // info destroying
@@ -115,6 +115,14 @@ class ProductController {
         productId: id,
       }
     });
+
+    // instance destroying
+    const destroyed = await Product.destroy({
+      where: { id }
+    });
+    if (!destroyed) {
+      throw ApiError.internal('Удаление несуществующего товара');
+    }
 
     return res.status(204).json();
   }

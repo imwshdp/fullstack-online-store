@@ -2,7 +2,6 @@ import React from 'react';
 
 import Input from 'components/UI/Input';
 import Select from 'components/UI/Select';
-
 import css from "./index.module.css";
 
 const FilterPanel: React.FC = () => {

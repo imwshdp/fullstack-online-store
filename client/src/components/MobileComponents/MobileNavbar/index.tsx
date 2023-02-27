@@ -5,7 +5,6 @@ import MenuIcon from 'resources/icons/MenuIcon';
 import SearchIcon from 'resources/icons/SearchIcon';
 import UpIcon from 'resources/icons/UpIcon';
 import UserIcon from 'resources/icons/UserIcon';
-
 import css from "./index.module.css";
 
 interface TProps {

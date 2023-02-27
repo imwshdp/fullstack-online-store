@@ -1,6 +1,7 @@
 import React from 'react';
+import { Product } from 'store/slices/products/types';
+
 import ProductItem from 'components/ShopComponents/ProductItem';
-import { Product, ProductsState } from 'store/slices/products/types';
 import Loader from 'components/GeneralComponents/Loader';
 import css from './index.module.css';
 

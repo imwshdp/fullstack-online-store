@@ -6,6 +6,11 @@ export interface ProductInfo {
   id: number;
 }
 
+export interface FileWithId {
+  file: File;
+  id: number;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -33,18 +38,6 @@ export interface DetailedProduct {
 export interface ProductsState extends ErrorState {
   products: Product[] | null;
   activeProduct: DetailedProduct | null;
-}
-
-export interface CreateData {
-  name: string;
-  price: number;
-  categoryId: number;
-
-  imgMobile: File;
-  imgDesktop: File;
-
-  images: File[] | null;
-  info: ProductInfo[] | null;
 }
 
 export interface DeleteData {

@@ -18,7 +18,7 @@ const Shop = () => {
   }, [])
 
   return (
-    <section className='Main'>      
+    <section className='Main'>
       <PageHeader>
         Товары
       </PageHeader>

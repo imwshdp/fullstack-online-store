@@ -1,0 +1,5 @@
+/* new prop inputs row */
+.NewProp {
+  display: flex;
+  flex-flow: row wrap;
+}
