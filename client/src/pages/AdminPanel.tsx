@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import PageHeader from 'components/GeneralComponents/PageHeader';
-import CategorySection from 'components/AdminPanelComponents/Category/CategorySection';
-import ProductSection from 'components/AdminPanelComponents/Product/ProductSection';
-import CatalogSection from 'components/AdminPanelComponents/Catalog/CatalogSection';
+import PageHeader from 'components/General/PageHeader';
+import CategorySection from 'components/AdminPanel/Category/CategorySection';
+import ProductSection from 'components/AdminPanel/Product/ProductSection';
+import CatalogSection from 'components/AdminPanel/Catalog/CatalogSection';
 
 const AdminPanel: React.FC = () => {
 

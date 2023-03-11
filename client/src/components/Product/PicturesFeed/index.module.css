@@ -1,0 +1,29 @@
+.PicturesFeed {
+  max-width: 45%;
+  /* border: 1px solid rgba(255, 0, 0, 0.3); */
+}
+
+.PicturesFeed img {
+  width: 100%;
+  max-width: 500px;
+
+  /* border: 1px solid blueviolet; */
+}
+
+.Slider {
+  display: flex;
+  flex-flow: row nowrap;
+
+  width: 100%;
+  height: auto;
+
+  justify-content: space-around;
+  align-items: center;
+
+  border: 1px solid var(--lightgray);
+}
+
+.Slider img {
+  height: inherit;
+  clip-path: circle();
+}

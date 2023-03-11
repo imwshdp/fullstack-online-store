@@ -1,0 +1,54 @@
+.AuthWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 50%;
+  max-width: 750px;
+  height: 300px;
+
+  margin: auto auto;
+  align-items: center;
+
+  background-color: whitesmoke;
+  border: 2px solid var(--dark);
+}
+
+.AuthWrapper input {
+  width: 90%;
+  margin-top: 10px;
+}
+
+.Label {
+  color: transparent;
+}
+
+.LabelHidden {
+  margin: 2px;
+  margin-left: 8%;
+  align-self: flex-start;
+
+  font-size: 0.8rem;
+  color: #cc4e5c;
+}
+
+.AuthLinks {
+  display: flex;
+  flex-flow: row nowrap;
+
+  width: 90%;
+  margin: 10px 0;
+  margin-top: auto;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 0.8rem;
+}
+
+.AuthLinks span {
+  color: brown;
+  cursor: pointer;
+}
+
+.AuthLinks>* {
+  display: flex;
+}

@@ -5,7 +5,7 @@ import { apiUrls } from 'utils/apiUrls';
 
 export const createProduct = createAsyncThunk<undefined, FormData, { rejectValue: string }>(
   'products/createProduct',
-  async (data: FormData, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       await $privateHost.post(apiUrls.products, data);
 
@@ -17,7 +17,7 @@ export const createProduct = createAsyncThunk<undefined, FormData, { rejectValue
 
 export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectValue: string }>(
   'products/deleteProduct',
-  async (data: DeleteData, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       await $privateHost.delete(apiUrls.products, { data: data });
 
@@ -30,7 +30,7 @@ export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectVal
 // categoryId = null if we need to fetch all categories
 export const fetchProducts = createAsyncThunk<Product[], GetData, { rejectValue: string }>(
   'products/getProducts',
-  async (params: GetData, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
       const { data } = await $publicHost.get<Product[]>(apiUrls.products, { params: params });
       return data as Product[];
@@ -43,9 +43,10 @@ export const fetchProducts = createAsyncThunk<Product[], GetData, { rejectValue:
 
 export const fetchProduct = createAsyncThunk<DetailedProduct, GetOneData, { rejectValue: string }>(
   'products/getProduct',
-  async ({ id }: GetOneData, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
-      const { data } = await $publicHost.get<DetailedProduct>(apiUrls.products + '/' + id);
+      // apiUrls.products + '/' + id
+      const { data } = await $publicHost.get<DetailedProduct>(`${apiUrls.products}/${id}`);
       return data as DetailedProduct;
 
     } catch (err: any) {

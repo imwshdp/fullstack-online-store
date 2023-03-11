@@ -66,7 +66,7 @@ class ProductController {
     // image instances creation
     if (images) {
 
-      if(Array.isArray(images)) {
+      if (Array.isArray(images)) {
 
         images.forEach(image => {
           let fileName = uuid.v4() + '.jpg'
@@ -80,14 +80,14 @@ class ProductController {
         })
 
       } else {
-          let fileName = uuid.v4() + '.jpg'
-          images.mv(path.resolve(__dirname, '..', 'static', fileName))
+        let fileName = uuid.v4() + '.jpg'
+        images.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-          ProductImage.create({
-            image: fileName,
-            productId: product.id,
-            primary: false,
-          })
+        ProductImage.create({
+          image: fileName,
+          productId: product.id,
+          primary: false,
+        })
       }
     }
 

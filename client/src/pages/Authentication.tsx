@@ -1,10 +1,11 @@
+import AuthForm from 'components/Authentication/AuthForm';
 import * as React from 'react';
 
 const Authentication: React.FC = () => {
   return (
-    <div>
-      Страница Аутентификации
-    </div>
+    <section className='Main'>
+      <AuthForm />
+    </section>
   );
 }
 

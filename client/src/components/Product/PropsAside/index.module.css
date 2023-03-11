@@ -1,0 +1,29 @@
+.AsideProps {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 50%;
+}
+
+.AsideProps h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.ProductInfo {
+  display: flex;
+  margin: 15px;
+  align-items: center;
+
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.ProductInfo span:last-child {
+  display: flex;
+  margin-left: auto;
+  font-size: 0.9rem;
+}
+
+.ToBasket {
+  margin-top: 3%;
+  margin-left: auto;
+}

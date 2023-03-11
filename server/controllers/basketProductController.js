@@ -77,6 +77,8 @@ class BasketProductController {
   async increase(req, res) {
     const { productId, basketId } = req.body;
 
+    console.log(productId, basketId)
+
     if (!productId || !basketId) {
       throw ApiError.badRequest('Некорректные данные');
     }
@@ -88,12 +90,17 @@ class BasketProductController {
       },
     });
 
-    increasedProduct = await BasketProduct.upsert({
+    await BasketProduct.upsert({
       id: increasedProduct.id,
       quantity: increasedProduct.quantity + 1,
     });
 
-    return res.status(204).json();
+    increasedProduct = await BasketProduct.findOne({
+      where: { productId, basketId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(increasedProduct);
   }
 
   // DECREASE (product id, basket id) => (status 204)
@@ -123,7 +130,12 @@ class BasketProductController {
       });
     }
 
-    return res.status(204).json();
+    decreasedProduct = await BasketProduct.findOne({
+      where: { productId, basketId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(decreasedProduct);
   }
 }
 

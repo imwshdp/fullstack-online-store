@@ -6,15 +6,15 @@ import useAppSelector from 'hooks/useAppSelector';
 
 import { RouteNames } from 'router';
 import { login, registration } from 'store/slices/user/actions';
-import { fetchProduct, fetchProducts } from 'store/slices/products/actions';
 
-import Header from 'components/GeneralComponents/Header';
-import Footer from 'components/GeneralComponents/Footer';
-import AppRouter from 'components/GeneralComponents/AppRouter';
-import MobileMenu from 'components/MobileComponents/MobileMenu';
-import MobileNavbar from 'components/MobileComponents/MobileNavbar';
+import Header from 'components/General/Header';
+import Footer from 'components/General/Footer';
+import AppRouter from 'components/General/AppRouter';
+import MobileMenu from 'components/Mobile/MobileMenu';
+import MobileNavbar from 'components/Mobile/MobileNavbar';
 
 import './resources/styles/index.css';
+import { fetchBasket, fetchBasketProduct } from 'store/slices/basket/actions';
 
 interface ExtraLinks {
   value: string;
@@ -25,14 +25,27 @@ const App: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const userState = useAppSelector(state => state.user);
-  // console.log("user state: ", userState);
+  const user = useAppSelector(state => state.user.user)
+  // const basketId = useAppSelector(state => state.basket.basketId)
 
+  // TESTS
   useEffect(() => {
     dispatch(login({email: 'admin@mail.ru', password: 'qwerty'}))
   }, []);
 
-  // mobile menu
+  // fetch user's basket when user logged
+  useEffect(() => {
+    if(!user?.id) return;
+    dispatch(fetchBasket({ userId: user.id }))
+  }, [user])
+
+  // // fetch products in basket when basket fetched
+  // useEffect(() => {
+  //   if(!basketId) return;
+  //   dispatch(fetchBasketProduct({ basketId: basketId}))
+  // }, [basketId])
+
+  // mobile menu state
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const [extraLinks, setExtraLinks] = useState<ExtraLinks[]>([

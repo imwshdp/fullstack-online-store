@@ -30,9 +30,9 @@ export interface DetailedProduct {
   imgMobile: File;
   imgDesktop: File;
 
-  images: File[];
+  image: any[];
   info: ProductInfo[];
-  // review: any[];
+  review: any[];
 }
 
 export interface ProductsState extends ErrorState {
