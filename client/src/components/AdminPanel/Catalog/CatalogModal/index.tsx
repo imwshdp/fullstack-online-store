@@ -1,6 +1,7 @@
+import React from 'react';
+
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
-import React from 'react';
 import { setActiveProduct } from 'store/slices/products';
 
 import css from "./index.module.css";

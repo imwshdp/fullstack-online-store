@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User, UserState } from './types';
+import { createSlice } from '@reduxjs/toolkit'
 import { registration, login, check } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
+import { UserState } from './types';
 
 const initialState: UserState = {
   user: null,

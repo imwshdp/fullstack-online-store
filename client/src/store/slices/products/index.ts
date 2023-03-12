@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ProductsState } from './types';
+import { createSlice } from '@reduxjs/toolkit'
 import { createProduct, deleteProduct, fetchProduct, fetchProducts } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
+import { ProductsState } from './types';
 
 const initialState: ProductsState = {
   products: null,

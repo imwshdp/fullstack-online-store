@@ -2,16 +2,16 @@ import React, { ChangeEvent, useState } from 'react';
 
 import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 import { createProduct } from 'store/slices/products/actions';
-import { FileWithId, ProductInfo, ProductsState } from 'store/slices/products/types';
+import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
-import ProductModal from '../ProductModal';
 import Input from 'components/UI/Input';
-import FileInput from 'components/UI/FileInput';
 import Button from 'components/UI/Button';
+import ProductModal from '../ProductModal';
+import FileInput from 'components/UI/FileInput';
 import ButtonLoader from 'components/General/ButtonLoader';
 import css from "./index.module.css";
-import useAppSelector from 'hooks/useAppSelector';
 
 interface TProps {
   header: string;

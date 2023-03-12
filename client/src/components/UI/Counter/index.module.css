@@ -1,0 +1,31 @@
+.Counter {
+  display: flex;
+  flex-flow: row;
+
+  align-items: center;
+
+  background-color: whitesmoke;
+  border: 1px solid var(--lightgray);
+  border-radius: 15px;
+}
+
+.Counter span {
+  padding: 0 10px;
+}
+
+.Counter button {
+  color: var(--gray);
+  background-color: transparent;
+
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+}
+
+.Counter button:first-child {
+  border-right: 1px solid var(--lightgray);
+}
+
+.Counter button:last-child {
+  border-left: 1px solid var(--lightgray);
+}

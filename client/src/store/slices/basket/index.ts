@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { setError, setLoading } from 'utils/asyncSetters';
-import products from '../products';
+import { createSlice } from '@reduxjs/toolkit'
 import { createBasketProduct, decreaseBasketProduct, deleteBasketProduct, fetchBasket, fetchBasketProduct, increaseBasketProduct } from './actions';
+import { setError, setLoading } from 'utils/asyncSetters';
 import { BasketState } from './types';
 
 const initialState: BasketState = {
@@ -43,8 +42,9 @@ const basketSlice = createSlice({
 
       // decrease in basket
       .addCase(decreaseBasketProduct.pending, (state) => setLoading(state))
-      .addCase(decreaseBasketProduct.fulfilled, (state) => {
+      .addCase(decreaseBasketProduct.fulfilled, (state, action) => {
         state.loading = false;
+        state.products[action.payload.index] = action.payload.data
       })
       .addCase(decreaseBasketProduct.rejected, (state, action) => setError(state, action))
 

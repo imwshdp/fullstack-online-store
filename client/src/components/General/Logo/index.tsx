@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import logotype from 'resources/assets/logo.png';
+
 import { RouteNames } from 'router';
+
+import logotype from 'resources/assets/logo.png';
 import css from "./index.module.css";
 
 const Logo: React.FC = () => {

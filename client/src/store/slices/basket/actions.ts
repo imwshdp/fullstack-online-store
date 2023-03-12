@@ -67,9 +67,10 @@ export const decreaseBasketProduct = createAsyncThunk<ProductInBasketWithIndex, 
   'basket/decreaseBasketProduct',
   async ({ productId, basketId, index }, { rejectWithValue }) => {
     try {
-      const { data } = await $privateHost.put(apiUrls.decrease, {
-        data: { productId, basketId }
-      });
+      const { data } = await $privateHost.put<ProductInBasket>(apiUrls.decrease, {
+        productId: productId,
+        basketId: basketId,
+      })
       return { data, index } as ProductInBasketWithIndex;
 
     } catch (err: any) {

@@ -1,7 +1,7 @@
 .AsideProps {
   display: flex;
   flex-flow: column nowrap;
-  width: 50%;
+  width: 100%;
 }
 
 .AsideProps h1 {
@@ -9,7 +9,20 @@
   justify-content: center;
 }
 
+.AsideProps button {
+  display: flex;
+  width: 100% !important;
+
+  margin: 5% 0;
+  order: -1;
+}
+
 .ProductInfo {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.InfoRow {
   display: flex;
   margin: 15px;
   align-items: center;
@@ -17,13 +30,34 @@
   border-bottom: 1px solid var(--lightgray);
 }
 
-.ProductInfo span:last-child {
+.InfoRow>* {
+  margin: 5px 0;
+}
+
+.InfoRow span:last-child {
   display: flex;
   margin-left: auto;
   font-size: 0.9rem;
 }
 
-.ToBasket {
-  margin-top: 3%;
-  margin-left: auto;
+/* desktop */
+@media (min-width: 750px) {
+  .AsideProps {
+    width: 50%;
+  }
+
+  .ProductInfo {
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 0 auto;
+
+    overflow-y: scroll;
+  }
+
+  .AsideProps button {
+    margin-top: 5%;
+    margin-left: auto;
+    order: 0;
+    width: 125px !important;
+  }
 }

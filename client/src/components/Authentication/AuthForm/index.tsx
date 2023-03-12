@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { RouteNames } from 'router';
 
+import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
 import { login, registration } from 'store/slices/user/actions';
 
 import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
-import useInput from 'hooks/useInput';
 import css from './index.module.css';
 
 const AuthForm: React.FC = () => {

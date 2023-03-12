@@ -1,0 +1,25 @@
+.BasketListWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 60%;
+  padding: 2%;
+  align-self: center;
+
+  border: 1px solid var(--lightgray);
+}
+
+/* confirm order button styles */
+.BasketListWrapper>*:last-child {
+  margin-top: 5%;
+  margin-left: auto;
+}
+
+.BasketListRow {
+  display: flex;
+  flex-flow: row nowrap;
+
+  margin: 1%;
+  justify-content: space-between;
+  align-items: center;
+}

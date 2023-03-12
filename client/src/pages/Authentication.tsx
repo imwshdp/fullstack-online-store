@@ -1,5 +1,5 @@
+import React from 'react';
 import AuthForm from 'components/Authentication/AuthForm';
-import * as React from 'react';
 
 const Authentication: React.FC = () => {
   return (

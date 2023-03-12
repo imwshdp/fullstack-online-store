@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
 import useInput from 'hooks/useInput';
-import { CategoriesState } from 'store/slices/categories/types';
 
 import CategoryPanel from 'components/AdminPanel/Category/CategoryPanel';
 import css from "./index.module.css";

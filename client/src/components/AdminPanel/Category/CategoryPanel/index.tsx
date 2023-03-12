@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 import { createCategory, deleteCategory } from 'store/slices/categories/actions';
 
 import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 import ButtonLoader from 'components/General/ButtonLoader';
 import css from "./index.module.css";
-import useAppSelector from 'hooks/useAppSelector';
 
 interface TProps {
   placeholder: string;

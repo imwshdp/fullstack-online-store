@@ -5,8 +5,8 @@ import useAppDispatch from 'hooks/useAppDispatch';
 import { Product } from 'store/slices/products/types';
 import { setActiveProduct } from 'store/slices/products';
 
+import CatalogModal from 'components/AdminPanel/Catalog/CatalogModal';
 import css from "./index.module.css";
-import CatalogModal from '../../../AdminPanel/Catalog/CatalogModal';
 
 interface TProps {
   header: string;

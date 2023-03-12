@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 

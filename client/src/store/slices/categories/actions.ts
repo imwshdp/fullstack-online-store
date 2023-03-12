@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Category, UserData } from './types';
 import { $privateHost, $publicHost } from "api";
 import { apiUrls } from 'utils/apiUrls';
+import { Category, UserData } from './types';
 
 export const createCategory = createAsyncThunk<undefined, UserData, { rejectValue: string }>(
   'categories/createCategory',

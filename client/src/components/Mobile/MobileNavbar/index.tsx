@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
+import UpIcon from 'resources/icons/UpIcon';
 import CartIcon from 'resources/icons/CartIcon';
 import MenuIcon from 'resources/icons/MenuIcon';
-import SearchIcon from 'resources/icons/SearchIcon';
-import UpIcon from 'resources/icons/UpIcon';
 import UserIcon from 'resources/icons/UserIcon';
+import SearchIcon from 'resources/icons/SearchIcon';
 import css from "./index.module.css";
 
 interface TProps {

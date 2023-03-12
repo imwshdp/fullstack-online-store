@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CategoriesState } from './types';
+import { createSlice } from '@reduxjs/toolkit'
 import { createCategory, deleteCategory, fetchCategories } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
+import { CategoriesState } from './types';
 
 const initialState: CategoriesState = {
   categories: null,
@@ -15,7 +15,11 @@ const initialState: CategoriesState = {
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveCategory(state, action) {
+      state.activeCategory = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // category creating
@@ -42,4 +46,5 @@ const categoriesSlice = createSlice({
   }
 });
 
+export const { setActiveCategory } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import PageHeader from 'components/General/PageHeader';
-import PicturesFeed from 'components/Product/PicturesFeed';
-import PropsAside from 'components/Product/PropsAside';
-import useAppDispatch from 'hooks/useAppDispatch';
 import { useParams } from 'react-router-dom';
-import { fetchProduct } from 'store/slices/products/actions';
-import { setActiveProduct } from 'store/slices/products';
+
+import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import { setActiveProduct } from 'store/slices/products';
+import { fetchProduct } from 'store/slices/products/actions';
+
 import Loader from 'components/General/Loader';
+import PageHeader from 'components/General/PageHeader';
+import ProductLayout from 'components/Product/ProductLayout';
 
 const Product: React.FC = () => {
 
@@ -30,20 +31,8 @@ const Product: React.FC = () => {
       <PageHeader />
 
       {activeProduct.loading
-      ?
-        <Loader />
-      :        
-        <div style={{
-          display: 'flex',
-          flexFlow: 'row',
-          width: '70%',
-          marginTop: '3%',
-          marginLeft: '15%',
-          justifyContent: 'space-between'
-        }}>
-          <PicturesFeed />
-          <PropsAside />
-        </div>
+        ? <Loader />
+        : <ProductLayout />
       }
     </section>
   );

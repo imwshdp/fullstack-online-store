@@ -1,10 +1,11 @@
 import React from 'react';
+
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import { createBasketProduct } from 'store/slices/basket/actions';
 
-import css from './index.module.css';
 import Button from 'components/UI/Button';
-import { createBasketProduct, fetchBasket } from 'store/slices/basket/actions';
+import css from './index.module.css';
 
 const PropsAside: React.FC = () => {
 
@@ -29,22 +30,22 @@ const PropsAside: React.FC = () => {
 
       <h1>{activeProduct?.name}</h1>
 
-      {activeProduct?.info.map(i =>
-        <div key={i.id} className={css.ProductInfo}>
-          <span>{i.title}</span>
-          <span>{i.description}</span>
-        </div>
-      )}
-
-      <div className={css.ToBasket}>
-        <Button
-          height={50}
-          width={150}
-          onclick={addToBasket}
-        >
-          В корзину
-        </Button>
+      <div className={css.ProductInfo}>
+        {activeProduct?.info.map(i =>
+          <div key={i.id} className={css.InfoRow}>
+            <span>{i.title}</span>
+            <span>{i.description}</span>
+          </div>
+        )}
       </div>
+
+      <Button
+        height={45}
+        width={125}
+        onclick={addToBasket}
+      >
+        В корзину
+      </Button>
 
     </aside>
   );
