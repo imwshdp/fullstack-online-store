@@ -1,0 +1,41 @@
+.OrdersListWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 60%;
+  padding: 2%;
+  align-self: center;
+
+  border: 1px solid var(--lightgray);
+  font-weight: normal;
+}
+
+.Order {
+  margin: 10px;
+  padding: 8px;
+  border: 1px solid var(--gray);
+}
+
+.OrdersListWrapper h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.OrdersListWrapper ul {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 100%;
+
+  justify-content: center;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.OrdersListWrapper li {
+  margin: 8px;
+  padding: 0 5px;
+
+  border: 1px solid var(--lightgray);
+  line-height: 1.5rem;
+}

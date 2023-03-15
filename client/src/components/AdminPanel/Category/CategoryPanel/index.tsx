@@ -21,13 +21,11 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
 
   // store dispatch and selector
   const dispatch = useAppDispatch();
-  const state = useAppSelector(state => state.categories);
+  const categoriesState = useAppSelector(state => state.categories);
 
   // callbacks for buttons
   const applyCategory = () => dispatch(createCategory({name: inputState.value}));
   const cancelCategory = () => dispatch(deleteCategory({name: inputState.value}));
-
-  const isLoading = state.loading;
 
   return (
     <div className={css.Item}>
@@ -40,7 +38,7 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
         onclick={applyCategory}
         width={80}
       >
-        { isLoading ? <ButtonLoader/> : "Добавить" }
+        { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
       </Button>
 
       <Button
@@ -48,7 +46,7 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
         onclick={cancelCategory}
         width={80}
       >
-        { isLoading ? <ButtonLoader/> : "Добавить" }
+        { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
       </Button>
     </div>
   );

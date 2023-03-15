@@ -21,7 +21,7 @@ const ProductSection: React.FC<TProps> = ({header}) => {
 
   // store dispatch and selector
   const dispatch = useAppDispatch();
-  const state = useAppSelector(state => state.categories);
+  const categoriesState = useAppSelector(state => state.categories);
 
   // panel states
   const productName = useInput('');
@@ -67,9 +67,6 @@ const ProductSection: React.FC<TProps> = ({header}) => {
     dispatch(createProduct(data));
   };
 
-  // loading variable state
-  const isLoading = state.loading;
-
   return (
     <section className={css.Section}>
       <h1>{header}</h1>
@@ -105,7 +102,7 @@ const ProductSection: React.FC<TProps> = ({header}) => {
             onclick={addProduct}
             width={80}
           >
-            { isLoading ? <ButtonLoader/> : "Добавить" }
+            { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
           </Button>
         </div>
 

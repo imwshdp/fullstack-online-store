@@ -12,17 +12,17 @@ import css from './index.module.css';
 
 const AuthForm: React.FC = () => {
 
+  const navigate = useNavigate()
+
   const dispatch = useAppDispatch()
 
   const [isRegistration, setIsRegistration] = useState<boolean>(false)
 
-  const navigate = useNavigate()
   const email = useInput('')
   const password = useInput('')
 
-  const swapForm = () => {
-    setIsRegistration(prev => !prev)
-  }
+  // change form content
+  const swapForm = () => setIsRegistration(prev => !prev)
 
   const submit = () => {
     if(isRegistration) {

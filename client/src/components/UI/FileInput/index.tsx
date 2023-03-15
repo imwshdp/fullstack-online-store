@@ -7,7 +7,6 @@ interface TProps {
 }
 
 const FileInput: React.FC<TProps> = ({onChange, id}) => {
-
   return (
     <input
       type={'file'}

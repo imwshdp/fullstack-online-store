@@ -5,9 +5,9 @@ import css from './index.module.css';
 
 const PicturesFeed: React.FC = () => {
 
-  const [activeImage, setActiveImage] = useState<string>('')
-
   const activeProduct = useAppSelector(state => state.products.activeProduct)
+  
+  const [activeImage, setActiveImage] = useState<string>('')
 
   useEffect(() => {
     if(!activeProduct) return;

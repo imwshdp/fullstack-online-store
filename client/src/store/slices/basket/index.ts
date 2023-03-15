@@ -44,7 +44,11 @@ const basketSlice = createSlice({
       .addCase(decreaseBasketProduct.pending, (state) => setLoading(state))
       .addCase(decreaseBasketProduct.fulfilled, (state, action) => {
         state.loading = false;
-        state.products[action.payload.index] = action.payload.data
+        if (action.payload.data) {
+          state.products[action.payload.index] = action.payload.data
+        } else {
+          state.products.splice(action.payload.index, 1)
+        }
       })
       .addCase(decreaseBasketProduct.rejected, (state, action) => setError(state, action))
 

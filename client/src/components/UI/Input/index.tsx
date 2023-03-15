@@ -8,7 +8,6 @@ interface TProps {
 }
 
 const Input: React.FC<TProps> = ({children, value, onChange}) => {
-
   return (
     <input
       placeholder={children}

@@ -13,8 +13,8 @@ import ProductLayout from 'components/Product/ProductLayout';
 const Product: React.FC = () => {
 
   const { id } = useParams()
+  
   const dispatch = useAppDispatch()
-
   const activeProduct = useAppSelector(state => state.products)
 
   useEffect(() => {

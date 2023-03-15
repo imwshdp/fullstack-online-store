@@ -17,6 +17,4 @@ export enum apiUrls {
   decrease = "/api/basket/decrease",
 
   orders = "/api/orders",
-  order = "/api/order",
-  // realise order api
 };

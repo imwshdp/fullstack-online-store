@@ -16,7 +16,7 @@ class UserController {
 
   // REGISTRATION (email, password, role) => (token)
   async registration(req, res) {
-    const { email, password, role } = req.body;
+    const { email, password, role, username } = req.body;
 
     if (!email || !password) {
       throw ApiError.badRequest('Некорректные данные');
@@ -31,7 +31,12 @@ class UserController {
 
     // user instance creation
     const hashPassword = await bcrypt.hash(password, 5);
-    const user = await User.create({ email, role, password: hashPassword });
+
+    if (!username) {
+      username = 'Пользователь'
+    }
+
+    const user = await User.create({ email, role, password: hashPassword, username });
 
     // basket instance creation
     const basket = await Basket.create({ userId: user.id });

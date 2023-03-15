@@ -10,18 +10,16 @@ import css from './index.module.css';
 const PropsAside: React.FC = () => {
 
   const dispatch = useAppDispatch()
+  const basketState = useAppSelector(state => state.basket)
   const activeProduct = useAppSelector(state => state.products.activeProduct)
-  const basket = useAppSelector(state => state.basket)
 
   const addToBasket = () => {
-    if(!activeProduct?.id || !basket.basketId) return;
-    
-    console.log(activeProduct?.id, basket.basketId)
+    if(!activeProduct?.id || !basketState.basketId) return;
     
     // add product to basket
     dispatch(createBasketProduct({
       productId: activeProduct?.id,
-      basketId: basket.basketId,
+      basketId: basketState.basketId,
     }))
   }
 

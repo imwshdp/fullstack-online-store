@@ -6,6 +6,8 @@ import MenuIcon from 'resources/icons/MenuIcon';
 import UserIcon from 'resources/icons/UserIcon';
 import SearchIcon from 'resources/icons/SearchIcon';
 import css from "./index.module.css";
+import { useNavigate } from 'react-router';
+import { RouteNames } from 'router';
 
 interface TProps {
   setIsMenuActive: (state: boolean) => void;
@@ -13,6 +15,9 @@ interface TProps {
 }
 
 const MobileNavbar: React.FC<TProps> = ({setIsMenuActive, isMenuActive}) => {
+
+  const navigate = useNavigate()
+
   return (
     <nav className={css.MobileNavbar}>
       <button onClick={() => setIsMenuActive(!isMenuActive)}>
@@ -27,7 +32,9 @@ const MobileNavbar: React.FC<TProps> = ({setIsMenuActive, isMenuActive}) => {
         <UpIcon />
       </button>
 
-      <button>
+      <button
+        onClick={() => navigate(RouteNames.BASKET_ROUTE)}
+      >
         <CartIcon />
       </button>
       

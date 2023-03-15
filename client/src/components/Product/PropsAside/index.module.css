@@ -25,7 +25,7 @@
 .InfoRow {
   display: flex;
   margin: 15px;
-  align-items: center;
+  align-items: start;
 
   border-bottom: 1px solid var(--lightgray);
 }
@@ -34,10 +34,18 @@
   margin: 5px 0;
 }
 
+/* title */
+.InfoRow span:first-child {
+  margin-right: 20px;
+}
+
+/* description */
 .InfoRow span:last-child {
   display: flex;
   margin-left: auto;
   font-size: 0.9rem;
+
+  text-align: end;
 }
 
 /* desktop */

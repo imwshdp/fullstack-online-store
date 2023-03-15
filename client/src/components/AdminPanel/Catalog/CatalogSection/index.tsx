@@ -14,8 +14,8 @@ interface TProps {
 
 const CatalogSection: React.FC<TProps> = ({header}) => {
 
-  const productsState = useAppSelector(state => state.products)
   const dispatch = useAppDispatch()
+  const productsState = useAppSelector(state => state.products)
 
   const [modalVisible, setModalVisible] = useState<boolean>(false)
 

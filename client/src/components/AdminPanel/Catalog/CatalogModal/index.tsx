@@ -12,7 +12,7 @@ interface TProps {
 }
 
 const CatalogModal: React.FC<TProps> = ({visible, setVisible}) => {
-
+  
   const dispatch = useAppDispatch();
   const productState = useAppSelector(state => state.products.activeProduct)
 

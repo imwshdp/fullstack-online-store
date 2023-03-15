@@ -13,7 +13,6 @@ const basketRouter = require('./basketRouter')
 const basketProductRouter = require('./basketProductRouter')
 
 const orderRouter = require('./orderRouter')
-const orderProductRouter = require('./orderProductRouter')
 
 // ROUTER
 const router = new Router()
@@ -36,6 +35,5 @@ router.use('/basket', basketProductRouter)
 
 // ORDER
 router.use('/orders', orderRouter)
-router.use('/order', orderProductRouter) // need realising
 
 module.exports = router;

@@ -44,7 +44,12 @@ a {
   width: 100%;
   min-height: calc(100vh - 200px);
 
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+}
+
+/* margin after footer */
+.Main>*:last-child {
+  margin-bottom: 30px;
 }
 
 /* desktop */

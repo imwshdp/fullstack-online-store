@@ -9,7 +9,6 @@ import FilterPanel from 'components/Shop/FilterPanel';
 import PageHeader from 'components/General/PageHeader';
 
 const Shop: React.FC = () => {
-
   const dispatch = useAppDispatch();
 
   const nameProductFilter = useInput('')

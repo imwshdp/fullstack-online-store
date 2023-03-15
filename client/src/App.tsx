@@ -29,7 +29,7 @@ const App: React.FC = () => {
 
   // TESTS
   useEffect(() => {
-    dispatch(login({email: 'admin@mail.ru', password: 'qwerty'}))
+    dispatch(login({email: 'admin', password: 'qwerty'}))
   }, []);
 
   // fetch user's basket when user logged
@@ -44,7 +44,8 @@ const App: React.FC = () => {
   const [extraLinks, setExtraLinks] = useState<ExtraLinks[]>([
     {value: "Обо мне", link: RouteNames.REDIRECT_ROUTE},
     {value: "Каталог", link: RouteNames.SHOP_ROUTE},
-    {value: "Мои заказы", link: RouteNames.ORDER_ROUTE},    
+    {value: "Мои заказы", link: RouteNames.ORDER_ROUTE},
+    {value: "Админ Панель", link: RouteNames.ADMIN_ROUTE},
   ])
 
   return (

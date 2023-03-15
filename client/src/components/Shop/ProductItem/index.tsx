@@ -31,7 +31,7 @@ const ProductItem: React.FC<Product> = ({
       </picture>
 
       <div className={css.ItemNav}>
-        <b>{price} Р</b>
+        <b>{price} &#8381;</b>
         <button>add</button>
       </div>
                         

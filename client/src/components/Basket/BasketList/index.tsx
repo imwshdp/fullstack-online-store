@@ -7,32 +7,37 @@ import { decreaseBasketProduct, fetchBasketProduct, increaseBasketProduct } from
 import Button from 'components/UI/Button';
 import Counter from 'components/UI/Counter';
 import css from './index.module.css';
+import { createOrder } from 'store/slices/orders/actions';
 
 interface TList {
   id: number;
   name: string;
   quantity: number;
+  price: number;
 }
 
 const BasketList: React.FC = () => {
 
   const dispatch = useAppDispatch()
-  const basket = useAppSelector(state => state.basket)
-  const basketId = useAppSelector(state => state.basket.basketId)
-  const products = useAppSelector(state => state.products.products)
+  const userState = useAppSelector(state => state.user)
+  const basketState = useAppSelector(state => state.basket)
+  const ordersState = useAppSelector(state => state.orders)
+  const productsState = useAppSelector(state => state.products)
 
   const [productsViewList, setProductsViewList] = useState<TList[]>([])
+  const [totalCost, setTotalCost] = useState<number>(0)
 
   const configureViewList = () => {
     setProductsViewList([])
 
-    basket.products.forEach(basketProduct => {
-      products?.forEach(product => {
+    basketState.products.forEach(basketProduct => {
+      productsState.products?.forEach(product => {
         if(product.id === basketProduct.productId) {
           setProductsViewList(prev => [...prev, {
             id: product.id,
             name: product.name,
-            quantity: basketProduct.quantity
+            quantity: basketProduct.quantity,
+            price: product.price * basketProduct.quantity,
           }])
         }
       })
@@ -41,18 +46,23 @@ const BasketList: React.FC = () => {
 
   // fetch products in basket when basket fetched
   useEffect(() => {
-    if(!basketId) return;
-    dispatch(fetchBasketProduct({ basketId: basketId}))
-  }, [basketId])
+    if(!basketState.basketId) return;
+    dispatch(fetchBasketProduct({ basketId: basketState.basketId}))
+  }, [basketState.basketId, ordersState])
 
   // configure basket state after fetching products
   useEffect(() => {
     configureViewList()
-  }, [basket])
+  }, [basketState.products])
+
+  // refresh total cost when view list modified
+  useEffect(() => {
+    setTotalCost(productsViewList.reduce((sum, product) => sum + product.price, 0))
+  }, [productsViewList])
 
   const findIndex = (id: number) => {
     let index = -1
-    basket.products.forEach((product, i) => {
+    basketState.products.forEach((product, i) => {
       if(product.productId === id) {
         index = i
       }
@@ -60,27 +70,34 @@ const BasketList: React.FC = () => {
     return index
   }
 
-  // change state
+  // increment state
   const increaseQuantity = (productId: number) => {
-    if(!basketId) return;
+    if(!basketState.basketId) return;
     const index = findIndex(productId)
 
     dispatch(increaseBasketProduct({
       productId: productId,
-      basketId: basketId,
+      basketId: basketState.basketId,
       index: index,
     }))
   }
 
+  // decrement state
   const decreaseQuantity = (productId: number) => {
-    if(!basketId) return;
+    if(!basketState.basketId) return;
     const index = findIndex(productId)
 
     dispatch(decreaseBasketProduct({
       productId: productId,
-      basketId: basketId,
+      basketId: basketState.basketId,
       index: index,
     }))
+  }
+
+  // confirm order
+  const confirmOrder = () => {
+    if(!userState.user?.id) return;
+    dispatch(createOrder({userId: userState.user?.id, price: totalCost}))
   }
 
   return (
@@ -102,7 +119,10 @@ const BasketList: React.FC = () => {
         </div>
       )}
 
-      <Button width={'30%'}>Оформить заказ</Button>
+      {!basketState.products.length
+        ? <h1 style={{margin: 'auto'}}>Корзина пуста</h1>
+        : <Button onclick={confirmOrder} width={'30%'}>Оформить заказ</Button>
+      }
     </section>
   );
 }

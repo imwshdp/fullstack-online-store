@@ -5,6 +5,7 @@ const checkAuth = require('../middleware/authMiddleware')
 
 const router = new Router()
 
-router.get('/', checkAuth, asyncHandler(orderController.getOne))
+router.post('/', checkAuth, asyncHandler(orderController.create))
+router.get('/', checkAuth, asyncHandler(orderController.getAll))
 
 module.exports = router;
