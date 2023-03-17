@@ -20,6 +20,8 @@
 .ProductInfo {
   display: flex;
   flex-flow: column nowrap;
+
+  border: 1px solid var(--lightgray);
 }
 
 .InfoRow {

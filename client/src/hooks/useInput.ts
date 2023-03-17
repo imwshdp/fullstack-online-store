@@ -15,10 +15,7 @@ const useInput = (initialValue: string): ReturnedValue => {
     // useDebounce(setValue(e.target.value), 500);
   }
 
-  return {
-    value,
-    onChange,
-  }
+  return { value, onChange }
 }
 
 export default useInput;

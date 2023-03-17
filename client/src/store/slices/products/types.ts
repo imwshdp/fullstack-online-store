@@ -1,16 +1,5 @@
 import { ErrorState } from 'utils/asyncSetters';
 
-export interface ProductInfo {
-  title: string;
-  description: string;
-  id: number;
-}
-
-export interface FileWithId {
-  file: File;
-  id: number;
-}
-
 export interface Product {
   id: number;
   name: string;
@@ -19,6 +8,16 @@ export interface Product {
 
   imgMobile: File;
   imgDesktop: File;
+}
+
+export interface Review {
+  id: number;
+  productId: number;
+  review: string;
+  score: boolean;
+  userId: number;
+  username: string;
+  updatedAt: string;
 }
 
 export interface DetailedProduct {
@@ -32,7 +31,7 @@ export interface DetailedProduct {
 
   image: any[];
   info: ProductInfo[];
-  review: any[];
+  review: Review[];
 }
 
 export interface ProductsState extends ErrorState {
@@ -40,6 +39,19 @@ export interface ProductsState extends ErrorState {
   activeProduct: DetailedProduct | null;
 }
 
+// extra interfaces
+export interface ProductInfo {
+  title: string;
+  description: string;
+  id: number;
+}
+
+export interface FileWithId {
+  file: File;
+  id: number;
+}
+
+// async thunk data
 export interface DeleteData {
   id: number;
 }
@@ -50,4 +62,16 @@ export interface GetData {
 
 export interface GetOneData {
   id: number;
+}
+
+export interface CreateReviewData {
+  productId: number;
+  userId: number;
+  score: boolean;
+  review: string;
+  username: string;
+}
+
+export interface GetReviewsData {
+  productId: number;
 }

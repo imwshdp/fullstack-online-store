@@ -1,22 +1,21 @@
-input {
+textarea {
   width: 100%;
-  padding: 5px 15px;
+  padding: 1px;
 
   border: 1px solid black;
-  border-radius: 10px;
 }
 
-input::placeholder {
+textarea::placeholder {
   opacity: 1;
   transition: opacity .5s ease-in-out;
 }
 
-input:hover::placeholder {
+textarea:hover::placeholder {
   opacity: 0;
   transition: opacity .5s ease-in-out;
 }
 
-input:focus::placeholder,
-input:active::placeholder {
+textarea:focus::placeholder,
+textarea:active::placeholder {
   opacity: 0;
 }

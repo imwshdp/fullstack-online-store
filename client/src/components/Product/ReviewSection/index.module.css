@@ -1,0 +1,142 @@
+.ReviewSection {
+  display: flex;
+  flex-flow: column;
+  width: 70%;
+  /* max-width: 1000px; */
+
+  margin-top: 30px;
+  align-self: center;
+  justify-content: center;
+}
+
+.ReviewScoreButtons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+/* LIKE BUTTONS */
+.ReviewScoreButtons button {
+  width: 45px;
+  height: 45px;
+  margin: 0 10px;
+  padding: 0;
+
+  border-radius: 50%;
+  border-color: var(--gray);
+  background-color: transparent;
+}
+
+.Like {
+  stroke: rgba(29, 126, 29, 0.8);
+  fill: rgba(44, 192, 44, 0.8);
+  transition: all .3s ease-in-out;
+}
+
+.Dislike {
+  stroke: rgba(129, 31, 31, 0.8);
+  fill: rgba(165, 42, 42, .8);
+  transition: .3s ease-in-out;
+}
+
+.ScoreActive {
+  stroke: black;
+  transform: scale(1.1);
+  transition: all .3s ease-in-out;
+}
+
+/* NEW REVIEW */
+.NewReview {
+  display: flex;
+  flex-flow: column;
+
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+/* margin before next section */
+.NewReview>*:last-child {
+  margin-bottom: 30px;
+}
+
+.NewReview>*:not(:nth-child(2)) {
+  margin-top: 15px;
+}
+
+.NewReview textarea {
+  min-width: 100%;
+  max-width: 100%;
+  font-size: 1rem;
+}
+
+/* button padding */
+.NewReview>button:last-child {
+  padding: 10px;
+}
+
+.NewReview>*:first-child,
+.NewReview>*:last-child {
+  align-self: center;
+}
+
+/* REVIEWS */
+.ReviewsSection {
+  display: flex;
+  flex-flow: column nowrap;
+
+  min-height: 50px;
+
+  align-items: center;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.ReviewsSection>*:last-child {
+  margin-bottom: 30px;
+}
+
+.Review {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  border: 1px solid var(--gray);
+  padding: 3%;
+}
+
+.ReviewStatus {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.ReviewStatus svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.Review span {
+  font-weight: lighter;
+}
+
+.Review span:last-child {
+  margin-top: 10px;
+}
+
+/* desktop */
+@media (min-width: 750px) {
+
+  /* REVIEWS */
+  .ReviewsSection {
+    padding: 0 50px;
+    border: 1px solid var(--lightgray);
+  }
+
+  .Review {
+    padding: 20px;
+  }
+
+  .NewReview {
+    padding: 0 50px;
+    border: 1px solid var(--lightgray);
+  }
+}

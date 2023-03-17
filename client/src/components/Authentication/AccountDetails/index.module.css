@@ -1,0 +1,42 @@
+.AccountInfo {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 50%;
+  min-width: 300px;
+  margin: 0 auto;
+
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+
+.AccountInfo>* {
+  margin: 20px 0;
+}
+
+.AccountInfo p {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 5%;
+  align-items: center;
+}
+
+.AccountInfo span {
+  width: 30%;
+  max-width: 100px;
+  min-width: fit-content;
+
+  padding: 5px;
+}
+
+.AccountInfo div {
+  display: flex;
+  flex: 1 0 auto;
+  padding: 5px;
+  border: 1px solid var(--lightgray);
+}
+
+.AccountInfo button {
+  align-self: center;
+  padding: 10px 0;
+}

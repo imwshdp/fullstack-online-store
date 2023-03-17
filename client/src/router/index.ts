@@ -2,6 +2,7 @@ import Shop from "pages/Shop";
 import Basket from "pages/Basket";
 import Orders from "pages/Orders";
 import Product from "pages/Product";
+import Account from "pages/Account";
 import AdminPanel from "pages/AdminPanel";
 import Authentication from "pages/Authentication";
 
@@ -11,6 +12,7 @@ export interface Route {
 }
 
 export const RouteNames = {
+  ACCOUNT_ROUTE: '/account',
   ADMIN_ROUTE: '/admin',
   LOGIN_ROUTE: '/login',
   REGISTRATION_ROUTE: '/registration',
@@ -46,6 +48,10 @@ export const publicRoutes: Route[] = [
 
 export const privateRoutes: Route[] = [
   ...publicRoutes,
+  {
+    path: RouteNames.ACCOUNT_ROUTE,
+    element: Account,
+  },
   {
     path: RouteNames.ADMIN_ROUTE,
     element: AdminPanel,

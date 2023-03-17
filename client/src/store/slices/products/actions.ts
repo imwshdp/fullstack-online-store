@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $privateHost, $publicHost } from "api";
 import { apiUrls } from 'utils/apiUrls';
-import { Product, GetData, DeleteData, GetOneData, DetailedProduct } from './types';
+import { Product, GetData, DeleteData, GetOneData, DetailedProduct, CreateReviewData, Review, GetReviewsData } from './types';
 
+// PRODUCTS
 export const createProduct = createAsyncThunk<undefined, FormData, { rejectValue: string }>(
   'products/createProduct',
   async (data, { rejectWithValue }) => {
@@ -45,9 +46,34 @@ export const fetchProduct = createAsyncThunk<DetailedProduct, GetOneData, { reje
   'products/getProduct',
   async ({ id }, { rejectWithValue }) => {
     try {
-      // apiUrls.products + '/' + id
       const { data } = await $publicHost.get<DetailedProduct>(`${apiUrls.products}/${id}`);
       return data as DetailedProduct;
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+// REVIEWS
+export const createReview = createAsyncThunk<undefined, CreateReviewData, { rejectValue: string }>(
+  'products/createReview',
+  async (data, { rejectWithValue }) => {
+    try {
+      await $privateHost.post(apiUrls.reviews, data);
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const fetchReviews = createAsyncThunk<Review[], GetReviewsData, { rejectValue: string }>(
+  'products/fetchReviews',
+  async (params, { rejectWithValue }) => {
+    try {
+      const { data } = await $publicHost.get<Review[]>(apiUrls.reviews, { params: params });
+      return data as Review[];
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

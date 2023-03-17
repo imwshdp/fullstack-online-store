@@ -5,11 +5,13 @@ class ProductReviewController {
 
   // CREATE (product id, user id, score, review) => (status 204)
   async create(req, res) {
-    const { productId, userId, score, review } = req.body;
+    const { productId, userId, score, review, username } = req.body;
 
     if (!review || !productId || !userId || !score) {
       throw ApiError.badRequest('Некорректные данные');
     }
+
+    if (!username) username = "Пользователь"
 
     const candidate = await ProductReview.findOne({
       where: {
@@ -24,6 +26,7 @@ class ProductReviewController {
         id: candidate.id,
         review: review,
         score: score,
+        username: username,
       });
 
     } else {
@@ -32,6 +35,7 @@ class ProductReviewController {
         userId,
         score,
         review,
+        username,
       });
     }
 

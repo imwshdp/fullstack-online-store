@@ -14,6 +14,7 @@ import AppRouter from 'components/General/AppRouter';
 import MobileMenu from 'components/Mobile/MobileMenu';
 import MobileNavbar from 'components/Mobile/MobileNavbar';
 import './resources/styles/index.css';
+import { fetchOrders } from 'store/slices/orders/actions';
 
 interface ExtraLinks {
   value: string;
@@ -23,9 +24,8 @@ interface ExtraLinks {
 const App: React.FC = () => {
 
   const dispatch = useAppDispatch();
-
   const user = useAppSelector(state => state.user.user)
-  // const basketId = useAppSelector(state => state.basket.basketId)
+  const ordersState = useAppSelector(state => state.orders)
 
   // TESTS
   useEffect(() => {
@@ -36,6 +36,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if(!user?.id) return;
     dispatch(fetchBasket({ userId: user.id }))
+    dispatch(fetchOrders({userId: user?.id }))
   }, [user])
 
   // mobile menu state

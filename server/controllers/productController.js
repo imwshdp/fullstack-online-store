@@ -156,6 +156,7 @@ class ProductController {
 
     const product = await Product.findOne({
       where: { id },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
       include: [
         { model: ProductInfo, as: 'info' },
         { model: ProductImage, as: 'image' },

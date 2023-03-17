@@ -4,6 +4,7 @@ export interface User {
   id: number;
   email: string;
   role: string;
+  username: string;
 }
 
 export interface UserState extends ErrorState {
@@ -11,10 +12,17 @@ export interface UserState extends ErrorState {
   isUserAuth: boolean;
 }
 
-export interface UserData {
+export interface UserRegistrationData {
+  email: string;
+  password: string;
+  username: string;
+}
+
+export interface UserLoginData {
   email: string;
   password: string;
 }
+
 
 export interface Token {
   token: string;

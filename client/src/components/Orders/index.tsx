@@ -1,5 +1,5 @@
-import useAppSelector from 'hooks/useAppSelector';
 import React, { useEffect, useState } from 'react';
+import useAppSelector from 'hooks/useAppSelector';
 import { ProductView } from 'store/slices/orders/types';
 import css from './index.module.css';
 

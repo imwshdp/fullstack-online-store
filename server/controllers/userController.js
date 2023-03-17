@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const ApiError = require('../error/ApiError');
 const { User, Basket } = require('../models/models');
 
-const generateJwt = (id, email, role) => {
+const generateJwt = (id, email, role, username) => {
   return jwt.sign(
-    { id, email, role },
+    { id, email, role, username },
     process.env.SECRET_KEY,
     { expiresIn: '24h' },
   )
@@ -42,7 +42,7 @@ class UserController {
     const basket = await Basket.create({ userId: user.id });
 
     // user token creation
-    const token = generateJwt(user.id, user.email, user.role);
+    const token = generateJwt(user.id, user.email, user.role, user.username);
     return res.json({ token });
   }
 
@@ -66,13 +66,13 @@ class UserController {
       throw ApiError.internal('Неверные данные для входа');
     }
 
-    const token = generateJwt(user.id, user.email, user.role);
+    const token = generateJwt(user.id, user.email, user.role, user.username);
     return res.json({ token });
   }
 
   // CHECK (id, email, role) => (token)
   async check(req, res) {
-    const token = generateJwt(req.user.id, req.user.email, req.user.role);
+    const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.username);
     return res.json({ token });
   }
 }

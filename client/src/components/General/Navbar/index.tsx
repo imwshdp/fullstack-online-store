@@ -17,9 +17,10 @@ const Navbar: React.FC = () => {
       {isUserAuth
       ?
         <>
-          <div onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
           <div onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</div>
+          <div onClick={() => navigate(RouteNames.ORDER_ROUTE)}>Заказы</div>
           <div onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</div>
+          <div onClick={() => navigate(RouteNames.ACCOUNT_ROUTE)}>Учетная запись</div>
         </>
       :
         <>

@@ -8,7 +8,7 @@
 
   .Navbar {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     flex: 1 0 auto;
 
     margin-right: 15%;

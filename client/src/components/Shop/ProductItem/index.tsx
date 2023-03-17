@@ -1,6 +1,10 @@
+import Button from 'components/UI/Button';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { RouteNames } from 'router';
+import { createBasketProduct } from 'store/slices/basket/actions';
 
 import { Product } from 'store/slices/products/types';
 import css from "./index.module.css"
@@ -15,9 +19,20 @@ const ProductItem: React.FC<Product> = ({
 }) => {
 
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const basketState = useAppSelector(state => state.basket)
 
   // set active product and navigate
   const click = () => navigate(RouteNames.PRODUCT_ROUTE + '/' + id)
+
+  const addToBasket = () => {
+    if(!basketState.basketId) return;
+
+    dispatch(createBasketProduct({
+      productId: id,
+      basketId: basketState.basketId,
+    }))
+  }
 
   return (
     <div
@@ -32,7 +47,7 @@ const ProductItem: React.FC<Product> = ({
 
       <div className={css.ItemNav}>
         <b>{price} &#8381;</b>
-        <button>add</button>
+        <Button onclick={() => addToBasket()} >В корзину</Button>
       </div>
                         
       <b>{name}</b>

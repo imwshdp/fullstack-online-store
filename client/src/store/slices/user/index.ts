@@ -15,7 +15,13 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout(state, action) {
+      localStorage.removeItem('token')
+      state.user = null
+      state.isUserAuth = false
+    }
+  },
   extraReducers: (builder) => {
     builder
       // registration
@@ -49,4 +55,5 @@ const userSlice = createSlice({
   }
 });
 
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;
