@@ -7,11 +7,13 @@ import { createProduct } from 'store/slices/products/actions';
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
 import Input from 'components/UI/Input';
+import Select from 'components/UI/Select';
 import Button from 'components/UI/Button';
 import ProductModal from '../ProductModal';
 import FileInput from 'components/UI/FileInput';
 import ButtonLoader from 'components/General/ButtonLoader';
 import css from "./index.module.css";
+import { setActiveCategory } from 'store/slices/categories';
 
 interface TProps {
   header: string;
@@ -26,7 +28,6 @@ const ProductSection: React.FC<TProps> = ({header}) => {
   // panel states
   const productName = useInput('');
   const productPrice = useInput('');
-  const productCategoryId = useInput('');
   const [imgMobile, setImageMobile] = useState<File>({} as File);
   const [imgDesktop, setImageDesktop] = useState<File>({} as File);
 
@@ -53,10 +54,10 @@ const ProductSection: React.FC<TProps> = ({header}) => {
   // requesting function
   const addProduct = () => {
     const data = new FormData();
-
+    
     data.append('name', productName.value)
     data.append('price', productPrice.value)
-    data.append('categoryId', productCategoryId.value)
+    data.append('categoryId', String(categoriesState.activeCategory?.id))
     data.append('imgDesktop', imgDesktop)
     data.append('imgMobile', imgMobile)
     data.append('info', JSON.stringify(info))
@@ -67,6 +68,26 @@ const ProductSection: React.FC<TProps> = ({header}) => {
     dispatch(createProduct(data));
   };
 
+  // select state and onChange
+  const categoriesList: string[] = [];
+  if(categoriesState.categories) {
+    categoriesList.push("Категория товара")
+    categoriesState.categories.map(i => categoriesList.push(i.name))
+  }
+
+  const setNewActiveCategory = (e: any) => {
+    let newActive
+    categoriesState.categories?.forEach(category => {
+      if(category.name == e.target.value) {
+        newActive = category
+      }
+    })
+
+    newActive
+      ? dispatch(setActiveCategory(newActive))
+      : dispatch(setActiveCategory(null))
+  }
+
   return (
     <section className={css.Section}>
       <h1>{header}</h1>
@@ -75,7 +96,10 @@ const ProductSection: React.FC<TProps> = ({header}) => {
 
         <Input {...productName}>Название товара</Input>
         <Input {...productPrice}>Цена товара</Input>
-        <Input {...productCategoryId}>Идентификатор категории</Input>
+
+        <Select onchange={setNewActiveCategory} >
+          {categoriesList}
+        </Select>
 
         <label htmlFor="imgDesktop">Картинка для полной версии (1x1)</label>
         <FileInput

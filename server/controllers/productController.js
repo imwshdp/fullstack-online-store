@@ -1,5 +1,6 @@
 const uuid = require('uuid');
 const path = require('path');
+const fs = require('fs');
 
 const ApiError = require('../error/ApiError')
 const { Product, ProductInfo, ProductImage, ProductReview } = require('../models/models')
@@ -54,8 +55,8 @@ class ProductController {
     // info instances creation
     if (info) {
       info = JSON.parse(info)
-      info.forEach(element =>
-        ProductInfo.create({
+      info.forEach(async (element) =>
+        await ProductInfo.create({
           title: element.title,
           description: element.description,
           productId: product.id,
@@ -68,11 +69,11 @@ class ProductController {
 
       if (Array.isArray(images)) {
 
-        images.forEach(image => {
+        images.forEach(async (image) => {
           let fileName = uuid.v4() + '.jpg'
           image.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-          ProductImage.create({
+          await ProductImage.create({
             image: fileName,
             productId: product.id,
             primary: false,
@@ -83,7 +84,7 @@ class ProductController {
         let fileName = uuid.v4() + '.jpg'
         images.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-        ProductImage.create({
+        await ProductImage.create({
           image: fileName,
           productId: product.id,
           primary: false,
@@ -167,6 +168,80 @@ class ProductController {
 
     return res.json(product);
   }
+
+  // PUT (id, params) => (new product with params)
+  async changeBasics(req, res) {
+    let { id, name, price, categoryId } = req.body;
+
+    let imgMobile, imgDesktop;
+    if (req.files) {
+      imgMobile = req.files.imgMobile;
+      imgDesktop = req.files.imgDesktop;
+    }
+
+    if (!id) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
+
+    let candidate = await Product.findOne({ where: { id } })
+
+    if (name) { candidate.name = name }
+    if (price) { candidate.price = price }
+    if (categoryId) { candidate.categoryId = +categoryId }
+
+    if (imgMobile) {
+      await ProductImage.destroy({
+        where: { image: candidate.imgMobile }
+      });
+
+      // delete old picture from static
+      fs.unlinkSync(path.resolve(__dirname, '..', 'static', candidate.imgMobile))
+
+      // save new photo to static
+      let newFileNameMobile = uuid.v4() + '-mobile.jpg';
+      imgMobile.mv(path.resolve(__dirname, '..', 'static', newFileNameMobile));
+
+      // save new image to images table
+      await ProductImage.create({
+        image: newFileNameMobile,
+        productId: candidate.id,
+        primary: true,
+      });
+
+      // update new image in product instance
+      candidate.imgMobile = newFileNameMobile
+    }
+
+    if (imgDesktop) {
+
+      await ProductImage.destroy({
+        where: { image: candidate.imgDesktop }
+      })
+
+      // delete old picture from static
+      fs.unlinkSync(path.resolve(__dirname, '..', 'static', candidate.imgDesktop))
+
+      // save new photo to static
+      let newFileNameDesktop = uuid.v4() + '-desktop.jpg';
+      imgDesktop.mv(path.resolve(__dirname, '..', 'static', newFileNameDesktop));
+
+      // save new image to images table
+      await ProductImage.create({
+        image: newFileNameDesktop,
+        productId: candidate.id,
+        primary: true,
+      });
+
+      // update new image in product instance
+      candidate.imgDesktop = newFileNameDesktop
+    }
+
+    await candidate.save()
+
+    // return res.json(updatedProduct);
+    return res.status(204).json();
+  }
+
 }
 
 module.exports = new ProductController();

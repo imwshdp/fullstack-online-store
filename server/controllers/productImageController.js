@@ -1,8 +1,9 @@
 const uuid = require('uuid');
 const path = require('path');
+const fs = require('fs')
 
 const ApiError = require('../error/ApiError')
-const { ProductImage } = require('../models/models')
+const { ProductImage, Product } = require('../models/models')
 
 class ProductImageController {
 
@@ -28,21 +29,6 @@ class ProductImageController {
     return res.status(204).json();
   }
 
-  // CREATE (id) => (status 204)
-  async delete(req, res) {
-    const { id } = req.body;
-
-    if (!id) {
-      throw ApiError.badRequest('Некорректные данные');
-    }
-
-    await ProductImage.destroy({
-      where: { id }
-    });
-
-    return res.status(204).json();
-  }
-
   // GET (product id) => (images)
   async getAll(req, res) {
     const { productId } = req.query;
@@ -61,6 +47,26 @@ class ProductImageController {
 
     return res.json(images);
   }
+
+  // DELETE (img id) => (status 204)
+  async delete(req, res) {
+    const { id } = req.body;
+
+    if (!id) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
+
+    const candidate = await ProductImage.findOne({ where: { id } })
+
+    // prevent primary images deleting
+    if (!candidate.primary) {
+      fs.unlinkSync(path.resolve(__dirname, '..', 'static', candidate.image))
+      await ProductImage.destroy({ where: { id } })
+    }
+
+    return res.status(204).json();
+  }
+
 }
 
 module.exports = new ProductImageController();

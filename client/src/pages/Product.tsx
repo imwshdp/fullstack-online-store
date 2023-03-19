@@ -17,7 +17,6 @@ const Product: React.FC = () => {
   
   const dispatch = useAppDispatch()
   const productsState = useAppSelector(state => state.products)
-  const activeProduct = useAppSelector(state => state.products.activeProduct)
 
   useEffect(() => {
     if(!id) return;

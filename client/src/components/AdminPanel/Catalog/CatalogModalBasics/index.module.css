@@ -1,0 +1,18 @@
+.CatalogModalWrapper button {
+  max-width: 300px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 20px !important;
+}
+
+.ModalRow {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.ModalRow span {
+  flex: 1 0 auto;
+  padding: 10px 0;
+  border: 1px solid var(--dark);
+}

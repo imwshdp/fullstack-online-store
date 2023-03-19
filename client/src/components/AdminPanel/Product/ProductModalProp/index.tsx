@@ -12,20 +12,23 @@ interface TProps {
 
 const ProductModalProp: React.FC<TProps> = ({changeName, changeDescription, removeInfo}) => {
   return (
-    <div
-      className={css.NewProp}
-    >
+    <div className={css.NewProp} >
       <Input
+        width={'38%'}
         onChange={changeName}
       >
         Название характеристики
       </Input>
+
       <Input
+        width={'38%'}
         onChange={changeDescription}
       >
         Описание
       </Input>
+
       <Button
+        width={'15%'}
         color='var(--cancelColor)'
         onclick={removeInfo}
       >

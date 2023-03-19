@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column;
   width: 70%;
+  height: 60vh;
   margin-left: 15%;
   justify-content: space-between;
 }

@@ -37,13 +37,3 @@
   border: 1px solid var(--dark);
   overflow-y: scroll;
 }
-
-/* adding buttons section */
-/* .AddInputsButtons {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.AddInputsButtons>* {
-  flex: 1 0 auto;
-} */

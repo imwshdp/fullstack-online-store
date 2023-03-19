@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import useAppSelector from 'hooks/useAppSelector';
 import useAppDispatch from 'hooks/useAppDispatch';
-import { Product } from 'store/slices/products/types';
-import { setActiveProduct } from 'store/slices/products';
+import { fetchProduct } from 'store/slices/products/actions';
 
 import CatalogModal from 'components/AdminPanel/Catalog/CatalogModal';
 import css from "./index.module.css";
@@ -19,8 +18,8 @@ const CatalogSection: React.FC<TProps> = ({header}) => {
 
   const [modalVisible, setModalVisible] = useState<boolean>(false)
 
-  const openModal = (product: Product) => {
-    dispatch(setActiveProduct(product))
+  const openModal = (productId: number) => {
+    dispatch(fetchProduct({ id: productId }))
     setModalVisible(true)
   }
 
@@ -33,7 +32,7 @@ const CatalogSection: React.FC<TProps> = ({header}) => {
           <div
             key={product.id}
             className={css.Item}
-            onClick={() => openModal(product)}
+            onClick={() => openModal(product.id)}
           >
             {product.name}
           </div>

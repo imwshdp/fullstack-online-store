@@ -42,9 +42,7 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
 
   const changeInfo = (key: string, newValue: string, id: number) => {
     setInfo(info.map(i =>
-      i.id === id
-        ? {...i, [key]: newValue}
-        : i
+      i.id === id ? {...i, [key]: newValue} : i
     ))
   }
 
@@ -57,9 +55,7 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
   const changeImage = (e: ChangeEvent, id: number) => {
     const newFile = ((e.target as HTMLInputElement).files as FileList)[0];
     setImages(images.map(i =>
-      i.id === id
-        ? {...i, file: newFile}
-        : i
+      i.id === id ? {...i, file: newFile} : i
     ))
   }
 
@@ -92,15 +88,11 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
         )}
 
         <div className={css.AddInputsButtons}>
-          <Button
-            onclick={addInfo}
-          >
+          <Button onclick={addInfo} >
             Добавить характеристику
           </Button>
 
-          <Button
-            onclick={addImage}
-          >
+          <Button onclick={addImage} >
             Добавить картинку
           </Button>
         </div>

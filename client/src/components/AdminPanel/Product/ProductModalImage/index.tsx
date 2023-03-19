@@ -11,14 +11,14 @@ interface TProps {
 
 const ProductModalImage: React.FC<TProps> = ({changeImage, removeImage}) => {
   return (
-    <div
-      className={css.newProp}
-    >
+    <div className={css.newImageProp} >
       <FileInput
+        width={'80%'}
         onChange={changeImage}
       />
 
       <Button
+          width={'15%'}
         color='var(--cancelColor)'
         onclick={removeImage}
       >

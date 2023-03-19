@@ -46,7 +46,7 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
         onclick={cancelCategory}
         width={80}
       >
-        { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
+        { categoriesState.loading ? <ButtonLoader/> : "Удалить" }
       </Button>
     </div>
   );

@@ -42,6 +42,8 @@
 .AddInputsButtons {
   display: flex;
   flex-flow: row wrap;
+
+  padding-top: 3%;
 }
 
 .AddInputsButtons>* {

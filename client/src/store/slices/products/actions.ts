@@ -28,7 +28,7 @@ export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectVal
   }
 );
 
-// categoryId = null if we need to fetch all categories
+// categoryId = null if need to fetch all categories
 export const fetchProducts = createAsyncThunk<Product[], GetData, { rejectValue: string }>(
   'products/getProducts',
   async (params, { rejectWithValue }) => {
@@ -74,6 +74,31 @@ export const fetchReviews = createAsyncThunk<Review[], GetReviewsData, { rejectV
     try {
       const { data } = await $publicHost.get<Review[]>(apiUrls.reviews, { params: params });
       return data as Review[];
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+// CNAHGING
+export const changeProduct = createAsyncThunk<undefined, FormData, { rejectValue: string }>(
+  'products/changeProduct',
+  async (data, { rejectWithValue }) => {
+    try {
+      await $privateHost.put(apiUrls.products, data);
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const deleteImage = createAsyncThunk<undefined, DeleteData, { rejectValue: string }>(
+  'products/deleteImage',
+  async (data, { rejectWithValue }) => {
+    try {
+      await $privateHost.delete(apiUrls.images, { data: data });
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

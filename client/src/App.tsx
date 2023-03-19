@@ -7,6 +7,7 @@ import useAppSelector from 'hooks/useAppSelector';
 import { RouteNames } from 'router';
 import { login } from 'store/slices/user/actions';
 import { fetchBasket } from 'store/slices/basket/actions';
+import { fetchOrders } from 'store/slices/orders/actions';
 
 import Header from 'components/General/Header';
 import Footer from 'components/General/Footer';
@@ -14,7 +15,6 @@ import AppRouter from 'components/General/AppRouter';
 import MobileMenu from 'components/Mobile/MobileMenu';
 import MobileNavbar from 'components/Mobile/MobileNavbar';
 import './resources/styles/index.css';
-import { fetchOrders } from 'store/slices/orders/actions';
 
 interface ExtraLinks {
   value: string;
@@ -25,7 +25,6 @@ const App: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.user)
-  const ordersState = useAppSelector(state => state.orders)
 
   // TESTS
   useEffect(() => {

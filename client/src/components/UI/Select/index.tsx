@@ -4,12 +4,14 @@ import "./index.module.css"
 interface TProps {
   children: string[];
   onchange: React.ChangeEventHandler<HTMLSelectElement>;
+  width?: number | string;
 }
 
-const Select: React.FC<TProps> = ({children, onchange}) => {
+const Select: React.FC<TProps> = ({children, onchange, width}) => {
   return (
     <select
       onChange={onchange}
+      style={{width}}
     >
       {children.map( (option) =>
         <option

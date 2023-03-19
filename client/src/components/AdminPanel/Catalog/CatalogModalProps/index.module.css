@@ -1,0 +1,40 @@
+.CatalogModalPropsWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.CatalogModalPropRow {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: left;
+}
+
+.CatalogModalPicturesFeed {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+}
+
+.CatalogModalPropsWrapper img {
+  max-width: 200px;
+  height: fit-content;
+  position: relative;
+
+  border: 1px solid var(--dark);
+  background-color: rgba(0, 0, 0, 0);
+  transition: filter .5s ease-in-out;
+  cursor: pointer;
+}
+
+.CatalogModalPicturesFeed img:hover {
+  filter: brightness(30%);
+  transition: filter .5s ease-in-out;
+}
+
+/* .CatalogModalPropsWrapper span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: red;
+} */

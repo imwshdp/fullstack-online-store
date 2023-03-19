@@ -9,5 +9,6 @@ router.post('/', checkRole('ADMIN'), asyncHandler(productController.create))
 router.delete('/', checkRole('ADMIN'), asyncHandler(productController.delete))
 router.get('/', asyncHandler(productController.getAll))
 router.get('/:id', asyncHandler(productController.getOne))
+router.put('/', checkRole('ADMIN'), asyncHandler(productController.changeBasics))
 
 module.exports = router;

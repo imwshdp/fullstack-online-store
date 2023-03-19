@@ -20,7 +20,6 @@ const ProductGrid: React.FC<TProps> = ({nameFilter}) => {
 
   const filterList = () => {
     if(!productsState.products) return;
-
     let newState
 
     // filter by category

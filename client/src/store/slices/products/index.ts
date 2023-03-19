@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createProduct, createReview, deleteProduct, fetchProduct, fetchProducts, fetchReviews } from './actions';
+import { changeProduct, createProduct, createReview, deleteImage, deleteProduct, fetchProduct, fetchProducts, fetchReviews } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
 import { ProductsState } from './types';
 
@@ -67,6 +67,20 @@ const productsSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchReviews.rejected, (state, action) => setError(state, action))
+
+      // product changing
+      .addCase(changeProduct.pending, (state) => setLoading(state))
+      .addCase(changeProduct.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(changeProduct.rejected, (state, action) => setError(state, action))
+
+      // image deleting
+      .addCase(deleteImage.pending, (state) => setLoading(state))
+      .addCase(deleteImage.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteImage.rejected, (state, action) => setError(state, action))
   }
 });
 

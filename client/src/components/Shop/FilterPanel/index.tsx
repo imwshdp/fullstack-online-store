@@ -52,9 +52,7 @@ const FilterPanel: React.FC<TProps> = ({value, onChange}) => {
         >
           Введите название
         </Input>
-        <Select
-          onchange={setNewActiveCategory}
-        >
+        <Select onchange={setNewActiveCategory} >
           {categoriesList}
         </Select>
       </div>
