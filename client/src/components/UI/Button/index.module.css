@@ -4,6 +4,8 @@ button {
 
   align-items: center;
   justify-content: center;
+  justify-self: center;
+  align-self: center;
   background-color: var(--lightgray);
 
   border: 1px solid var(--dark);

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { changeProduct, createProduct, createReview, deleteImage, deleteProduct, fetchProduct, fetchProducts, fetchReviews } from './actions';
+import { changeProductBasics, changeProductExtra, createProduct, createReview, deleteImage, deleteInfo, deleteProduct, fetchProduct, fetchProducts, fetchReviews } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
-import { ProductsState } from './types';
+import { ProductInfo, ProductsState } from './types';
 
 const initialState: ProductsState = {
   products: null,
@@ -69,18 +69,42 @@ const productsSlice = createSlice({
       .addCase(fetchReviews.rejected, (state, action) => setError(state, action))
 
       // product changing
-      .addCase(changeProduct.pending, (state) => setLoading(state))
-      .addCase(changeProduct.fulfilled, (state) => {
+      .addCase(changeProductBasics.pending, (state) => setLoading(state))
+      .addCase(changeProductBasics.fulfilled, (state, action) => {
+        state.activeProduct = action.payload;
         state.loading = false;
       })
-      .addCase(changeProduct.rejected, (state, action) => setError(state, action))
+      .addCase(changeProductBasics.rejected, (state, action) => setError(state, action))
+
+      // product changing (extra props)
+      .addCase(changeProductExtra.pending, (state) => setLoading(state))
+      .addCase(changeProductExtra.fulfilled, (state, action) => {
+        state.activeProduct = action.payload;
+        state.loading = false;
+      })
+      .addCase(changeProductExtra.rejected, (state, action) => setError(state, action))
 
       // image deleting
       .addCase(deleteImage.pending, (state) => setLoading(state))
-      .addCase(deleteImage.fulfilled, (state) => {
+      .addCase(deleteImage.fulfilled, (state, action) => {
+        if (!state.activeProduct) return;
+        let filtered: any[] = [...state.activeProduct.image]
+        filtered = state.activeProduct?.image.filter(i => i.id !== action.payload)
+        state.activeProduct.image = filtered
         state.loading = false;
       })
       .addCase(deleteImage.rejected, (state, action) => setError(state, action))
+
+      // info deleting
+      .addCase(deleteInfo.pending, (state) => setLoading(state))
+      .addCase(deleteInfo.fulfilled, (state, action) => {
+        if (!state.activeProduct) return;
+        let filtered: ProductInfo[] = [...state.activeProduct.info]
+        filtered = state.activeProduct?.info.filter(i => i.id !== action.payload)
+        state.activeProduct.info = filtered
+        state.loading = false;
+      })
+      .addCase(deleteInfo.rejected, (state, action) => setError(state, action))
   }
 });
 

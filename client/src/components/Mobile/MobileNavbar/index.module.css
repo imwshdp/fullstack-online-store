@@ -20,7 +20,10 @@
 .MobileNavbar>button {
   display: flex;
   width: 10%;
+  min-width: 45px;
 
+  justify-self: auto;
+  align-self: auto;
   background: transparent;
   border: none;
   cursor: pointer;

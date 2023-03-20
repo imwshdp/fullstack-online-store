@@ -55,10 +55,11 @@ const CatalogModalBasics: React.FC<TProps> = ({newName, newPrice, categoriesList
         <span>Категория: {getCategoryName(activeProduct?.categoryId)}</span>
       </div>
 
+      <h1>Редактирование информации</h1>
+      
       <Input {...newName} width={'100%'}>Изменить название</Input>
-
       <Input {...newPrice} width={'100%'}>Изменить цену</Input>
-
+      
       <Select onchange={(e) => setActiveSelect(e.target.value)} width={'100%'} >
         {categoriesList}
       </Select>

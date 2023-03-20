@@ -1,3 +1,4 @@
+/* PROPERTIES */
 .CatalogModalPropsWrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -5,10 +6,41 @@
 
 .CatalogModalPropRow {
   display: flex;
-  flex-flow: row wrap;
+  width: 100%;
+  align-items: center;
   text-align: left;
+  stroke: black;
+  margin: 0 !important;
+  border-bottom: 1px solid var(--lightgray);
 }
 
+.CatalogModalPropRow>* {
+  padding: 3px;
+}
+
+.CatalogModalPropRow svg {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: var(--cancelColor);
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* NEW IMAGES AND PROPS */
+.AddInputsButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddInputsButtons>* {
+  flex: 1 0 auto;
+}
+
+/* PICTURES */
 .CatalogModalPicturesFeed {
   display: flex;
   flex-flow: row wrap;

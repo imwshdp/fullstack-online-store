@@ -172,7 +172,6 @@ class ProductController {
   // PUT (id, params) => (new product with params)
   async changeBasics(req, res) {
     let { id, name, price, categoryId } = req.body;
-
     let imgMobile, imgDesktop;
     if (req.files) {
       imgMobile = req.files.imgMobile;
@@ -213,7 +212,6 @@ class ProductController {
     }
 
     if (imgDesktop) {
-
       await ProductImage.destroy({
         where: { image: candidate.imgDesktop }
       })
@@ -238,10 +236,85 @@ class ProductController {
 
     await candidate.save()
 
-    // return res.json(updatedProduct);
-    return res.status(204).json();
+    const updatedProduct = await Product.findOne({
+      where: { id },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [
+        { model: ProductInfo, as: 'info' },
+        { model: ProductImage, as: 'image' },
+        { model: ProductReview, as: 'review' },
+      ],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(updatedProduct);
   }
 
+  // PUT (id, params) => (new product with params)
+  async changeInfoImage(req, res) {
+    let { id, info } = req.body;
+    let images;
+    if (req.files) { images = req.files.images; }
+
+    const product = await Product.findOne({ where: { id } });
+    if (!product) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
+
+    // info instances creation
+    if (info) {
+      info = await JSON.parse(info)
+
+      for (let element of info) {
+        await ProductInfo.create({
+          title: element.title,
+          description: element.description,
+          productId: product.id,
+        })
+      }
+    }
+
+    // image instances creation
+    if (images) {
+
+      if (Array.isArray(images)) {
+
+        images.forEach(async (image) => {
+          let fileName = uuid.v4() + '.jpg'
+          image.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+          await ProductImage.create({
+            image: fileName,
+            productId: product.id,
+            primary: false,
+          })
+        })
+
+      } else {
+        let fileName = uuid.v4() + '.jpg'
+        images.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+        await ProductImage.create({
+          image: fileName,
+          productId: product.id,
+          primary: false,
+        })
+      }
+    }
+
+    const updatedProduct = await Product.findOne({
+      where: { id },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [
+        { model: ProductInfo, as: 'info' },
+        { model: ProductImage, as: 'image' },
+        { model: ProductReview, as: 'review' },
+      ],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(updatedProduct);
+  }
 }
 
 module.exports = new ProductController();

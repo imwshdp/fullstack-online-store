@@ -1,36 +1,119 @@
-import React from 'react';
-import useAppSelector from 'hooks/useAppSelector';
-import css from "./index.module.css";
-import useAppDispatch from 'hooks/useAppDispatch';
-import { deleteImage } from 'store/slices/products/actions';
+import React, { ChangeEvent } from 'react';
 
-const CatalogModalProps: React.FC = () => {
+import useAppSelector from 'hooks/useAppSelector';
+import useAppDispatch from 'hooks/useAppDispatch';
+
+import TrashBin from 'resources/icons/TrashBin';
+import Button from 'components/UI/Button';
+import { FileWithId, ProductInfo } from 'store/slices/products/types';
+import CatalogModalProp from '../CatalogModalProp';
+import CatalogModalImage from '../CatalogModalImage';
+import css from "./index.module.css";
+
+interface TProps {
+  infoState: {
+    info: ProductInfo[];
+    setInfo: (state: ProductInfo[]) => void;
+  };
+
+  imagesState: {
+    images: FileWithId[];
+    setImages: (state: FileWithId[]) => void;
+  };
+
+  confirmDeletingImage: (id: number) => void;
+  confirmDeletingProperty: (id: number) => void;
+  confirmAddingNewProperties: () => void;
+}
+
+const CatalogModalProps: React.FC<TProps> = ({infoState, imagesState, confirmDeletingImage, confirmDeletingProperty, confirmAddingNewProperties}) => {
 
   const dispatch = useAppDispatch()
-  const activeProductState = useAppSelector(state => state.products.activeProduct)
+  const activeProduct = useAppSelector(state => state.products.activeProduct)
 
-  const confirmDeletingImage = (id: number) => {
-    if(window.confirm("Вы действительно хотите подтвердить удаление изображения товара?")) {
-      dispatch(deleteImage({id: id}))
-    }
+  const info = infoState.info, setInfo = infoState.setInfo;
+  const images = imagesState.images, setImages = imagesState.setImages;
+
+  // changing state of info
+  const addInfo = () => setInfo([...info, {
+    title: '',
+    description: '',
+    id: Date.now(),
+  }])
+
+  const changeInfo = (key: string, newValue: string, id: number) => {
+    setInfo(info.map(i =>
+      i.id === id ? {...i, [key]: newValue} : i
+    ))
   }
+
+  // changing state of images
+  const addImage = () => setImages([...images, {
+    file: {} as File,
+    id: Date.now(),
+  }])
+
+  const changeImage = (e: ChangeEvent, id: number) => {
+    const newFile = ((e.target as HTMLInputElement).files as FileList)[0];
+    setImages(images.map(i =>
+      i.id === id ? {...i, file: newFile} : i
+    ))
+  }
+
+  // remove row with file or data inputs
+  const removeInfo = (id: number) => setInfo(info.filter(i => i.id !== id))
+  const removeImage = (id: number) => setImages(images.filter(i => i.id !== id))
   
   return (
     <div className={css.CatalogModalPropsWrapper}>
 
-      <h1>Редактирование информации</h1>
-      {activeProductState?.info && activeProductState?.info.map(property =>
+      <h1>Редактирование характеристик</h1>
+      {activeProduct?.info && activeProduct?.info.map(property =>
         <div
           className={css.CatalogModalPropRow}
           key={property.id}
         >
+          <div onClick={() => confirmDeletingProperty(property.id)}>
+            <TrashBin />
+          </div>
           {property.title}: {property.description}
         </div>
       )}
 
-      <h1>Редактирование картинок</h1>
+      <h1>Добавление нового контента</h1>
+      
+      {info.map(i =>
+        <CatalogModalProp
+          key={i.id}
+          changeName={(e: ChangeEvent) => changeInfo('title', (e.currentTarget as HTMLInputElement).value, i.id)}
+          changeDescription={(e: ChangeEvent) => changeInfo('description', (e.currentTarget as HTMLInputElement).value, i.id)}
+          removeInfo={() => removeInfo(i.id)}
+        />
+      )}
+
+      {images.map(i =>
+        <CatalogModalImage
+          key={i.id}
+          changeImage={(event: ChangeEvent) => changeImage(event, i.id)}
+          removeImage={() => removeImage(i.id)}
+        />
+      )}
+
+      <div className={css.AddInputsButtons}>
+        <Button onclick={addInfo}>Добавить характеристику</Button>
+        <Button onclick={addImage}>Добавить картинку</Button>
+      </div>
+      <Button
+        width={'70%'}
+        color='var(--applyColor)'
+        onclick={confirmAddingNewProperties}
+      >
+        Добавить новые характеристики и фотографии
+      </Button>
+
+      <h1>Удаление фотографий товара</h1>
       <div className={css.CatalogModalPicturesFeed}>
-        {activeProductState?.image && activeProductState?.image.map(img =>
+        {activeProduct?.image && activeProduct?.image.map(img =>
           !img.primary &&
           <div key={img.id} >
             <img

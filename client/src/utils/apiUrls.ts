@@ -6,6 +6,8 @@ export enum apiUrls {
   categories = "/api/category",
 
   products = "/api/product",
+  productChangeBasics = "/api/product/basics",
+  productChangeExtra = "/api/product/extra",
 
   reviews = "/api/reviews",
   images = "/api/images",

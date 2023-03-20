@@ -77,8 +77,6 @@ class BasketProductController {
   async increase(req, res) {
     const { productId, basketId } = req.body;
 
-    console.log(productId, basketId)
-
     if (!productId || !basketId) {
       throw ApiError.badRequest('Некорректные данные');
     }

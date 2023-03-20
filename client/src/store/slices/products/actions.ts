@@ -81,12 +81,13 @@ export const fetchReviews = createAsyncThunk<Review[], GetReviewsData, { rejectV
   }
 );
 
-// CNAHGING
-export const changeProduct = createAsyncThunk<undefined, FormData, { rejectValue: string }>(
-  'products/changeProduct',
-  async (data, { rejectWithValue }) => {
+// CNAHGING ONE PRODUCT STATE
+export const changeProductBasics = createAsyncThunk<DetailedProduct, FormData, { rejectValue: string }>(
+  'products/changeProductBasics',
+  async (body, { rejectWithValue }) => {
     try {
-      await $privateHost.put(apiUrls.products, data);
+      const { data } = await $privateHost.put<DetailedProduct>(apiUrls.productChangeBasics, body);
+      return data as DetailedProduct;
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)
@@ -94,11 +95,38 @@ export const changeProduct = createAsyncThunk<undefined, FormData, { rejectValue
   }
 );
 
-export const deleteImage = createAsyncThunk<undefined, DeleteData, { rejectValue: string }>(
-  'products/deleteImage',
-  async (data, { rejectWithValue }) => {
+export const changeProductExtra = createAsyncThunk<DetailedProduct, FormData, { rejectValue: string }>(
+  'products/changeProductExtra',
+  async (body, { rejectWithValue }) => {
     try {
-      await $privateHost.delete(apiUrls.images, { data: data });
+      const { data } = await $privateHost.put<DetailedProduct>(apiUrls.productChangeExtra, body);
+      return data as DetailedProduct;
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const deleteImage = createAsyncThunk<number, DeleteData, { rejectValue: string }>(
+  'products/deleteImage',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      await $privateHost.delete(apiUrls.images, { data: { id } });
+      return id;
+
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message)
+    }
+  }
+);
+
+export const deleteInfo = createAsyncThunk<number, DeleteData, { rejectValue: string }>(
+  'products/deleteInfo',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      await $privateHost.delete(apiUrls.info, { data: { id } });
+      return id;
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)
