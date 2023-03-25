@@ -24,13 +24,16 @@ const MobileNavbar: React.FC<TProps> = ({setIsMenuActive, isMenuActive}) => {
         <MenuIcon />
       </button>
 
-      <button>
+      <button onClick={() => navigate(RouteNames.ACCOUNT_ROUTE)}>
         <UserIcon />
       </button>
 
-      <button id={css.UpIcon}>
-        <UpIcon />
-      </button>
+        <button
+          id={css.UpIcon}
+          onClick={() => window.location.href = '#header'}
+        >
+          <UpIcon />
+        </button>
 
       <button
         onClick={() => navigate(RouteNames.BASKET_ROUTE)}

@@ -18,15 +18,15 @@ const AccountDetails: React.FC = () => {
 
   return (
     <div className={css.AccountInfo}>
-      <p>
-        <span>Почта</span>
-        <div>{user?.email}</div>
-      </p>
+      <div>
+        <b>Почта</b>
+        <span>{user?.email}</span>
+      </div>
 
-      <p>
-        <span>Имя</span>
-        <div>{user?.username}</div>
-      </p>
+      <div>
+        <b>Имя</b>
+        <span>{user?.username}</span>
+      </div>
       
       <Button
         onclick={logOut}

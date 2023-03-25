@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from 'react';
 
 import Input from 'components/UI/Input';
+import Row from 'components/General/Row';
 import Button from 'components/UI/Button';
-import css from './index.module.css'
 
 interface TProps {
   changeName: (e: ChangeEvent) => void;
@@ -12,29 +12,29 @@ interface TProps {
 
 const CatalogModalProp: React.FC<TProps> = ({changeName, changeDescription, removeInfo}) => {
   return (
-    <div className={css.NewProp} >
+    <Row>
       <Input
-        width={'40%'}
+        width={'35%'}
         onChange={changeName}
       >
         Название характеристики
       </Input>
 
       <Input
-        width={'40%'}
+        width={'35%'}
         onChange={changeDescription}
       >
         Описание
       </Input>
 
       <Button
-        width={'15%'}
+        width={'20%'}
         color='var(--cancelColor)'
         onclick={removeInfo}
       >
         Удалить
       </Button>
-    </div>
+    </Row>
   );
 }
 

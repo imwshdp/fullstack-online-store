@@ -41,18 +41,24 @@ const App: React.FC = () => {
   // mobile menu state
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
-  const [extraLinks, setExtraLinks] = useState<ExtraLinks[]>([
-    {value: "Обо мне", link: RouteNames.REDIRECT_ROUTE},
+  const menuLinks: ExtraLinks[] = [
+    {value: "Обо мне", link: ''},
     {value: "Каталог", link: RouteNames.SHOP_ROUTE},
-    {value: "Мои заказы", link: RouteNames.ORDER_ROUTE},
+    {value: "Корзина", link: RouteNames.BASKET_ROUTE},
+    {value: "Заказы", link: RouteNames.ORDER_ROUTE},
+    // {value: "Админ Панель", link: RouteNames.ADMIN_ROUTE},
+  ]
+
+  const footerLinks: ExtraLinks[] = [
+    {value: "Обо мне", link: ''},
     {value: "Админ Панель", link: RouteNames.ADMIN_ROUTE},
-  ])
+  ]
 
   return (
     <BrowserRouter>
       <Header />
       <AppRouter />
-      <Footer />
+      <Footer links={footerLinks} />
 
       <MobileNavbar
         setIsMenuActive={setIsMenuActive}
@@ -60,7 +66,7 @@ const App: React.FC = () => {
       />
       <MobileMenu
         header={'Меню'}
-        items={extraLinks}
+        items={menuLinks}
         isMenuActive={isMenuActive}
         setIsMenuActive={setIsMenuActive}
       />

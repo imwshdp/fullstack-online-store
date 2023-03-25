@@ -1,16 +1,35 @@
+@font-face {
+  font-family: 'ViaodaLibre';
+  src: url('../fonts/ViaodaLibreRegular.ttf') format(opentype);
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Alana';
+  src: url('../fonts/Alana.otf') format(opentype);
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
 :root {
-  --mainFont: 'Inter', sans-serif;
-  --bubbleFont: 'Ceviche One', sans-serif;
+  --mainFont: 'ViaodaLibre', serif;
+  --titleFont: 'Alana', serif;
   --lightgray: #D9D9D9;
   --gray: #6c757d;
   --dark: #343a40;
-  --pink: #ffb8c6;
 
   --navbarColor: rgba(245, 245, 245);
   --footerColor: #f3f3f3;
 
   --applyColor: #90EE90;
   --cancelColor: #F08080;
+
+  --minPicSize: 300px;
+  --mediumPicSize: 400px;
+  --largePicSize: 450px;
 }
 
 html,
@@ -19,11 +38,12 @@ body {
   height: 100%;
   margin: 0;
 
-  font-size: 1em;
+  font-size: 1.1em;
   font-family: var(--mainFont);
-  font-weight: 600;
+  font-weight: 100;
 
   color: var(--dark);
+  scroll-behavior: smooth;
 }
 
 *,
@@ -42,9 +62,7 @@ a {
   flex-flow: column nowrap;
 
   width: 100%;
-  min-height: calc(100vh - 200px);
-
-  /* border: 1px solid blue; */
+  min-height: calc(100vh - 170px);
 }
 
 /* margin after footer */
@@ -56,5 +74,11 @@ a {
 @media (min-width: 750px) {
   .Main {
     min-height: calc(100vh - 300px);
+  }
+}
+
+@media (min-width: 1080px) {
+  .Main {
+    min-height: calc(100vh - 270px);
   }
 }

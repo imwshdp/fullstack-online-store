@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { RouteNames } from 'router';
 
-import logotype from 'resources/assets/logo.png';
+import Logotype from 'resources/assets/Logotype';
 import css from "./index.module.css";
 
 const Logo: React.FC = () => {
@@ -14,14 +14,17 @@ const Logo: React.FC = () => {
     <section className={css.Logo}>
       
       <a
-        onClick={() => navigate(RouteNames.REDIRECT_ROUTE)}
+        onClick={() => navigate(RouteNames.SHOP_ROUTE)}
         className={css.Logotype}
       >
-        <img src={logotype} alt="logotype"></img>
+        <Logotype
+          width={'100%'}
+          height={'100%'}
+        />
       </a>
 
       <a
-        onClick={() => navigate(RouteNames.REDIRECT_ROUTE)}
+        onClick={() => navigate(RouteNames.SHOP_ROUTE)}
         className={css.Title}
       >
         <h1>

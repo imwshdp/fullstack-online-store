@@ -25,10 +25,10 @@ const PropsAside: React.FC = () => {
 
   return (
     <aside className={css.AsideProps}>
-
-      <h1>{activeProduct?.name}</h1>
-
-      <div className={css.ProductInfo}>
+      <div
+        className={css.ProductInfo}
+      >
+        <h1>{activeProduct?.name}</h1>
         {activeProduct?.info.map(i =>
           <div key={i.id} className={css.InfoRow}>
             <span>{i.title}</span>

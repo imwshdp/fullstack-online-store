@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useAppSelector from 'hooks/useAppSelector';
 
 import css from './index.module.css';
@@ -21,7 +21,7 @@ const PicturesFeed: React.FC = () => {
   return (
     <section className={css.PicturesFeed}>
       
-      <img src={activeImage} />
+      <img className={css.MainPicture} src={activeImage} />
 
       <div className={css.Slider}>
         {activeProduct?.image && activeProduct?.image.map(img =>

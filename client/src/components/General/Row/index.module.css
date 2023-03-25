@@ -1,7 +1,10 @@
-/* new prop inputs row */
-.NewProp {
+.Row {
   display: flex;
   flex-flow: row wrap;
-
   justify-content: space-between;
+}
+
+.Row>* {
+  display: flex;
+  flex: 1 0 auto;
 }

@@ -1,24 +1,27 @@
-.PicturesFeed,
-.PicturesFeed img {
-  width: 100%;
-}
-
 .PicturesFeed {
   display: flex;
   flex-flow: column;
-  padding: 5px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.MainPicture {
+  object-fit: scale-down;
+  width: 100%;
+  /* border: 1px solid var(--lightgray); */
 }
 
 .Slider {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: start;
+  align-items: center;
 
   width: 100%;
-  height: auto;
+  height: fit-content;
 
-  justify-content: start;
-
-  /* border: 1px solid var(--lightgray); */
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
@@ -44,34 +47,71 @@
 
 /* desktop */
 @media (min-width: 750px) {
+
   .PicturesFeed {
-    max-width: 50%;
+    min-width: fit-content;
   }
 
-  .PicturesFeed img {
-    max-width: 1500px;
-    max-height: 1500px;
+  .MainPicture {
+    max-height: var(--minPicSize);
+    max-width: var(--minPicSize);
+  }
+
+  .Slider {
+    width: 100%;
+    max-width: var(--minPicSize);
+  }
+
+  .Slider img {
+    min-width: calc((100% / 4) - 10px);
+    max-width: calc((var(--minPicSize) / 4) - 10px);
   }
 }
 
-@media (min-width: 1200px) {
-  .PicturesFeed {
-    flex-flow: row nowrap;
+@media (min-width: 1000px) {
+
+  .MainPicture {
+    max-height: var(--mediumPicSize);
+    max-width: var(--mediumPicSize);
   }
 
-  .PicturesFeed img {
-    width: 80%;
+  .Slider {
+    max-width: var(--mediumPicSize);
+  }
+
+  .Slider img {
+    max-width: calc((var(--mediumPicSize) / 4) - 10px);
+  }
+}
+
+@media (min-width: 1300px) {
+  .PicturesFeed {
+    flex-flow: row nowrap;
+    width: fit-content;
+  }
+
+  .MainPicture {
+    max-height: var(--largePicSize);
+    max-width: var(--largePicSize);
   }
 
   .Slider {
     order: -1;
     flex-flow: column nowrap;
-    width: 20%;
-
-    align-items: center;
-    justify-content: start;
+    height: 100%;
+    max-height: var(--largePicSize);
+    min-width: fit-content;
 
     overflow-x: unset;
     overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+
+  .Slider img {
+    height: calc((100% / 4) - 10px);
+    max-height: calc((var(--largePicSize) / 4) - 10px);
+
+    min-width: fit-content;
+    max-width: min-content;
   }
 }

@@ -2,46 +2,48 @@
 .Logo,
 .Logo>a {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
+  font-size: 1rem;
+  line-height: 30px;
 }
 
 .Logo {
-  justify-self: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .Logo a {
   cursor: pointer;
 }
 
-.Logotype>img {
-  max-height: 150px;
-  margin-left: auto;
-  margin-right: auto;
+.Logotype {
+  height: 120px;
+  width: 120px;
 }
 
 .Title {
   display: flex;
   flex-flow: column wrap;
-  flex: 1 0 auto;
-  align-self: center;
+  margin-left: 10px;
 }
 
 h1 span {
   display: flex;
-  font-family: var(--bubbleFont);
+  font-family: var(--titleFont);
   font-size: 1em;
-  color: var(--pink);
+  color: #000000;
   text-shadow: 1.5px 3px 6px var(--gray);
 }
 
 h1 span:last-child {
   font-size: 1.1em;
-  color: var(--gray);
+  color: var(--dark);
 }
 
-/* desktop */
-@media (min-width: 750px) {
-  .Logo {
-    margin-left: 15%;
+/* logo sizes changing */
+@media (min-width: 750px) and (max-width: 1080px) {
+  .Logotype {
+    height: 100px;
+    width: 100px;
   }
 }

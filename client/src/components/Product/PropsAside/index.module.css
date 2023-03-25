@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
+  overflow: hidden;
 }
 
 .AsideProps h1 {
@@ -52,22 +53,30 @@
 
 /* desktop */
 @media (min-width: 750px) {
-  .AsideProps {
-    width: 50%;
-  }
-
   .ProductInfo {
     display: flex;
     flex-flow: column nowrap;
-    height: calc(100% - 100px);
+    height: var(--minPicSize);
 
     overflow-y: scroll;
   }
 
   .AsideProps button {
-    margin-top: 5%;
-    margin-left: auto;
     order: 0;
     width: 125px !important;
+    margin: auto 0;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .ProductInfo {
+    height: var(--mediumPicSize);
+  }
+}
+
+@media (min-width: 1300px) {
+  .ProductInfo {
+    height: calc(var(--largePicSize) - 80px);
   }
 }

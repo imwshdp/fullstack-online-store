@@ -6,8 +6,8 @@ import "./index.module.css";
 
 const Header: React.FC = () => {
   return (
-    <header id="#header">
-      <Logo/>        
+    <header id="header">
+      <Logo/>
       <Navbar />
     </header>
   );

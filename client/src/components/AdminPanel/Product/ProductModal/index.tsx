@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
@@ -6,6 +6,7 @@ import Button from 'components/UI/Button';
 import ProductModalProp from 'components/AdminPanel/Product/ProductModalProp';
 import ProductModalImage from 'components/AdminPanel/Product/ProductModalImage';
 import css from "./index.module.css";
+import { setActiveProduct } from 'store/slices/products';
 
 interface TProps {
   visible: boolean;
@@ -62,6 +63,13 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
   // remove row with file or data inputs
   const removeInfo = (id: number) => setInfo(info.filter(i => i.id !== id))
   const removeImage = (id: number) => setImages(images.filter(i => i.id !== id))
+
+  // remove active product while closing modal
+  useEffect(() => {
+    return function() {
+      setActiveProduct(null)
+    }
+  }, [])
 
   return (
     <div className={rootClasses.join(" ")} onClick={() => setVisible(false)}>

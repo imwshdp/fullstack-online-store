@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import PropsAside from '../PropsAside';
 import PicturesFeed from '../PicturesFeed';
 import css from './index.module.css';
-import ReviewSection from '../ReviewSection';
 
 const ProductLayout: React.FC = () => {
   return (

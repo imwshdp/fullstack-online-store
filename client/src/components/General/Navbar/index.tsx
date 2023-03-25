@@ -17,15 +17,16 @@ const Navbar: React.FC = () => {
       {isUserAuth
       ?
         <>
-          <div onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</div>
-          <div onClick={() => navigate(RouteNames.ORDER_ROUTE)}>Заказы</div>
-          <div onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</div>
-          <div onClick={() => navigate(RouteNames.ACCOUNT_ROUTE)}>Учетная запись</div>
+          <span onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Каталог</span>
+          <span onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</span>
+          <span onClick={() => navigate(RouteNames.ORDER_ROUTE)}>Заказы</span>
+          {/* <span onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</span> */}
+          <span onClick={() => navigate(RouteNames.ACCOUNT_ROUTE)}>Учетная запись</span>
         </>
       :
         <>
-          <div onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Магазин</div>
-          <div onClick={() => navigate(RouteNames.LOGIN_ROUTE)}>Войти</div>
+          <span onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Каталог</span>
+          <span onClick={() => navigate(RouteNames.LOGIN_ROUTE)}>Войти</span>
         </>
       }
     </nav>

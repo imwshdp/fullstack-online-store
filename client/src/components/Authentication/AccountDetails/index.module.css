@@ -14,14 +14,14 @@
   margin: 20px 0;
 }
 
-.AccountInfo p {
+.AccountInfo div {
   display: flex;
   flex-flow: row nowrap;
   padding: 0 5%;
   align-items: center;
 }
 
-.AccountInfo span {
+.AccountInfo b {
   width: 30%;
   max-width: 100px;
   min-width: fit-content;
@@ -29,7 +29,7 @@
   padding: 5px;
 }
 
-.AccountInfo div {
+.AccountInfo span {
   display: flex;
   flex: 1 0 auto;
   padding: 5px;

@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState } from 'react';
 import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import { setActiveCategory } from 'store/slices/categories';
 import { createProduct } from 'store/slices/products/actions';
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
@@ -13,7 +14,6 @@ import ProductModal from '../ProductModal';
 import FileInput from 'components/UI/FileInput';
 import ButtonLoader from 'components/General/ButtonLoader';
 import css from "./index.module.css";
-import { setActiveCategory } from 'store/slices/categories';
 
 interface TProps {
   header: string;
@@ -21,7 +21,7 @@ interface TProps {
 
 const ProductSection: React.FC<TProps> = ({header}) => {
 
-  // store dispatch and selector
+  // store dispatch and state
   const dispatch = useAppDispatch();
   const categoriesState = useAppSelector(state => state.categories);
 
@@ -49,9 +49,10 @@ const ProductSection: React.FC<TProps> = ({header}) => {
     setImageMobile(files[0]);
   }
 
+  // modal state
   const openModal = () => setModalVisible(true);
 
-  // requesting function
+  // dispatch function
   const addProduct = () => {
     const data = new FormData();
     
@@ -68,7 +69,7 @@ const ProductSection: React.FC<TProps> = ({header}) => {
     dispatch(createProduct(data));
   };
 
-  // select state and onChange
+  // select list
   const categoriesList: string[] = [];
   if(categoriesState.categories) {
     categoriesList.push("Категория товара")
