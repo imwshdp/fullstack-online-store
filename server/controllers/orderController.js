@@ -3,7 +3,7 @@ const { Order, OrderProduct, BasketProduct, Basket } = require('../models/models
 
 class OrderController {
 
-  // CREATE (userId, price) => (status 204)
+  // CREATE (userId, price) => (array of order products)
   async create(req, res) {
     const { userId, price } = req.body;
 
@@ -38,7 +38,20 @@ class OrderController {
       where: { basketId: basket.id },
     })
 
-    return res.status(204).json();
+    // configure response data
+    let orderProductsList = []
+
+    const orderProducts = await OrderProduct.findAll({
+      where: { orderId: newOrder.id },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    // push to list all founded products
+    for (let orderProduct of orderProducts) {
+      orderProductsList.push(orderProduct)
+    }
+
+    return res.json({ orderId: newOrder.id, orderPrice: newOrder.price, orderProductsList });
   }
 
   // GET ALL (user id) => (array of order's products)

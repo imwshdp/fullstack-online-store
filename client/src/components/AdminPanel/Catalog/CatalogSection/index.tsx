@@ -24,7 +24,7 @@ const CatalogSection: React.FC<TProps> = ({header}) => {
   }
 
   return (
-    <div className={css.Section}>
+    <section className={css.CatalogSection}>
       <h1>{header}</h1>
 
       <div className={css.Panel}>
@@ -44,7 +44,7 @@ const CatalogSection: React.FC<TProps> = ({header}) => {
         setVisible={setModalVisible}
       />
 
-    </div>
+    </section>
   );
 }
 

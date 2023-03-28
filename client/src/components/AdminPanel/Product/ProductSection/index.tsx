@@ -90,7 +90,7 @@ const ProductSection: React.FC<TProps> = ({header}) => {
   }
 
   return (
-    <section className={css.Section}>
+    <section className={css.ProductSection}>
       <h1>{header}</h1>
 
       <div className={css.Panel}>

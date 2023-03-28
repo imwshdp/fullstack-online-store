@@ -115,12 +115,20 @@ const CatalogModalProps: React.FC<TProps> = ({infoState, imagesState, confirmDel
       <div className={css.CatalogModalPicturesFeed}>
         {activeProduct?.image && activeProduct?.image.map(img =>
           !img.primary &&
-          <div key={img.id} >
+          <div
+            key={img.id}
+            className={css.ImageWrapper}
+          >
+            <span
+              className={css.ImageLabel}
+              onClick={() => confirmDeletingImage(img.id)}
+            >
+              Удалить
+            </span>
             <img
               onClick={() => confirmDeletingImage(img.id)}
               src={process.env.REACT_APP_API_URL as string + img.image}
             />
-            {/* <span>Удалить</span> */}
           </div>
         )}
       </div>

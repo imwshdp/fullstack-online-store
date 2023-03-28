@@ -6,6 +6,7 @@
 
   border: thin solid var(--lightgray);
   cursor: pointer;
+  font-size: 1.2rem;
 }
 
 /* item image */
@@ -20,8 +21,6 @@
 
   margin: 5px 0;
   align-items: center;
-
-  /* border: 2px solid blue; */
 }
 
 .ItemNav :last-child {
@@ -33,5 +32,12 @@
   .Item {
     max-width: 300px;
     padding: 5px;
+    font-size: .85rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Item {
+    font-size: 1rem;
   }
 }

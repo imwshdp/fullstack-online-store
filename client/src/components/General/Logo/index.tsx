@@ -11,7 +11,7 @@ const Logo: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <section className={css.Logo}>
+    <div className={css.Logo}>
       
       <a
         onClick={() => navigate(RouteNames.SHOP_ROUTE)}
@@ -33,7 +33,7 @@ const Logo: React.FC = () => {
         </h1>
       </a>
       
-    </section>
+    </div>
   );
 }
 

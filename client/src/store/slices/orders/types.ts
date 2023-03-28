@@ -28,6 +28,12 @@ export interface FetchedData {
   ordersPrices: number[];
 }
 
+export interface FetchedOneData {
+  orderId: number;
+  orderProductsList: Product[];
+  orderPrice: number;
+}
+
 export interface ProductView {
   id: number,
   orderId: number;

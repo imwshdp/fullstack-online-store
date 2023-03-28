@@ -67,7 +67,7 @@ const AccountDetails: React.FC = () => {
   }
 
   return (
-    <div className={css.AccountInfo}>
+    <section className={css.AccountInfo}>
       <div>
         <b>Почта</b>
         <Input {...emailInput} />
@@ -126,7 +126,7 @@ const AccountDetails: React.FC = () => {
         </Button>
       </div>
 
-    </div>
+    </section>
   );
 }
 

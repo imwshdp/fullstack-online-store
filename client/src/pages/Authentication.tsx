@@ -4,10 +4,10 @@ import PageHeader from 'components/General/PageHeader';
 
 const Authentication: React.FC = () => {
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>Аутентификация</PageHeader>
       <AuthForm />
-    </section>
+    </div>
   );
 }
 

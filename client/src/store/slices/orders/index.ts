@@ -22,8 +22,11 @@ const ordersSlice = createSlice({
     builder
       // order creating
       .addCase(createOrder.pending, (state) => setLoading(state))
-      .addCase(createOrder.fulfilled, (state) => {
+      .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
+        state.ordersIds?.push(action.payload.orderId)
+        state.products?.push(...action.payload.orderProductsList)
+        state.prices?.push(action.payload.orderPrice)
       })
       .addCase(createOrder.rejected, (state, action) => setError(state, action))
 

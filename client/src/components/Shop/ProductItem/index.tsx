@@ -35,7 +35,7 @@ const ProductItem: React.FC<Product> = ({
   }
 
   return (
-    <div
+    <section
       className={css.Item}
       onClick={click}
     >
@@ -47,11 +47,13 @@ const ProductItem: React.FC<Product> = ({
 
       <div className={css.ItemNav}>
         <b>{price} &#8381;</b>
-        <Button onclick={() => addToBasket()} >В корзину</Button>
+        <div onClick={(e) => e.stopPropagation()}>
+          <Button onclick={addToBasket} >В корзину</Button>
+        </div>
       </div>
                         
       <b>{name}</b>
-    </div>
+    </section>
   );
 }
 

@@ -43,7 +43,7 @@ const FilterPanel: React.FC<TProps> = ({value, onChange}) => {
   }
 
   return (
-    <section className={css.FilterPanel}>
+    <div className={css.FilterPanel}>
         
       <div className={css.MainFilter}>
         <Input
@@ -62,7 +62,7 @@ const FilterPanel: React.FC<TProps> = ({value, onChange}) => {
         <div className={css.ViewButton}></div>
       </div>
 
-    </section>
+    </div>
   );
 }
 

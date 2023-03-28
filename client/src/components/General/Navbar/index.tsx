@@ -9,7 +9,6 @@ import css from "./index.module.css";
 const Navbar: React.FC = () => {
 
   const navigate = useNavigate();
-
   const { isUserAuth } = useAppSelector(state => state.user)
 
   return (
@@ -20,7 +19,6 @@ const Navbar: React.FC = () => {
           <span onClick={() => navigate(RouteNames.SHOP_ROUTE)}>Каталог</span>
           <span onClick={() => navigate(RouteNames.BASKET_ROUTE)}>Корзина</span>
           <span onClick={() => navigate(RouteNames.ORDER_ROUTE)}>Заказы</span>
-          {/* <span onClick={() => navigate(RouteNames.ADMIN_ROUTE)}>Админ панель</span> */}
           <span onClick={() => navigate(RouteNames.ACCOUNT_ROUTE)}>Учетная запись</span>
         </>
       :

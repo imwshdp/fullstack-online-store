@@ -5,12 +5,12 @@ import PageHeader from 'components/General/PageHeader';
 
 const Orders: React.FC = () => {
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>
         История Заказов
       </PageHeader>
       <OrdersList />
-    </section>
+    </div>
   );
 }
 

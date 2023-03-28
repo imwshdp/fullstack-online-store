@@ -18,7 +18,7 @@ const Shop: React.FC = () => {
   }, [])
 
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>
         Товары
       </PageHeader>
@@ -28,7 +28,7 @@ const Shop: React.FC = () => {
       <ProductGrid
         nameFilter={nameProductFilter.value}
       />
-    </section>
+    </div>
   );
 }
 

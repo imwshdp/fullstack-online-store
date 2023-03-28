@@ -1,4 +1,4 @@
-.Section,
+.ProductSection,
 .Panel,
 .Buttons {
   display: flex;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.Section {
+.ProductSection {
   width: 70%;
   max-width: 1000px;
 
@@ -19,19 +19,19 @@
   border: thin solid var(--dark);
 }
 
-.Section * {
+.ProductSection * {
   margin-top: 10px;
 }
 
-.Section h1 {
+.ProductSection h1 {
   margin-bottom: 0;
 }
 
-.Section * {
+.ProductSection * {
   margin-top: 10px;
 }
 
-.Section h1 {
+.ProductSection h1 {
   margin-bottom: 0;
 }
 

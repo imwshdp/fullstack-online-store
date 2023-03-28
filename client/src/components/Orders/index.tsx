@@ -41,7 +41,10 @@ const OrdersList = () => {
     <div className={css.OrdersListWrapper}>
       {ordersState.ordersIds &&  
       ordersState.ordersIds.map((order, index) =>
-        <div className={css.Order} key={order}>
+        <section
+          key={order}
+          className={css.Order}
+        >
           <h1>Заказ № {order}</h1>
             <ul>
               {productsList.map(product =>
@@ -54,7 +57,7 @@ const OrdersList = () => {
               )}
             </ul>
             <span>Сумма заказа: {ordersState.prices && ordersState.prices[index]} &#8381;</span>
-        </div>
+        </section>
       )}
     </div>
   );

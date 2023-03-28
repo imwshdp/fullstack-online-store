@@ -19,7 +19,7 @@ const PicturesFeed: React.FC = () => {
   }
 
   return (
-    <section className={css.PicturesFeed}>
+    <div className={css.PicturesFeed}>
       
       <img className={css.MainPicture} src={activeImage} />
 
@@ -34,7 +34,7 @@ const PicturesFeed: React.FC = () => {
           />
         )}
       </div>
-    </section>
+    </div>
   );
 }
 

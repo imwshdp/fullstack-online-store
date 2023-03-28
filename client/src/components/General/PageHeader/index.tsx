@@ -7,9 +7,9 @@ interface TProps {
 
 const PageHeader: React.FC<TProps> = ({children}) => {
   return (
-    <section className={css.PageHeader}>
+    <div className={css.PageHeader}>
       <h2>{children}</h2>
-    </section>
+    </div>
   );
 }
 

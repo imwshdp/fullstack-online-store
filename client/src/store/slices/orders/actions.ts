@@ -1,17 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $privateHost } from "api";
 import { apiUrls } from "utils/apiUrls";
-import { CreateOrderData, FetchedData, FetchOrderData } from "./types";
+import { CreateOrderData, FetchedData, FetchedOneData, FetchOrderData } from "./types";
 
 // orders actions
-export const createOrder = createAsyncThunk<undefined, CreateOrderData, { rejectValue: string }>(
+export const createOrder = createAsyncThunk<FetchedOneData, CreateOrderData, { rejectValue: string }>(
   'orders/createOrder',
   async ({ userId, price }, { rejectWithValue }) => {
     try {
-      await $privateHost.post(apiUrls.orders, {
+      const { data } = await $privateHost.post(apiUrls.orders, {
         userId,
         price,
       });
+      return data as FetchedOneData;
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

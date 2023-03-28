@@ -5,10 +5,10 @@ import React from 'react';
 const Account: React.FC = () => {
 
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>Учетная запись</PageHeader>
       <AccountDetails />
-    </section>
+    </div>
   );
 }
 

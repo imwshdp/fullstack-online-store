@@ -5,12 +5,12 @@ import BasketList from 'components/Basket/BasketList';
 
 const Basket: React.FC = () => {
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>
         Корзина
       </PageHeader>
       <BasketList />
-    </section>
+    </div>
   );
 }
 

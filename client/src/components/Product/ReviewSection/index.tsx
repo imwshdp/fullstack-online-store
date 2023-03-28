@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -9,6 +9,7 @@ import DisLike from 'resources/icons/DisLike';
 import Button from 'components/UI/Button';
 import Textarea from 'components/UI/Textarea';
 import css from './index.module.css';
+import { parseDate } from 'utils/parseDate';
 
 const ReviewSection: React.FC = () => {
 
@@ -67,16 +68,14 @@ const ReviewSection: React.FC = () => {
       likeClasses = [css.Like];
   }
 
-  const parseDate = (date: string) => {
-    const parsedData = Date.parse(date)
-    const formattedDate = new Date(parsedData).toLocaleDateString('ru-RU')
-    return formattedDate
+  if(reviewText.length > 255) {
+    setReviewText(reviewText.slice(0, 255))
   }
 
   return (
-    <section className={css.ReviewSection}>
+    <div className={css.ReviewSection}>
       {isReviewable &&
-        <div className={css.NewReview}>
+        <section className={css.NewReview}>
 
           <h1>Оставить отзыв</h1>
           
@@ -106,6 +105,8 @@ const ReviewSection: React.FC = () => {
             И напишите свои впечатления о нём!
           </Textarea>
 
+          <span>{reviewText.length} / 255</span>
+
           <Button
             width={'30%'}
             onclick={createNewReview}
@@ -113,13 +114,13 @@ const ReviewSection: React.FC = () => {
             Отправить
           </Button>
 
-        </div>
+        </section>
       }
 
       <div className={css.ReviewsSection}>
         <h1>Отзывы</h1>
         {reviews && reviews?.map(review =>
-          <div
+          <section
             key={review.id}
             className={css.Review}
           >
@@ -136,11 +137,11 @@ const ReviewSection: React.FC = () => {
             </div>
             <span>{parseDate(review.updatedAt)}</span>
             <span>{review.review}</span>
-          </div>
+          </section>
         )}
       </div>
 
-    </section>
+    </div>
   );
 }
 

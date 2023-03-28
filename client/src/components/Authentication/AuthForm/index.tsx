@@ -82,7 +82,7 @@ const AuthForm: React.FC = () => {
   }
 
   return (
-    <div className={css.AuthWrapper}>
+    <section className={css.AuthWrapper}>
       {isRegistration
         ? <h1>Регистрация</h1>
         : <h1>Авторизация</h1>
@@ -124,7 +124,7 @@ const AuthForm: React.FC = () => {
           Вход
         </Button>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -29,7 +29,7 @@ const Product: React.FC = () => {
   }, [])
 
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader />
 
       {productsState.loading
@@ -40,7 +40,7 @@ const Product: React.FC = () => {
             <ReviewSection />
           </>
       }
-    </section>
+    </div>
   );
 }
 

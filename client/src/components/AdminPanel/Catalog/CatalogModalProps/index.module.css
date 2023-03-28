@@ -48,7 +48,13 @@
   justify-content: space-around;
 }
 
-.CatalogModalPropsWrapper img {
+.ImageWrapper {
+  position: relative;
+  color: transparent;
+  transition: color .3s ease-in-out;
+}
+
+.ImageWrapper>* {
   max-width: 200px;
   height: fit-content;
   position: relative;
@@ -59,14 +65,26 @@
   cursor: pointer;
 }
 
-.CatalogModalPicturesFeed img:hover {
+.ImageLabel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: auto auto;
+
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.ImageWrapper img:hover,
+.ImageLabel:hover+img {
   filter: brightness(30%);
   transition: filter .5s ease-in-out;
 }
 
-/* .CatalogModalPropsWrapper span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: red;
-} */
+.ImageWrapper:hover {
+  color: tomato;
+  transition: color .3s ease-in-out;
+}

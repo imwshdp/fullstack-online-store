@@ -8,12 +8,12 @@ import CategorySection from 'components/AdminPanel/Category/CategorySection';
 const AdminPanel: React.FC = () => {
 
   return (
-    <section className='Main'>
+    <div className='Main'>
       <PageHeader>Панель Администратора</PageHeader>
       <CategorySection header="Добавить / Удалить категорию" />
       <ProductSection header="Добавить товар" />
       <CatalogSection header="Редактирование каталога" />
-    </section>
+    </div>
   );
 }
 
