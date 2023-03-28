@@ -15,7 +15,6 @@ export interface UserState extends ErrorState {
 export interface UserRegistrationData {
   email: string;
   password: string;
-  username: string;
 }
 
 export interface UserLoginData {
@@ -26,4 +25,24 @@ export interface UserLoginData {
 
 export interface Token {
   token: string;
+}
+
+export interface deleteUser {
+  id: number;
+}
+
+export interface changeUserEmail {
+  id: number;
+  email: string;
+}
+
+export interface changeUserPassword {
+  id: number;
+  password: string;
+  oldPassword: string;
+}
+
+export interface changeUserUsername {
+  id: number;
+  username: string;
 }

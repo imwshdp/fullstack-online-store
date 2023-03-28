@@ -14,9 +14,18 @@
   font-display: fallback;
 }
 
+@font-face {
+  font-family: 'vladivostok';
+  src: url('../fonts/vladivostok.woff2') format(woff2);
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
 :root {
   --mainFont: 'ViaodaLibre', serif;
   --titleFont: 'Alana', serif;
+  --commonFont: 'vladivostok', sans-serif;
   --lightgray: #D9D9D9;
   --gray: #6c757d;
   --dark: #343a40;
@@ -39,7 +48,8 @@ body {
   margin: 0;
 
   font-size: 1.1em;
-  font-family: var(--mainFont);
+  font-family: var(--commonFont);
+  font-size: medium;
   font-weight: 100;
 
   color: var(--dark);
@@ -55,6 +65,11 @@ body {
 
 a {
   text-decoration: none;
+}
+
+h1 {
+  font-family: var(--mainFont);
+  font-size: x-large;
 }
 
 .Main {

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import { RouteNames } from 'router';
-import { login } from 'store/slices/user/actions';
+import { User } from 'store/slices/user/types';
+import { checkToken } from 'store/slices/user';
 import { fetchBasket } from 'store/slices/basket/actions';
 import { fetchOrders } from 'store/slices/orders/actions';
 
@@ -26,9 +28,16 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.user)
 
-  // TESTS
+  const checkAuth = () => {
+    const token = localStorage.getItem('token');
+    if(token) {
+      const decoded: User = jwt_decode(token)
+      dispatch(checkToken(jwt_decode(token)))
+    }
+  }
+
   useEffect(() => {
-    dispatch(login({email: 'admin', password: 'qwerty'}))
+    checkAuth()
   }, []);
 
   // fetch user's basket when user logged

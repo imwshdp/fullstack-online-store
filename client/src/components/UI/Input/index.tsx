@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import "./index.module.css";
 
 interface TProps {
@@ -22,5 +22,22 @@ const Input: React.FC<TProps> = ({children, value, onChange, width, borderColor,
     </input>
   );
 }
+
+// const Input: React.FC = forwardRef<HTMLInputElement>(function Input(props: TProps, ref) {
+
+//   const {children, value, onChange, width, borderColor, isPassword} = props;
+
+//   return (
+//     <input
+//       placeholder={children}
+//       value={value}
+//       onChange={onChange}
+//       style={{borderColor: borderColor, width}}
+//       type={isPassword ? "password" : ""}
+//       ref={ref}
+//     >
+//     </input>
+//   );
+// });
 
 export default Input;

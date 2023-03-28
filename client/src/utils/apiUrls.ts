@@ -2,6 +2,10 @@ export enum apiUrls {
   registration = "/api/user/registration",
   login = "/api/user/login",
   auth = "/api/user/auth",
+  deleteUser = "/api/user/",
+  changeEmail = "/api/user/email",
+  changePassword = "/api/user/password",
+  changeUsername = "/api/user/username",
 
   categories = "/api/category",
 

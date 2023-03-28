@@ -41,13 +41,33 @@ export const publicRoutes: Route[] = [
     element: Product,
   },
   {
+    path: RouteNames.ACCOUNT_ROUTE,
+    element: Authentication,
+  },
+  {
     path: RouteNames.REDIRECT_ROUTE,
     element: Shop,
   },
 ];
 
 export const privateRoutes: Route[] = [
-  ...publicRoutes,
+  {
+    path: RouteNames.SHOP_ROUTE,
+    element: Shop,
+  },
+  {
+    path: RouteNames.LOGIN_ROUTE,
+    element: Authentication,
+  },
+  {
+    path: RouteNames.REGISTRATION_ROUTE,
+    element: Authentication,
+  },
+  {
+    path: RouteNames.PRODUCT_ROUTE + '/:id',
+    element: Product,
+  },
+  // private
   {
     path: RouteNames.ACCOUNT_ROUTE,
     element: Account,
@@ -63,5 +83,9 @@ export const privateRoutes: Route[] = [
   {
     path: RouteNames.ORDER_ROUTE,
     element: Orders,
+  },
+  {
+    path: RouteNames.REDIRECT_ROUTE,
+    element: Shop,
   },
 ];

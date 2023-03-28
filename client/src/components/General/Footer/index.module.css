@@ -3,6 +3,7 @@ footer {
   display: flex;
   flex-flow: row nowrap;
   height: 50px;
+  font-family: var(--mainFont);
 }
 
 footer>* {

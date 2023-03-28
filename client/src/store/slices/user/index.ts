@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { registration, login, check } from './actions';
+import { registration, login, check, removeUser, changeEmail, changePassword, changeUsername } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
-import { UserState } from './types';
+import { User, UserState } from './types';
 
 const initialState: UserState = {
   user: null,
@@ -20,6 +20,13 @@ const userSlice = createSlice({
       localStorage.removeItem('token')
       state.user = null
       state.isUserAuth = false
+    },
+
+    checkToken(state, action) {
+      if (action.payload) {
+        state.user = action.payload
+        state.isUserAuth = true
+      }
     }
   },
   extraReducers: (builder) => {
@@ -52,8 +59,52 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(check.rejected, (state, action) => setError(state, action))
+
+      // deleting
+      .addCase(removeUser.pending, (state) => setLoading(state))
+      .addCase(removeUser.fulfilled, (state) => {
+        state.loading = false;
+        state.user = null;
+        state.isUserAuth = false;
+      })
+      .addCase(removeUser.rejected, (state, action) => setError(state, action))
+
+      // CHANGING
+      // email
+      .addCase(changeEmail.pending, (state) => setLoading(state))
+      .addCase(changeEmail.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isUserAuth = true;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(changeEmail.rejected, (state, action) => setError(state, action))
+
+      // password
+      .addCase(changePassword.pending, (state) => setLoading(state))
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isUserAuth = true;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(changePassword.rejected, (state, action) => setError(state, action))
+
+      // username
+      .addCase(changeUsername.pending, (state) => setLoading(state))
+      .addCase(changeUsername.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isUserAuth = true;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(changeUsername.rejected, (state, action) => setError(state, action))
   }
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, checkToken } = userSlice.actions;
 export default userSlice.reducer;
+
+function jwt_decode(token: any): User {
+  throw new Error('Function not implemented.');
+}
