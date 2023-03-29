@@ -6,3 +6,8 @@ input {
   border: 1px solid black;
   border-radius: 10px;
 }
+
+input:active,
+input:focus {
+  outline: none;
+}

@@ -26,7 +26,7 @@
 }
 
 .AccountInfo input {
-  width: 60%;
+  width: 60% !important;
   margin-left: auto;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .AccountInfo input:last-child {
-  width: calc(60% + 45px + 5px);
+  width: calc(60% + 45px + 2.5px) !important;
   margin-right: 5px;
 }
 

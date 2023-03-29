@@ -29,13 +29,13 @@ const CatalogSection: React.FC<TProps> = ({header}) => {
 
       <div className={css.Panel}>
         {productsState.products?.map(product =>
-          <div
+          <section
             key={product.id}
             className={css.Item}
             onClick={() => openModal(product.id)}
           >
             {product.name}
-          </div>
+          </section>
         )}
       </div>
 

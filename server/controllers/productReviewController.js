@@ -3,7 +3,7 @@ const { ProductReview } = require('../models/models');
 
 class ProductReviewController {
 
-  // CREATE (product id, user id, score, review) => (status 204)
+  // CREATE (product id, user id, score, review) => (new review)
   async create(req, res) {
     const { productId, userId, score, review, username } = req.body;
 
@@ -21,16 +21,18 @@ class ProductReviewController {
     });
 
     // rewrite review or create new
+    let newReview;
     if (candidate) {
-      await ProductReview.upsert({
+      newReview = await ProductReview.upsert({
         id: candidate.id,
         review: review,
         score: score,
         username: username,
       });
+      newReview = newReview[0]
 
     } else {
-      await ProductReview.create({
+      newReview = await ProductReview.create({
         productId,
         userId,
         score,
@@ -39,7 +41,7 @@ class ProductReviewController {
       });
     }
 
-    return res.status(204).json();
+    return res.json(newReview);
   }
 
   // DELETE (product id, user id) => (status 204)
@@ -50,14 +52,15 @@ class ProductReviewController {
       throw ApiError.badRequest('Некорректные данные');
     }
 
-    await ProductReview.destroy({
-      where: {
-        productId,
-        userId,
-      }
+    const candidate = await ProductReview.findOne({
+      where: { productId, userId }
     });
 
-    return res.status(204).json();
+    await ProductReview.destroy({
+      where: { productId, userId }
+    });
+
+    return res.json(candidate.id);
   }
 
   // GET (product id) => (reviews)

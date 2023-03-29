@@ -7,3 +7,8 @@ select {
   border-radius: 10px;
   cursor: pointer;
 }
+
+select:active,
+select:focus {
+  outline: none;
+}

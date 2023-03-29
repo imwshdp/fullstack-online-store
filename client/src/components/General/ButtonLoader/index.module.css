@@ -1,23 +1,36 @@
-.Loader {
+.MobileLoaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+}
+
+.ButtonLoader {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   display: block;
-  background-color: black;
+  position: relative;
+  background: var(--gray);
+  box-shadow: -10px 0 var(--gray), 10px 0 var(--gray);
   box-sizing: border-box;
-  animation: animate 2s linear infinite;
+  animation: shadowPulse 1.5s linear infinite;
 }
 
-@keyframes animate {
-  0% {
-    transform: scale(1);
+@keyframes shadowPulse {
+  33% {
+    background: var(--gray);
+    box-shadow: -10px 0 black, 10px 0 var(--gray);
   }
 
-  50% {
-    transform: scale(1.5);
+  66% {
+    background: black;
+    box-shadow: -10px 0 var(--gray), 10px 0 var(--gray);
   }
 
   100% {
-    transform: scale(1);
+    background: var(--gray);
+    box-shadow: -10px 0 var(--gray), 10px 0 black;
   }
 }

@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: column;
   width: 70%;
-  /* max-width: 1000px; */
 
   margin-top: 30px;
   align-self: center;
@@ -40,7 +39,7 @@
 }
 
 .ScoreActive {
-  stroke: black;
+  stroke: var(--dark);
   transform: scale(1.1);
   transition: all .3s ease-in-out;
 }
@@ -117,10 +116,19 @@
 
 .Review span {
   font-weight: lighter;
+  padding: 1% 0;
 }
 
 .Review span:last-child {
   margin-top: 10px;
+}
+
+/* delete button */
+.Review a {
+  width: fit-content;
+  margin-top: 10px;
+  color: brown;
+  cursor: pointer;
 }
 
 /* desktop */
@@ -139,5 +147,12 @@
   .NewReview {
     padding: 0 50px;
     border: 1px solid var(--lightgray);
+  }
+}
+
+/* hover cancelling on mobile version */
+@media (max-width: 750px) {
+  .NewReview:hover {
+    box-shadow: none;
   }
 }

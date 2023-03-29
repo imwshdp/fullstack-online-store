@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { changeProductBasics, changeProductExtra, createProduct, createReview, deleteImage, deleteInfo, deleteProduct, fetchProduct, fetchProducts, fetchReviews } from './actions';
+import { changeProductBasics, changeProductExtra, createProduct, createReview, deleteImage, deleteInfo, deleteProduct, deleteReview, fetchProduct, fetchProducts, fetchReviews } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
-import { ProductInfo, ProductsState } from './types';
+import { ProductInfo, ProductsState, Review } from './types';
 
 const initialState: ProductsState = {
   products: null,
@@ -54,10 +54,27 @@ const productsSlice = createSlice({
 
       // review creating
       .addCase(createReview.pending, (state) => setLoading(state))
-      .addCase(createReview.fulfilled, (state) => {
+      .addCase(createReview.fulfilled, (state, action) => {
+        if (!state.activeProduct) return;
+        let filtered: Review[] = [...state.activeProduct.review]
+        filtered = state.activeProduct?.review.filter(r => r.userId !== action.payload.userId)
+        filtered.push(action.payload)
+
+        state.activeProduct.review = filtered
         state.loading = false;
       })
       .addCase(createReview.rejected, (state, action) => setError(state, action))
+
+      // review deleting
+      .addCase(deleteReview.pending, (state) => setLoading(state))
+      .addCase(deleteReview.fulfilled, (state, action) => {
+        if (!state.activeProduct) return;
+        let filtered: Review[] = [...state.activeProduct.review]
+        filtered = state.activeProduct?.review.filter(r => r.id !== action.payload)
+        state.activeProduct.review = filtered
+        state.loading = false;
+      })
+      .addCase(deleteReview.rejected, (state, action) => setError(state, action))
 
       // reviews fetching
       .addCase(fetchReviews.pending, (state) => setLoading(state))

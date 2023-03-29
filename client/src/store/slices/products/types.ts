@@ -75,3 +75,8 @@ export interface CreateReviewData {
 export interface GetReviewsData {
   productId: number;
 }
+
+export interface DeleteReviewsData {
+  productId: number;
+  userId: number;
+}

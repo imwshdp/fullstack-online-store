@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import { createOrder } from 'store/slices/orders/actions';
 import { decreaseBasketProduct, fetchBasketProduct, increaseBasketProduct } from 'store/slices/basket/actions';
 
 import Button from 'components/UI/Button';
 import Counter from 'components/UI/Counter';
 import css from './index.module.css';
-import { createOrder } from 'store/slices/orders/actions';
+import Loader from 'components/General/Loader';
+import ButtonLoader from 'components/General/ButtonLoader';
 
 interface TList {
   id: number;
@@ -102,6 +104,9 @@ const BasketList: React.FC = () => {
 
   return (
     <section className={css.BasketListWrapper}>
+
+      {basketState.loading && !productsViewList && <Loader />}
+
       {productsViewList.map(product =>
         <div
           className={css.BasketListRow}
@@ -121,7 +126,17 @@ const BasketList: React.FC = () => {
 
       {!basketState.products.length
         ? <h1 style={{margin: 'auto'}}>Корзина пуста</h1>
-        : <Button onclick={confirmOrder} width={'30%'}>Оформить заказ</Button>
+        : <Button
+          onclick={confirmOrder}
+          width={'30%'}
+          height={30}
+          disabled={basketState.loading ? true : false}
+        >
+          {basketState.loading
+            ? <ButtonLoader />
+            : 'Оформить заказ'
+          }
+        </Button>
       }
     </section>
   );

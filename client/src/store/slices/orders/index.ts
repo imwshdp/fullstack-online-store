@@ -3,7 +3,6 @@ import { setError, setLoading } from 'utils/asyncSetters';
 import { createOrder, fetchOrders } from './actions';
 import { OrdersState } from './types';
 
-
 const initialState: OrdersState = {
   ordersIds: null,
   products: null,

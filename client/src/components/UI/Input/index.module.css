@@ -4,6 +4,8 @@ input {
 
   border: 1px solid black;
   border-radius: 10px;
+
+  transition: border .3s ease-in-out;
 }
 
 input::placeholder {
@@ -19,4 +21,9 @@ input:hover::placeholder {
 input:focus::placeholder,
 input:active::placeholder {
   opacity: 0;
+}
+
+input:active,
+input:focus {
+  outline: none;
 }

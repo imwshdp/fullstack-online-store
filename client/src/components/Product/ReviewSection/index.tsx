@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
-import { createReview } from 'store/slices/products/actions';
+import { createReview, deleteReview } from 'store/slices/products/actions';
 
 import Like from 'resources/icons/Like';
 import DisLike from 'resources/icons/DisLike';
@@ -26,11 +26,9 @@ const ReviewSection: React.FC = () => {
   const [score, setScore] = useState<boolean>(true)
   const [reviewText, setReviewText] = useState('')
 
-  // new review creation
+  // add new review
   const createNewReview = () => {
-    if(!activeProduct?.id) return;
-    if(!user?.id) return;
-    if(!user?.username) return;
+    if(!activeProduct?.id || !user?.id || !user?.username) return;
 
     dispatch(createReview({
       productId: activeProduct?.id,
@@ -41,11 +39,23 @@ const ReviewSection: React.FC = () => {
     }))
   }
 
+  // delete review
+  const deleteOldReview = () => {
+    if(!activeProduct?.id || !user?.id) return;
+
+    if(window.confirm("Вы действительно хотите удалить отзыв?")) {
+      dispatch(deleteReview({
+        productId: activeProduct?.id,
+        userId: user?.id,
+      }))
+    }
+  }
+
   // if user already ordered product = set access to comment
   const checkOrderProductToReview = () => {
     if(!ordersState.products) return;
     for(let product of ordersState.products) {
-      if(product.id === activeProduct?.id) {
+      if(product.productId === activeProduct?.id) {
         setIsRewiewable(true)
       }
     }
@@ -62,10 +72,9 @@ const ReviewSection: React.FC = () => {
   if(score) {
     likeClasses.push(css.ScoreActive)
     dislikeClasses = [css.Dislike];
-  }
-  if(!score) {
-      dislikeClasses.push(css.ScoreActive)
-      likeClasses = [css.Like];
+  } else {
+    dislikeClasses.push(css.ScoreActive)
+    likeClasses = [css.Like];
   }
 
   if(reviewText.length > 255) {
@@ -80,7 +89,7 @@ const ReviewSection: React.FC = () => {
           <h1>Оставить отзыв</h1>
           
           <div className={css.ReviewScoreButtons}>
-            <span>Оцените товар</span>
+            <span>Оцените товар: </span>
 
               <button
                 className={likeClasses.join(" ")}
@@ -121,7 +130,7 @@ const ReviewSection: React.FC = () => {
         <h1>Отзывы</h1>
         {reviews && reviews?.map(review =>
           <section
-            key={review.id}
+            key={review.id + Date.now()}
             className={css.Review}
           >
             <div className={css.ReviewStatus}>
@@ -135,10 +144,17 @@ const ReviewSection: React.FC = () => {
                   </div>
               }
             </div>
+            
             <span>{parseDate(review.updatedAt)}</span>
             <span>{review.review}</span>
+
+            {review.userId === user?.id &&
+              <a onClick={deleteOldReview}>Удалить отзыв</a>
+            }
           </section>
         )}
+
+        {!reviews?.length && <span>Станьте первым, кто оставит отзыв!</span>}
       </div>
 
     </div>

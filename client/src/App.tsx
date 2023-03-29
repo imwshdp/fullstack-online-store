@@ -6,7 +6,6 @@ import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import { RouteNames } from 'router';
-import { User } from 'store/slices/user/types';
 import { checkToken } from 'store/slices/user';
 import { fetchBasket } from 'store/slices/basket/actions';
 import { fetchOrders } from 'store/slices/orders/actions';
@@ -31,7 +30,6 @@ const App: React.FC = () => {
   const checkAuth = () => {
     const token = localStorage.getItem('token');
     if(token) {
-      const decoded: User = jwt_decode(token)
       dispatch(checkToken(jwt_decode(token)))
     }
   }
@@ -44,7 +42,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if(!user?.id) return;
     dispatch(fetchBasket({ userId: user.id }))
-    dispatch(fetchOrders({userId: user?.id }))
+    dispatch(fetchOrders({ userId: user?.id }))
   }, [user])
 
   // mobile menu state

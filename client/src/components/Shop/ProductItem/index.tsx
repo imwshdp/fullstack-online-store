@@ -51,7 +51,7 @@ const ProductItem: React.FC<Product> = ({
           <Button onclick={addToBasket} >В корзину</Button>
         </div>
       </div>
-                        
+
       <b>{name}</b>
     </section>
   );

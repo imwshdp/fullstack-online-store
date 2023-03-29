@@ -41,6 +41,7 @@
 /* title */
 .InfoRow span:first-child {
   margin-right: 20px;
+  font-weight: 600;
 }
 
 /* description */

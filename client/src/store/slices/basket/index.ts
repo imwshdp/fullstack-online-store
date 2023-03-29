@@ -55,16 +55,16 @@ const basketSlice = createSlice({
       // basket products fetching
       .addCase(fetchBasketProduct.pending, (state) => setLoading(state))
       .addCase(fetchBasketProduct.fulfilled, (state, action) => {
-        state.products = action.payload;
         state.loading = false;
+        state.products = action.payload;
       })
       .addCase(fetchBasketProduct.rejected, (state, action) => setError(state, action))
 
       // basket id fetching
       .addCase(fetchBasket.pending, (state) => setLoading(state))
       .addCase(fetchBasket.fulfilled, (state, action) => {
-        state.basketId = action.payload.id;
         state.loading = false;
+        state.basketId = action.payload.id;
       })
       .addCase(fetchBasket.rejected, (state, action) => setError(state, action))
   }

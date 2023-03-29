@@ -10,9 +10,14 @@ interface TProps {
 }
 
 const Button: React.FC<TProps & React.PropsWithChildren> = ({children, width, height, color, onclick, disabled}) => {
+  
   return (
     <button
-      style={{width, height, backgroundColor: color}}
+      style={{
+        height: height ? height : "inherit",
+        backgroundColor: disabled ? "lightcoral" : color,
+        width: width ? width : "inherit"
+      }}
       onClick={onclick}
       disabled={disabled}
     >

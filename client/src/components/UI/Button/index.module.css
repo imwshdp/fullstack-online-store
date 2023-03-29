@@ -13,3 +13,8 @@ button {
   color: black;
   cursor: pointer;
 }
+
+button:active,
+button:focus {
+  outline: none;
+}
