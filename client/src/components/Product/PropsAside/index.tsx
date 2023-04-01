@@ -42,7 +42,7 @@ const PropsAside: React.FC = () => {
         width={125}
         onclick={addToBasket}
       >
-        В корзину
+        в корзину
       </Button>
 
     </aside>

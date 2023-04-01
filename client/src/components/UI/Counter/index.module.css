@@ -17,7 +17,7 @@
 
 .Counter button {
   color: var(--gray);
-  background-color: transparent;
+  background: unset !important;
 
   border: none;
   border-radius: 0;

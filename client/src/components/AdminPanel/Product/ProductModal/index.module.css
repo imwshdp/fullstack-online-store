@@ -33,7 +33,7 @@
   padding: 25px;
 
   color: black;
-  background-color: aliceblue;
+  background-color: #fffafa;
   border: 1px solid var(--dark);
   overflow-y: scroll;
 }
@@ -42,7 +42,6 @@
 .AddInputsButtons {
   display: flex;
   flex-flow: row wrap;
-
   padding-top: 3%;
 }
 

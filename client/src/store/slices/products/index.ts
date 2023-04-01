@@ -1,7 +1,8 @@
+
 import { createSlice } from '@reduxjs/toolkit'
 import { changeProductBasics, changeProductExtra, createProduct, createReview, deleteImage, deleteInfo, deleteProduct, deleteReview, fetchProduct, fetchProducts, fetchReviews } from './actions';
 import { setError, setLoading } from 'utils/asyncSetters';
-import { ProductInfo, ProductsState, Review } from './types';
+import { Product, ProductInfo, ProductsState, Review } from './types';
 
 const initialState: ProductsState = {
   products: null,
@@ -31,7 +32,12 @@ const productsSlice = createSlice({
 
       // product deleting
       .addCase(deleteProduct.pending, (state) => setLoading(state))
-      .addCase(deleteProduct.fulfilled, (state) => {
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        if (!state.products) return;
+        let filtered: Product[] = [...state.products]
+        filtered = state.products.filter(prod => prod.id !== action.payload)
+
+        state.products = filtered
         state.loading = false;
       })
       .addCase(deleteProduct.rejected, (state, action) => setError(state, action))

@@ -29,6 +29,7 @@ const CatalogModalProp: React.FC<TProps> = ({changeName, changeDescription, remo
 
       <Button
         width={'20%'}
+        height={30}
         color='var(--cancelColor)'
         onclick={removeInfo}
       >

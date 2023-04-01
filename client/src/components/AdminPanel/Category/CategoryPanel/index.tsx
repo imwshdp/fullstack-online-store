@@ -36,7 +36,8 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
       <Button
         color='var(--applyColor)'
         onclick={applyCategory}
-        width={80}
+        width={150}
+        disabled={categoriesState.loading ? true : false}
       >
         { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
       </Button>
@@ -44,7 +45,8 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
       <Button
         color='var(--cancelColor)'
         onclick={cancelCategory}
-        width={80}
+        width={150}
+        disabled={categoriesState.loading ? true : false}
       >
         { categoriesState.loading ? <ButtonLoader/> : "Удалить" }
       </Button>

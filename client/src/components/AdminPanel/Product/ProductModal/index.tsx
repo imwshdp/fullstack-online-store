@@ -96,11 +96,19 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
         )}
 
         <div className={css.AddInputsButtons}>
-          <Button onclick={addInfo} >
+          <Button
+            onclick={addInfo}
+            color='var(--lightgray)'
+            height={30}
+          >
             Добавить характеристику
           </Button>
 
-          <Button onclick={addImage} >
+          <Button
+            onclick={addImage}
+            color='var(--lightgray)'
+            height={30}
+          >
             Добавить картинку
           </Button>
         </div>
@@ -108,6 +116,7 @@ const ProductModal: React.FC<TProps> = ({visible, setVisible, infoState, imagesS
         <Button
           onclick={() => setVisible(false)}
           color='var(--cancelColor)'
+          height={30}
         >
           Закрыть
         </Button>

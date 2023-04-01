@@ -1,13 +1,13 @@
 import React from 'react';
+import { RouteNames } from 'router';
+import { useNavigate } from 'react-router';
 
 import UpIcon from 'resources/icons/UpIcon';
 import CartIcon from 'resources/icons/CartIcon';
 import MenuIcon from 'resources/icons/MenuIcon';
 import UserIcon from 'resources/icons/UserIcon';
-import SearchIcon from 'resources/icons/SearchIcon';
+import OrdersIcon from 'resources/icons/OrdersIcon';
 import css from "./index.module.css";
-import { useNavigate } from 'react-router';
-import { RouteNames } from 'router';
 
 interface TProps {
   setIsMenuActive: (state: boolean) => void;
@@ -41,8 +41,10 @@ const MobileNavbar: React.FC<TProps> = ({setIsMenuActive, isMenuActive}) => {
         <CartIcon />
       </button>
       
-      <button>
-        <SearchIcon />
+      <button
+        onClick={() => navigate(RouteNames.ORDER_ROUTE)}
+      >
+        <OrdersIcon />
       </button>
     </nav>
   );

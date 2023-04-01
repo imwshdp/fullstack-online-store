@@ -50,7 +50,7 @@ export const check = createAsyncThunk<User, undefined, { rejectValue: string }>(
   'user/check',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await $publicHost.get<Token>(apiUrls.auth)
+      const { data } = await $privateHost.get<Token>(apiUrls.auth)
       localStorage.setItem('token', data.token);
       return configureUser(data);
 

@@ -57,11 +57,6 @@ const FilterPanel: React.FC<TProps> = ({value, onChange}) => {
         </Select>
       </div>
 
-      <div className={css.ViewPanel}>
-        <div className={css.ViewButton}></div>
-        <div className={css.ViewButton}></div>
-      </div>
-
     </div>
   );
 }

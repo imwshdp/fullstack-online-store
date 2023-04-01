@@ -22,8 +22,8 @@
   padding: 0;
 
   border-radius: 50%;
-  border-color: var(--gray);
-  background-color: transparent;
+  background: whitesmoke !important;
+  border: 1px solid var(--gray);
 }
 
 .Like {

@@ -92,6 +92,8 @@ const AuthForm: React.FC = () => {
         // ref={emailInput}
         {...email}
         borderColor={emailClasses.includes(css.Label) ? "#cc4e5c" : ""}
+        width={'90%'}
+        height={30}
       >
         Адрес электронной почты
       </Input>
@@ -103,6 +105,8 @@ const AuthForm: React.FC = () => {
         {...password}
         borderColor={passwordClasses.includes(css.Label) ? "#cc4e5c" : ""}
         isPassword={true}
+        width={'90%'}
+        height={30}
       >
         Пароль
       </Input>
@@ -120,7 +124,12 @@ const AuthForm: React.FC = () => {
           }
         </span>
 
-        <Button onclick={submit} >
+        <Button
+          onclick={submit}
+          width={'30%'}
+          height={30}
+          color='var(--lightgray)'
+        >
           Вход
         </Button>
       </div>

@@ -33,7 +33,11 @@
   padding: 25px;
 
   color: black;
-  background-color: aliceblue;
+  background-color: #fffafa;
   border: 1px solid var(--dark);
   overflow-y: scroll;
+}
+
+.ModalContent button {
+  min-height: 30px;
 }

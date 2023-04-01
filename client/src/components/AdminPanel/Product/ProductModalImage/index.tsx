@@ -18,7 +18,8 @@ const ProductModalImage: React.FC<TProps> = ({changeImage, removeImage}) => {
       />
 
       <Button
-          width={'20%'}
+        width={'17%'}
+        height={30}
         color='var(--cancelColor)'
         onclick={removeImage}
       >

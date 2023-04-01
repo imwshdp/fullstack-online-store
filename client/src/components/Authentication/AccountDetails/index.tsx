@@ -11,6 +11,8 @@ import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 import EditIcon from 'resources/icons/EditIcon';
 import css from './index.module.css';
+import LogoutIcon from 'resources/icons/LogoutIcon';
+import DeleteUserIcon from 'resources/icons/DeleteUserIcon';
 
 const AccountDetails: React.FC = () => {
   
@@ -23,7 +25,9 @@ const AccountDetails: React.FC = () => {
   const oldPasswordInput = useInput('');
 
   const logOut = () => {
-    dispatch(logout({}))
+    if(window.confirm("Вы действительно хотите выйти из учетной записи?")) {
+      dispatch(logout({}))
+    }
   }
 
   const updateEmail = () => {
@@ -71,7 +75,10 @@ const AccountDetails: React.FC = () => {
       <div>
         <b>Почта</b>
         <Input {...emailInput} />
-        <Button onclick={updateEmail} >
+        <Button
+          onclick={updateEmail}
+          color='var(--applyColor)'
+        >
           <EditIcon />
         </Button>
       </div>
@@ -79,7 +86,10 @@ const AccountDetails: React.FC = () => {
       <div>
         <b>Имя</b>
         <Input {...usernameInput} />
-        <Button onclick={updateUsername} >
+        <Button
+          onclick={updateUsername}
+          color='var(--applyColor)'
+        >
           <EditIcon />
         </Button>
       </div>
@@ -104,6 +114,7 @@ const AccountDetails: React.FC = () => {
         />
         <Button
           onclick={updatePassword}
+          color='var(--applyColor)'
           disabled={validation || !passwordInput.value ? true : false}
         >
           <EditIcon />
@@ -114,15 +125,23 @@ const AccountDetails: React.FC = () => {
         <Button
           onclick={deleteAccout}
           width={'50%'}
+          color='var(--cancelColor)'
         >
-          Удалить аккаунт
+          {window.innerWidth > 750
+            ? 'Удалить аккаунт'
+            : <DeleteUserIcon />
+          }
         </Button>
 
         <Button
           onclick={logOut}
           width={'50%'}
+          color='var(--lightgray)'
         >
-          Выйти из аккаунта
+          {window.innerWidth > 750
+            ? 'Выйти из аккаунта'
+            : <LogoutIcon />
+          }
         </Button>
       </div>
 

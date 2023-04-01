@@ -1,15 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import { setActiveProduct } from 'store/slices/products';
-import { changeProductBasics, changeProductExtra, deleteImage, deleteInfo } from 'store/slices/products/actions';
+import { changeProductBasics, changeProductExtra, deleteImage, deleteInfo, deleteProduct } from 'store/slices/products/actions';
 
 import CatalogModalProps from '../CatalogModalProps';
 import CatalogModalBasics from '../CatalogModalBasics';
 import css from "./index.module.css";
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
+import Button from 'components/UI/Button';
+import { useNavigate } from 'react-router';
+import { RouteNames } from 'router';
+import ButtonLoader from 'components/General/ButtonLoader';
 
 interface TProps {
   visible: boolean;
@@ -19,6 +23,7 @@ interface TProps {
 const CatalogModal: React.FC<TProps> = ({visible, setVisible}) => {
   
   const dispatch = useAppDispatch()
+  const productsState = useAppSelector(state => state.products)
   const categories = useAppSelector(state => state.categories.categories)
   const activeProduct = useAppSelector(state => state.products.activeProduct)
 
@@ -95,6 +100,14 @@ const CatalogModal: React.FC<TProps> = ({visible, setVisible}) => {
     categories.map(i => categoriesList.push(i.name))
   }
 
+  const deleteItem = () => {
+    if(!activeProduct) return;
+    if(window.confirm("Вы действительно хотите подтвердить удаление товара?")) {
+      dispatch(deleteProduct({ id: activeProduct.id }))
+      handleClosing()
+    }
+  }
+
   // modal classes handling
   const rootClasses = [css.Modal];
   if(visible) {
@@ -127,6 +140,17 @@ const CatalogModal: React.FC<TProps> = ({visible, setVisible}) => {
           confirmDeletingProperty={confirmDeletingProperty}
           confirmAddingNewProperties={confirmAddingNewProperties}
         />
+
+        <Button
+          onclick={deleteItem}
+          disabled={productsState.loading ? true : false}
+          color='var(--cancelColor)'
+          width={'70%'}
+          height={30}
+        >
+          { productsState.loading ? <ButtonLoader/> : "Удалить товар" }
+        </Button>
+
       </div>
     </div>
   );

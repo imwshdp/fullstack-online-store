@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react';
 
 import useAppSelector from 'hooks/useAppSelector';
-import useAppDispatch from 'hooks/useAppDispatch';
-
-import TrashBin from 'resources/icons/TrashBin';
-import Button from 'components/UI/Button';
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
+
+import Button from 'components/UI/Button';
 import CatalogModalProp from '../CatalogModalProp';
 import CatalogModalImage from '../CatalogModalImage';
+import ButtonLoader from 'components/General/ButtonLoader';
+import TrashBin from 'resources/icons/TrashBin';
 import css from "./index.module.css";
 
 interface TProps {
@@ -28,7 +28,7 @@ interface TProps {
 
 const CatalogModalProps: React.FC<TProps> = ({infoState, imagesState, confirmDeletingImage, confirmDeletingProperty, confirmAddingNewProperties}) => {
 
-  const dispatch = useAppDispatch()
+  const productsState = useAppSelector(state => state.products);
   const activeProduct = useAppSelector(state => state.products.activeProduct)
 
   const info = infoState.info, setInfo = infoState.setInfo;
@@ -100,15 +100,32 @@ const CatalogModalProps: React.FC<TProps> = ({infoState, imagesState, confirmDel
       )}
 
       <div className={css.AddInputsButtons}>
-        <Button onclick={addInfo}>Добавить характеристику</Button>
-        <Button onclick={addImage}>Добавить картинку</Button>
+        <Button
+          onclick={addInfo}
+          width={'45%'}
+          height={30}
+          color='var(--lightgray)'
+        >
+          Добавить характеристику
+        </Button>
+        <Button
+          onclick={addImage}
+          width={'45%'}
+          height={30}
+          color='var(--lightgray)'
+        >
+          Добавить картинку
+        </Button>
       </div>
+
       <Button
         width={'70%'}
+        height={30}
         color='var(--applyColor)'
         onclick={confirmAddingNewProperties}
+        disabled={productsState.loading ? true : false}
       >
-        Добавить новые характеристики и фотографии
+        { productsState.loading ? <ButtonLoader/> : "Добавить новые характеристики и фотографии" }
       </Button>
 
       <h1>Удаление фотографий товара</h1>

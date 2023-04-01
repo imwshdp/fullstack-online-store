@@ -3,6 +3,7 @@
   flex-flow: column nowrap;
 
   width: 60%;
+  min-width: 300px;
   padding: 2%;
   align-self: center;
 

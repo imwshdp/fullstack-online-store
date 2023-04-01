@@ -10,6 +10,7 @@ import Counter from 'components/UI/Counter';
 import css from './index.module.css';
 import Loader from 'components/General/Loader';
 import ButtonLoader from 'components/General/ButtonLoader';
+import EditIcon from 'resources/icons/EditIcon';
 
 interface TList {
   id: number;
@@ -127,14 +128,19 @@ const BasketList: React.FC = () => {
       {!basketState.products.length
         ? <h1 style={{margin: 'auto'}}>Корзина пуста</h1>
         : <Button
-          onclick={confirmOrder}
-          width={'30%'}
-          height={30}
-          disabled={basketState.loading ? true : false}
-        >
+            onclick={confirmOrder}
+            width={'30%'}
+            height={30}
+            disabled={basketState.loading ? true : false}
+            color={'var(--lightgray)'}
+          >
+
           {basketState.loading
             ? <ButtonLoader />
-            : 'Оформить заказ'
+            :
+              window.innerWidth > 750
+                ? 'Оформить заказ'
+                : <EditIcon />
           }
         </Button>
       }

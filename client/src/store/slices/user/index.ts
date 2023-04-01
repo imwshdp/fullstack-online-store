@@ -20,13 +20,6 @@ const userSlice = createSlice({
       localStorage.removeItem('token')
       state.user = null
       state.isUserAuth = false
-    },
-
-    checkToken(state, action) {
-      if (action.payload) {
-        state.user = action.payload
-        state.isUserAuth = true
-      }
     }
   },
   extraReducers: (builder) => {
@@ -53,7 +46,9 @@ const userSlice = createSlice({
       .addCase(check.pending, (state) => setLoading(state))
       .addCase(check.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isUserAuth = true;
+        if (action.payload) {
+          state.isUserAuth = true;
+        }
 
         state.loading = false;
         state.error = null;
@@ -102,7 +97,7 @@ const userSlice = createSlice({
   }
 });
 
-export const { logout, checkToken } = userSlice.actions;
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;
 
 function jwt_decode(token: any): User {

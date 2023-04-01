@@ -10,14 +10,8 @@
 .MainFilter {
   display: flex;
   flex-flow: column nowrap;
-  width: 100%;
-
   align-items: center;
-}
-
-.ViewPanel,
-.ViewButton {
-  display: none;
+  width: 100%;
 }
 
 /* contextual editing of component styles */
@@ -38,22 +32,7 @@
     flex: 1 0 auto;
     width: 70%;
     justify-content: center;
-    margin-left: 15%;
-  }
-
-  .ViewPanel {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-    width: 15%;
-  }
-
-  .ViewButton {
-    display: flex;
-    height: 25px;
-    width: 25px;
-    margin: 5px;
-    background: lightcoral;
+    margin: 0 15%;
   }
 
   /* contextual editing of component styles */

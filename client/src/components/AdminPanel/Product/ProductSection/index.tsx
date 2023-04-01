@@ -23,6 +23,7 @@ const ProductSection: React.FC<TProps> = ({header}) => {
 
   // store dispatch and state
   const dispatch = useAppDispatch();
+  const productsState = useAppSelector(state => state.products);
   const categoriesState = useAppSelector(state => state.categories);
 
   // panel states
@@ -116,8 +117,10 @@ const ProductSection: React.FC<TProps> = ({header}) => {
 
         <div className={css.Buttons}>
           <Button
-            width={'50%'}
+            width={'60%'}
             onclick={openModal}
+            height={30}
+            color='var(--lightgray)'
           >
             Добавить характеристики и фото
           </Button>
@@ -125,9 +128,11 @@ const ProductSection: React.FC<TProps> = ({header}) => {
           <Button
             color='var(--applyColor)'
             onclick={addProduct}
-            width={80}
+            width={120}
+            height={30}
+            disabled={productsState.loading ? true : false}
           >
-            { categoriesState.loading ? <ButtonLoader/> : "Добавить" }
+            { productsState.loading ? <ButtonLoader/> : "Добавить" }
           </Button>
         </div>
 

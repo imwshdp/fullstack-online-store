@@ -4,6 +4,25 @@
   font-family: var(--mainFont);
 }
 
+.Link {
+  position: relative;
+}
+
+.Link::after {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  content: "";
+  width: 0%;
+  height: 1px;
+  background-color: var(--gray);
+  transition: width .4s ease-out;
+}
+
+.Link:hover.Link::after {
+  width: calc(100% - 20px);
+}
+
 /* desktop */
 @media (min-width: 750px) {
 
@@ -17,7 +36,7 @@
     width: min-content;
   }
 
-  .Navbar>span {
+  .Link {
     display: block;
     margin: 0 10px;
     padding: 5px 10px;
@@ -28,11 +47,11 @@
     white-space: nowrap;
   }
 
-  .Navbar>span:first-child {
+  .Link:first-child {
     margin-left: 0;
   }
 
-  .Navbar>span:last-child {
+  .Link:last-child {
     margin-right: 0;
   }
 }

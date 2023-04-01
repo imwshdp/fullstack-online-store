@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import { RouteNames } from 'router';
-import { checkToken } from 'store/slices/user';
 import { fetchBasket } from 'store/slices/basket/actions';
 import { fetchOrders } from 'store/slices/orders/actions';
 
@@ -16,6 +14,7 @@ import AppRouter from 'components/General/AppRouter';
 import MobileMenu from 'components/Mobile/MobileMenu';
 import MobileNavbar from 'components/Mobile/MobileNavbar';
 import './resources/styles/index.css';
+import { check } from 'store/slices/user/actions';
 
 interface ExtraLinks {
   value: string;
@@ -27,15 +26,8 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user.user)
 
-  const checkAuth = () => {
-    const token = localStorage.getItem('token');
-    if(token) {
-      dispatch(checkToken(jwt_decode(token)))
-    }
-  }
-
   useEffect(() => {
-    checkAuth()
+    dispatch(check())
   }, []);
 
   // fetch user's basket when user logged
@@ -53,7 +45,6 @@ const App: React.FC = () => {
     {value: "Каталог", link: RouteNames.SHOP_ROUTE},
     {value: "Корзина", link: RouteNames.BASKET_ROUTE},
     {value: "Заказы", link: RouteNames.ORDER_ROUTE},
-    // {value: "Админ Панель", link: RouteNames.ADMIN_ROUTE},
   ]
 
   const footerLinks: ExtraLinks[] = [
@@ -63,9 +54,15 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
+      <div className='PolygonWrapper' />
+      
       <Header />
       <AppRouter />
-      <Footer links={footerLinks} />
+
+      <div>
+        <div className='FooterPolygonWrapper' />
+        <Footer links={footerLinks} />
+      </div>
 
       <MobileNavbar
         setIsMenuActive={setIsMenuActive}

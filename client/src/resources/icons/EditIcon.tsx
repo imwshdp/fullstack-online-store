@@ -8,22 +8,8 @@ const EditIcon = () => (
     width="48"
   >
     <g>
-      <path
-        d="M7.5,9l-3,.54L5,6.5,10.73.79a1,1,0,0,1,1.42,0l1.06,1.06a1,1,0,0,1,0,1.42Z"
-        fill="none"
-        stroke="#000000"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-      </path>
-      <path
-        d="M12,9.5v3a1,1,0,0,1-1,1H1.5a1,1,0,0,1-1-1V3a1,1,0,0,1,1-1h3"
-        fill="none"
-        stroke="#000000"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-      </path>
+      <polyline points="3.5 11.5 0.5 8.5 3.5 5.5" fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"></polyline>
+      <path d="M13.5,2.5v2a4,4,0,0,1-4,4H.5" fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round"></path>
     </g>
   </svg>
 )

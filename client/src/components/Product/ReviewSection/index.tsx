@@ -10,13 +10,15 @@ import Button from 'components/UI/Button';
 import Textarea from 'components/UI/Textarea';
 import css from './index.module.css';
 import { parseDate } from 'utils/parseDate';
+import ButtonLoader from 'components/General/ButtonLoader';
 
 const ReviewSection: React.FC = () => {
 
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user.user)
-  const activeProduct = useAppSelector(state => state.products.activeProduct)
   const ordersState = useAppSelector(state => state.orders)
+  const productsState = useAppSelector(state => state.products)
+  const activeProduct = useAppSelector(state => state.products.activeProduct)
   const reviews = useAppSelector(state => state.products.activeProduct?.review)
 
   // state of comment access
@@ -117,10 +119,11 @@ const ReviewSection: React.FC = () => {
           <span>{reviewText.length} / 255</span>
 
           <Button
+            height={35}
             width={'30%'}
             onclick={createNewReview}
           >
-            Отправить
+            {productsState.loading ? <ButtonLoader /> : 'Отправить'}
           </Button>
 
         </section>

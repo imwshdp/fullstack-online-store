@@ -9,7 +9,6 @@ interface TProps {
 }
 
 const CategorySection: React.FC<TProps> = ({header}) => {
-
   const categoryName = useInput('');
 
   return (

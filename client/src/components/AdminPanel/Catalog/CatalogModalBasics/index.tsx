@@ -7,6 +7,7 @@ import Button from 'components/UI/Button';
 import Select from 'components/UI/Select';
 import FileInput from 'components/UI/FileInput';
 import css from "./index.module.css";
+import ButtonLoader from 'components/General/ButtonLoader';
 
 interface TProps {
   newName: {
@@ -29,6 +30,7 @@ interface TProps {
 const CatalogModalBasics: React.FC<TProps> = ({newName, newPrice, categoriesList, setActiveSelect, setNewImgMobile, setNewImgDesktop, confirmChanging}) => {
 
   // store states
+  const productsState = useAppSelector(state => state.products)
   const categories = useAppSelector(state => state.categories.categories)
   const activeProduct = useAppSelector(state => state.products.activeProduct)
 
@@ -78,7 +80,16 @@ const CatalogModalBasics: React.FC<TProps> = ({newName, newPrice, categoriesList
         label={'Картинка для полной версии'}
       />
 
-      <Button width={'100%'} onclick={confirmChanging}>Изменить</Button>
+      <Button
+        width={'70%'}
+        onclick={confirmChanging}
+        disabled={productsState.loading ? true : false}
+        color={'var(--applyColor)'}
+        height={30}
+      >
+        { productsState.loading ? <ButtonLoader/> : "Изменить" }
+      </Button>
+
     </div>
   );
 }

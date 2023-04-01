@@ -16,11 +16,12 @@ export const createProduct = createAsyncThunk<undefined, FormData, { rejectValue
   }
 );
 
-export const deleteProduct = createAsyncThunk<undefined, DeleteData, { rejectValue: string }>(
+export const deleteProduct = createAsyncThunk<number, DeleteData, { rejectValue: string }>(
   'products/deleteProduct',
   async (data, { rejectWithValue }) => {
     try {
       await $privateHost.delete(apiUrls.products, { data: data });
+      return data.id;
 
     } catch (err: any) {
       return rejectWithValue(err.response.data.message)

@@ -1,3 +1,4 @@
+import ButtonLoader from 'components/General/ButtonLoader';
 import Button from 'components/UI/Button';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -46,9 +47,16 @@ const ProductItem: React.FC<Product> = ({
       </picture>
 
       <div className={css.ItemNav}>
-        <b>{price} &#8381;</b>
+        <span>{price} &#8381;</span>
         <div onClick={(e) => e.stopPropagation()}>
-          <Button onclick={addToBasket} >В корзину</Button>
+          <Button
+            onclick={addToBasket}
+            disabled={basketState.loading ? true : false}
+            width={'100%'}
+            height={30}
+          >
+            в корзину
+          </Button>
         </div>
       </div>
 

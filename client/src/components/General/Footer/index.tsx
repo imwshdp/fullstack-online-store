@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+
+import InstagramIcon from 'resources/icons/InstagramIcon';
+import VkIcon from 'resources/icons/VkIcon';
 import css from "./index.module.css";
 
 interface TProps {
@@ -33,8 +36,12 @@ const Footer: React.FC<TProps> = ({links}) => {
       </div>
 
       <div className={css.SocialLinks}>
-        <div className={css.SocialIcon}></div>
-        <div className={css.SocialIcon}></div>
+        <a className={css.SocialIcon}>
+          <VkIcon />
+        </a>
+        <a className={css.SocialIcon}>
+          <InstagramIcon />
+        </a>
       </div>
       
     </footer>

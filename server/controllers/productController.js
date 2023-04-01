@@ -118,12 +118,9 @@ class ProductController {
     });
 
     // instance destroying
-    const destroyed = await Product.destroy({
+    await Product.destroy({
       where: { id }
     });
-    if (!destroyed) {
-      throw ApiError.internal('Удаление несуществующего товара');
-    }
 
     return res.status(204).json();
   }
