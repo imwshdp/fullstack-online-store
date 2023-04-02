@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import { createReview, deleteReview } from 'store/slices/products/actions';
+import { parseDate } from 'utils/parseDate';
 
-import Like from 'resources/icons/Like';
-import DisLike from 'resources/icons/DisLike';
 import Button from 'components/UI/Button';
 import Textarea from 'components/UI/Textarea';
-import css from './index.module.css';
-import { parseDate } from 'utils/parseDate';
 import ButtonLoader from 'components/General/ButtonLoader';
+import Like from 'resources/icons/Like';
+import DisLike from 'resources/icons/DisLike';
+import css from './index.module.css';
 
 const ReviewSection: React.FC = () => {
 

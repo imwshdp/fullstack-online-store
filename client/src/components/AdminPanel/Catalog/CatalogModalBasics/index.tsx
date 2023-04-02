@@ -1,13 +1,12 @@
 import React, { ChangeEvent } from 'react';
-
 import useAppSelector from 'hooks/useAppSelector';
 
 import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 import Select from 'components/UI/Select';
 import FileInput from 'components/UI/FileInput';
-import css from "./index.module.css";
 import ButtonLoader from 'components/General/ButtonLoader';
+import css from "./index.module.css";
 
 interface TProps {
   newName: {
@@ -28,7 +27,6 @@ interface TProps {
 }
 
 const CatalogModalBasics: React.FC<TProps> = ({newName, newPrice, categoriesList, setActiveSelect, setNewImgMobile, setNewImgDesktop, confirmChanging}) => {
-
   // store states
   const productsState = useAppSelector(state => state.products)
   const categories = useAppSelector(state => state.categories.categories)
@@ -59,8 +57,8 @@ const CatalogModalBasics: React.FC<TProps> = ({newName, newPrice, categoriesList
 
       <h1>Редактирование информации</h1>
       
-      <Input {...newName} width={'100%'}>Изменить название</Input>
-      <Input {...newPrice} width={'100%'}>Изменить цену</Input>
+      <Input value={newName.value} onChange={newName.onChange} width={'100%'}>Изменить название</Input>
+      <Input value={newPrice.value} onChange={newPrice.onChange} width={'100%'}>Изменить цену</Input>
       
       <Select onchange={(e) => setActiveSelect(e.target.value)} width={'100%'} >
         {categoriesList}

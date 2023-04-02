@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useAppSelector from 'hooks/useAppSelector';
 import { ProductView } from 'store/slices/orders/types';
-import css from './index.module.css';
 import Loader from 'components/General/Loader';
+import css from './index.module.css';
 
 interface TProps {
   productsList: ProductView[];
@@ -10,8 +10,6 @@ interface TProps {
 
 const OrdersList: React.FC<TProps> = ({productsList}) => {
   const ordersState = useAppSelector(state => state.orders)
-
-  console.log(productsList)
 
   return (
     <div className={css.OrdersListWrapper}>

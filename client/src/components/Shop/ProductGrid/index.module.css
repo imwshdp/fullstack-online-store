@@ -17,9 +17,6 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     width: 70%;
     margin-left: 15%;
-
-    /* padding: 0 1% 0 1%; */
-    /* justify-items: ???; */
   }
 }
 

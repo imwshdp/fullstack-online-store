@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import { setActiveProduct } from 'store/slices/products';
-import { fetchProduct, fetchReviews } from 'store/slices/products/actions';
+import { fetchProduct } from 'store/slices/products/actions';
 
 import Loader from 'components/General/Loader';
 import PageHeader from 'components/General/PageHeader';

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAppSelector from 'hooks/useAppSelector';
+import { ProductView } from 'store/slices/orders/types';
 
 import OrdersList from 'components/Orders';
 import PageHeader from 'components/General/PageHeader';
-import { ProductView } from 'store/slices/orders/types';
 
 const Orders: React.FC = () => {
   const basketId = useAppSelector(state => state.basket.basketId)

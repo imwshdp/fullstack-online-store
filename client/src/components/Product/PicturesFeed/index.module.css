@@ -10,7 +10,6 @@
 .MainPicture {
   object-fit: scale-down;
   width: 100%;
-  /* border: 1px solid var(--lightgray); */
 }
 
 .Slider {
@@ -47,7 +46,6 @@
 
 /* desktop */
 @media (min-width: 750px) {
-
   .PicturesFeed {
     min-width: fit-content;
   }
@@ -69,7 +67,6 @@
 }
 
 @media (min-width: 1000px) {
-
   .MainPicture {
     max-height: var(--mediumPicSize);
     max-width: var(--mediumPicSize);

@@ -96,8 +96,19 @@ const ProductSection: React.FC<TProps> = ({header}) => {
 
       <div className={css.Panel}>
 
-        <Input {...productName}>Название товара</Input>
-        <Input {...productPrice}>Цена товара</Input>
+        <Input
+          value={productName.value}
+          onChange={productName.onChange}
+        >
+          Название товара
+        </Input>
+        
+        <Input
+          value={productPrice.value}
+          onChange={productPrice.onChange}
+        >
+          Цена товара
+        </Input>
 
         <Select onchange={setNewActiveCategory} >
           {categoriesList}

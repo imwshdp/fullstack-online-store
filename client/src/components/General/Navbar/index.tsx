@@ -7,7 +7,6 @@ import { RouteNames } from 'router';
 import css from "./index.module.css";
 
 const Navbar: React.FC = () => {
-
   const navigate = useNavigate();
   const { isUserAuth } = useAppSelector(state => state.user)
 

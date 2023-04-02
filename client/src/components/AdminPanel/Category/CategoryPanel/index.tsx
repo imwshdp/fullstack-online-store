@@ -29,7 +29,10 @@ const CategoryPanel: React.FC<TProps> = ({inputState, placeholder}) => {
 
   return (
     <div className={css.Item}>
-      <Input {...inputState} >
+      <Input
+        value={inputState.value}
+        onChange={inputState.onChange}
+      >
         {placeholder}
       </Input>
       

@@ -1,19 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import { setActiveProduct } from 'store/slices/products';
+import { FileWithId, ProductInfo } from 'store/slices/products/types';
 import { changeProductBasics, changeProductExtra, deleteImage, deleteInfo, deleteProduct } from 'store/slices/products/actions';
 
+import Button from 'components/UI/Button';
 import CatalogModalProps from '../CatalogModalProps';
 import CatalogModalBasics from '../CatalogModalBasics';
-import css from "./index.module.css";
-import { FileWithId, ProductInfo } from 'store/slices/products/types';
-import Button from 'components/UI/Button';
-import { useNavigate } from 'react-router';
-import { RouteNames } from 'router';
 import ButtonLoader from 'components/General/ButtonLoader';
+import css from "./index.module.css";
 
 interface TProps {
   visible: boolean;
@@ -150,7 +148,6 @@ const CatalogModal: React.FC<TProps> = ({visible, setVisible}) => {
         >
           { productsState.loading ? <ButtonLoader/> : "Удалить товар" }
         </Button>
-
       </div>
     </div>
   );

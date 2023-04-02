@@ -15,7 +15,6 @@ const ProductGrid: React.FC<TProps> = ({nameFilter}) => {
 
   const productsState = useAppSelector(state => state.products);
   const activeCategory = useAppSelector(state => state.categories.activeCategory);
-
   const [filteredList, setFilteredList] = useState<Product[] | null>(null)
 
   const filterList = () => {

@@ -1,8 +1,8 @@
 import userReducer from './user'
-import categoriesReducer from './categories'
-import productsReducer from './products'
 import basketReducer from './basket'
 import ordersReducer from './orders'
+import productsReducer from './products'
+import categoriesReducer from './categories'
 
 export default {
   user: userReducer,

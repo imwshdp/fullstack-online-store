@@ -1,13 +1,13 @@
-import ButtonLoader from 'components/General/ButtonLoader';
-import Button from 'components/UI/Button';
-import useAppDispatch from 'hooks/useAppDispatch';
-import useAppSelector from 'hooks/useAppSelector';
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { RouteNames } from 'router';
-import { createBasketProduct } from 'store/slices/basket/actions';
 
+import { RouteNames } from 'router';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
+import { createBasketProduct } from 'store/slices/basket/actions';
 import { Product } from 'store/slices/products/types';
+
+import Button from 'components/UI/Button';
 import css from "./index.module.css"
 
 const ProductItem: React.FC<Product> = ({

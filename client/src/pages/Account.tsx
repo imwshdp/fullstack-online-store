@@ -1,6 +1,6 @@
-import AccountDetails from 'components/Authentication/AccountDetails';
-import PageHeader from 'components/General/PageHeader';
 import React from 'react';
+import PageHeader from 'components/General/PageHeader';
+import AccountDetails from 'components/Authentication/AccountDetails';
 
 const Account: React.FC = () => {
 

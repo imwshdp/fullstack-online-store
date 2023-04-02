@@ -16,7 +16,6 @@ interface TProps {
 }
 
 const MobileMenu: React.FC<TProps> = ({header, items, isMenuActive, setIsMenuActive}) => {
-
   const navigate = useNavigate();
 
   return (

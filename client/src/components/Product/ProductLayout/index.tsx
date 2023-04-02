@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import PropsAside from '../PropsAside';
 import PicturesFeed from '../PicturesFeed';

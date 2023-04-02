@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import InstagramIcon from 'resources/icons/InstagramIcon';
 import VkIcon from 'resources/icons/VkIcon';
+import InstagramIcon from 'resources/icons/InstagramIcon';
 import css from "./index.module.css";
 
 interface TProps {

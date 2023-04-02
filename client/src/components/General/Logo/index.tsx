@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-
 import { RouteNames } from 'router';
 
 import Logotype from 'resources/assets/Logotype';
@@ -12,7 +11,6 @@ const Logo: React.FC = () => {
 
   return (
     <div className={css.Logo}>
-      
       <a
         onClick={() => navigate(RouteNames.SHOP_ROUTE)}
         className={css.Logotype}
@@ -32,7 +30,6 @@ const Logo: React.FC = () => {
           <span>Shop</span>
         </h1>
       </a>
-      
     </div>
   );
 }

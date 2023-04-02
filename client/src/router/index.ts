@@ -1,13 +1,13 @@
 import Shop from "pages/Shop";
+import Sizes from "pages/Sizes";
 import Basket from "pages/Basket";
 import Orders from "pages/Orders";
-import Product from "pages/Product";
+import AboutMe from "pages/AboutMe";
 import Account from "pages/Account";
+import Product from "pages/Product";
 import AdminPanel from "pages/AdminPanel";
 import Authentication from "pages/Authentication";
-import AboutMe from "pages/AboutMe";
 import Recommendations from "pages/Recommendations";
-import Sizes from "pages/Sizes";
 
 export interface Route {
   path: string;

@@ -23,7 +23,8 @@ const Shop: React.FC = () => {
         Товары
       </PageHeader>
       <FilterPanel
-        {...nameProductFilter}
+        value={nameProductFilter.value}
+        onChange={nameProductFilter.onChange}
       />
       <ProductGrid
         nameFilter={nameProductFilter.value}

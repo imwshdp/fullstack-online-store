@@ -7,10 +7,10 @@ import { decreaseBasketProduct, fetchBasketProduct, increaseBasketProduct } from
 
 import Button from 'components/UI/Button';
 import Counter from 'components/UI/Counter';
-import css from './index.module.css';
 import Loader from 'components/General/Loader';
-import ButtonLoader from 'components/General/ButtonLoader';
 import EditIcon from 'resources/icons/EditIcon';
+import ButtonLoader from 'components/General/ButtonLoader';
+import css from './index.module.css';
 
 interface TList {
   id: number;
@@ -138,7 +138,7 @@ const BasketList: React.FC = () => {
           {basketState.loading
             ? <ButtonLoader />
             :
-              window.innerWidth > 750
+              window.innerWidth > 1000
                 ? 'Оформить заказ'
                 : <EditIcon />
           }

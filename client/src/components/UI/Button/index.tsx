@@ -18,9 +18,8 @@ const Button: React.FC<TProps & React.PropsWithChildren> = ({children, width, he
     if(!clickEnded) return;
     setClickEnded(false)
 
-    let x = e.clientX - (e.target as HTMLButtonElement).offsetLeft;
-    let y = e.clientY - (e.target as HTMLButtonElement).offsetTop;
-
+    let x = e.clientX - e.currentTarget.offsetLeft;
+    let y = e.clientY - e.currentTarget.offsetTop;
     setRipples(prev => [...prev, { x: x, y: y }])
 
     setTimeout(() => {

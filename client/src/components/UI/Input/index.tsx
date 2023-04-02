@@ -13,30 +13,9 @@ interface TProps {
   isPassword?: boolean;
 }
 
-// const Input: React.FC<TProps> = ({children, value, onChange, width, height, borderColor, isPassword}) => {
-//   return (
-//     <input
-//       placeholder={children}
-//       value={value}
-//       onChange={onChange}
-//       style={{
-//         height: height ? height : "inherit",
-//         width: width ? width : "inherit",
-//         borderColor: borderColor
-//       }}
-//       type={isPassword ? "password" : ""}
-//     >
-//     </input>
-//   );
-// }
-
-const Input = forwardRef<HTMLInputElement, TProps>((props, ref) => {
-
-  const {children, value, onChange, width, height, borderColor, isPassword} = props;
-
+const Input: React.FC<TProps> = ({children, value, onChange, width, height, borderColor, isPassword}) => {
   return (
     <input
-      ref={ref}
       placeholder={children}
       value={value}
       onChange={onChange}
@@ -49,6 +28,6 @@ const Input = forwardRef<HTMLInputElement, TProps>((props, ref) => {
     >
     </input>
   );
-});
+}
 
 export default Input;

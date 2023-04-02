@@ -1,18 +1,18 @@
 import React from 'react';
 
+import useInput from 'hooks/useInput';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import { logout } from 'store/slices/user';
 import { User } from 'store/slices/user/types';
 import { changeEmail, changePassword, changeUsername, removeUser } from 'store/slices/user/actions';
 
-import useInput from 'hooks/useInput';
 import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 import EditIcon from 'resources/icons/EditIcon';
-import css from './index.module.css';
 import LogoutIcon from 'resources/icons/LogoutIcon';
 import DeleteUserIcon from 'resources/icons/DeleteUserIcon';
+import css from './index.module.css';
 
 const AccountDetails: React.FC = () => {
   
@@ -74,7 +74,10 @@ const AccountDetails: React.FC = () => {
     <section className={css.AccountInfo}>
       <div>
         <b>Почта</b>
-        <Input {...emailInput} />
+        <Input
+          value={emailInput.value}
+          onChange={emailInput.onChange}
+        />
         <Button
           onclick={updateEmail}
           color='var(--applyColor)'
@@ -85,7 +88,10 @@ const AccountDetails: React.FC = () => {
 
       <div>
         <b>Имя</b>
-        <Input {...usernameInput} />
+        <Input
+          value={usernameInput.value}
+          onChange={usernameInput.onChange}
+        />
         <Button
           onclick={updateUsername}
           color='var(--applyColor)'
@@ -97,7 +103,8 @@ const AccountDetails: React.FC = () => {
       <div>
         <b>Текущий Пароль</b>
         <Input
-          {...oldPasswordInput}
+          value={oldPasswordInput.value}
+          onChange={oldPasswordInput.onChange}
           borderColor={validation ? "#cc4e5c" : ""}
           isPassword={true}
         >
@@ -108,7 +115,8 @@ const AccountDetails: React.FC = () => {
       <div>
         <b>Новый Пароль</b>
         <Input
-          {...passwordInput}
+          value={passwordInput.value}
+          onChange={passwordInput.onChange}
           borderColor={validation ? "#cc4e5c" : ""}
           isPassword={true}
         />

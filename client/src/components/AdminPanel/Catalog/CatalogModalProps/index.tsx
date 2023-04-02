@@ -4,10 +4,10 @@ import useAppSelector from 'hooks/useAppSelector';
 import { FileWithId, ProductInfo } from 'store/slices/products/types';
 
 import Button from 'components/UI/Button';
+import TrashBin from 'resources/icons/TrashBin';
 import CatalogModalProp from '../CatalogModalProp';
 import CatalogModalImage from '../CatalogModalImage';
 import ButtonLoader from 'components/General/ButtonLoader';
-import TrashBin from 'resources/icons/TrashBin';
 import css from "./index.module.css";
 
 interface TProps {
