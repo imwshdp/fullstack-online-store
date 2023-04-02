@@ -1,19 +1,22 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 interface ReturnedValue {
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+    value: string;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
+    reset: () => void;
 }
 
 const useInput = (initialValue: string): ReturnedValue => {
 
-  const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(initialValue);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  }
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    }
 
-  return { value, onChange }
+    const reset = () => setValue(initialValue)
+
+    return {value, onChange, reset}
 }
 
 export default useInput;
