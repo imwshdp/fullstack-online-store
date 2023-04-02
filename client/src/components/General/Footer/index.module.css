@@ -15,7 +15,7 @@ footer>* {
 
   footer {
     height: 150px;
-    background: #c4c3d0;
+    background: var(--accentColor);
   }
 
   .LinksColumn {
@@ -60,5 +60,6 @@ footer>* {
   .SocialIcon svg {
     width: 100%;
     height: 100%;
+    fill: #a9a9a9;
   }
 }

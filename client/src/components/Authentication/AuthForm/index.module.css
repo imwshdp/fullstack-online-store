@@ -27,7 +27,7 @@
   margin-left: 8%;
   align-self: flex-start;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #cc4e5c;
 }
 
@@ -40,8 +40,7 @@
   margin-top: auto;
   justify-content: space-between;
   align-items: center;
-
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .AuthLinks span {

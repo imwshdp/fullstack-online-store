@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const ApiError = require('../error/ApiError')
-const { Product, ProductInfo, ProductImage, ProductReview } = require('../models/models')
+const { Product, ProductInfo, ProductImage, ProductReview, BasketProduct, OrderProduct } = require('../models/models')
 
 class ProductController {
 
@@ -104,23 +104,19 @@ class ProductController {
     }
 
     // info destroying
-    await ProductInfo.destroy({
-      where: {
-        productId: id,
-      }
-    });
+    await ProductInfo.destroy({ where: { productId: id } });
 
     // extra images destroying
-    await ProductImage.destroy({
-      where: {
-        productId: id,
-      }
-    });
+    await ProductImage.destroy({ where: { productId: id } });
+
+    // basket products destroying
+    await BasketProduct.destroy({ where: { productId: id } });
+
+    // order products destroying
+    await OrderProduct.destroy({ where: { productId: id } });
 
     // instance destroying
-    await Product.destroy({
-      where: { id }
-    });
+    await Product.destroy({ where: { productId: id } });
 
     return res.status(204).json();
   }

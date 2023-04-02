@@ -13,18 +13,12 @@ interface TProps {
 }
 
 const Footer: React.FC<TProps> = ({links}) => {
-
   const navigate = useNavigate()
 
   return (
     <footer>
 
       <div className={css.LinksColumn}>
-        {/* <a href="#">Правила ухода</a>
-        <a href="#">Как подобрать размер</a>
-        <a href="#">Контакты</a>
-        <a href="#">Доставка</a>
-        <a href="#">Оферта</a> */}
         {links.map(link =>
           <a
             key={link.link}

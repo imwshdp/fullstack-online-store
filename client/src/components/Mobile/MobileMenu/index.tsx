@@ -39,7 +39,7 @@ const MobileMenu: React.FC<TProps> = ({header, items, isMenuActive, setIsMenuAct
         <ul>
           {items.map( item =>
             <li
-              key={item.link}
+              key={item.link + Math.random()}
               className={css.Link}
               onClick={() => {
                 setIsMenuActive(false);

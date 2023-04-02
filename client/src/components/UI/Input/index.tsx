@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { PropsWithChildren, forwardRef } from 'react';
 import "./index.module.css";
 
 interface TProps {
@@ -13,9 +13,30 @@ interface TProps {
   isPassword?: boolean;
 }
 
-const Input: React.FC<TProps> = ({children, value, onChange, width, height, borderColor, isPassword}) => {
+// const Input: React.FC<TProps> = ({children, value, onChange, width, height, borderColor, isPassword}) => {
+//   return (
+//     <input
+//       placeholder={children}
+//       value={value}
+//       onChange={onChange}
+//       style={{
+//         height: height ? height : "inherit",
+//         width: width ? width : "inherit",
+//         borderColor: borderColor
+//       }}
+//       type={isPassword ? "password" : ""}
+//     >
+//     </input>
+//   );
+// }
+
+const Input = forwardRef<HTMLInputElement, TProps>((props, ref) => {
+
+  const {children, value, onChange, width, height, borderColor, isPassword} = props;
+
   return (
     <input
+      ref={ref}
       placeholder={children}
       value={value}
       onChange={onChange}
@@ -28,23 +49,6 @@ const Input: React.FC<TProps> = ({children, value, onChange, width, height, bord
     >
     </input>
   );
-}
-
-// const Input: React.FC = forwardRef<HTMLInputElement>(function Input(props: TProps, ref) {
-
-//   const {children, value, onChange, width, borderColor, isPassword} = props;
-
-//   return (
-//     <input
-//       placeholder={children}
-//       value={value}
-//       onChange={onChange}
-//       style={{borderColor: borderColor, width}}
-//       type={isPassword ? "password" : ""}
-//       ref={ref}
-//     >
-//     </input>
-//   );
-// });
+});
 
 export default Input;

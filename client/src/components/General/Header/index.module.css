@@ -2,13 +2,12 @@
 header {
   display: flex;
   flex-flow: row wrap;
-  width: 70%;
-
-  margin-left: 15%;
-  height: 120px;
-
   justify-content: center;
   align-items: center;
+
+  width: 70%;
+  height: 120px;
+  margin-left: 15%;
 }
 
 /* desktop repositioning nav forcely */

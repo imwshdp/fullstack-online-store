@@ -22,7 +22,7 @@
   display: flex;
   flex-flow: column nowrap;
 
-  font-size: medium;
+  font-size: 1.2rem;
   border: 1px solid var(--lightgray);
 }
 
@@ -48,7 +48,6 @@
 .InfoRow span:last-child {
   display: flex;
   margin-left: auto;
-  font-size: 0.9rem;
 
   text-align: end;
 }

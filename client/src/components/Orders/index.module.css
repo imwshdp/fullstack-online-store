@@ -7,6 +7,7 @@
   align-self: center;
 
   border: 1px solid var(--lightgray);
+  font-size: 1.3rem;
   font-weight: normal;
 }
 
@@ -16,8 +17,12 @@
   border: 1px solid var(--gray);
 }
 
+.Order>span {
+  font-size: 1.5rem;
+}
+
 .OrdersListWrapper h1 {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin: 0;
 }
 

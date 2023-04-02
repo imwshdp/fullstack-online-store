@@ -5,6 +5,9 @@ import Product from "pages/Product";
 import Account from "pages/Account";
 import AdminPanel from "pages/AdminPanel";
 import Authentication from "pages/Authentication";
+import AboutMe from "pages/AboutMe";
+import Recommendations from "pages/Recommendations";
+import Sizes from "pages/Sizes";
 
 export interface Route {
   path: string;
@@ -20,10 +23,15 @@ export const RouteNames = {
   PRODUCT_ROUTE: '/product',
   BASKET_ROUTE: '/basket',
   ORDER_ROUTE: '/orders',
+
+  ABOUT_ME_ROUTE: '/aboutme',
+  SIZES_ROUTE: '/sizes',
+  RECS_ROUTE: '/recommendations',
+
   REDIRECT_ROUTE: '*',
 }
 
-export const publicRoutes: Route[] = [
+const commonRoutes: Route[] = [
   {
     path: RouteNames.SHOP_ROUTE,
     element: Shop,
@@ -40,6 +48,22 @@ export const publicRoutes: Route[] = [
     path: RouteNames.PRODUCT_ROUTE + '/:id',
     element: Product,
   },
+  {
+    path: RouteNames.ABOUT_ME_ROUTE,
+    element: AboutMe,
+  },
+  {
+    path: RouteNames.RECS_ROUTE,
+    element: Recommendations,
+  },
+  {
+    path: RouteNames.SIZES_ROUTE,
+    element: Sizes,
+  },
+]
+
+export const publicRoutes: Route[] = [
+  ...commonRoutes,
   {
     path: RouteNames.ACCOUNT_ROUTE,
     element: Authentication,
@@ -51,23 +75,7 @@ export const publicRoutes: Route[] = [
 ];
 
 export const privateRoutes: Route[] = [
-  {
-    path: RouteNames.SHOP_ROUTE,
-    element: Shop,
-  },
-  {
-    path: RouteNames.LOGIN_ROUTE,
-    element: Authentication,
-  },
-  {
-    path: RouteNames.REGISTRATION_ROUTE,
-    element: Authentication,
-  },
-  {
-    path: RouteNames.PRODUCT_ROUTE + '/:id',
-    element: Product,
-  },
-  // private
+  ...commonRoutes,
   {
     path: RouteNames.ACCOUNT_ROUTE,
     element: Account,

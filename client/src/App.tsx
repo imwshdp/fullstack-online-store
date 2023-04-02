@@ -5,6 +5,7 @@ import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import { RouteNames } from 'router';
+import { check } from 'store/slices/user/actions';
 import { fetchBasket } from 'store/slices/basket/actions';
 import { fetchOrders } from 'store/slices/orders/actions';
 
@@ -14,7 +15,6 @@ import AppRouter from 'components/General/AppRouter';
 import MobileMenu from 'components/Mobile/MobileMenu';
 import MobileNavbar from 'components/Mobile/MobileNavbar';
 import './resources/styles/index.css';
-import { check } from 'store/slices/user/actions';
 
 interface ExtraLinks {
   value: string;
@@ -45,24 +45,25 @@ const App: React.FC = () => {
     {value: "Каталог", link: RouteNames.SHOP_ROUTE},
     {value: "Корзина", link: RouteNames.BASKET_ROUTE},
     {value: "Заказы", link: RouteNames.ORDER_ROUTE},
+    {value: "Правила ухода", link: ''},
+    {value: "Как подобрать размер", link: ''},
   ]
 
   const footerLinks: ExtraLinks[] = [
-    {value: "Обо мне", link: ''},
-    {value: "Админ Панель", link: RouteNames.ADMIN_ROUTE},
+    {value: "Обо мне", link: RouteNames.ABOUT_ME_ROUTE},
+    {value: "Как подобрать размер", link: RouteNames.SIZES_ROUTE},
+    {value: "Правила ухода", link: RouteNames.RECS_ROUTE},
   ]
+
+  if(user?.role === 'ADMIN') {
+    footerLinks.push({value: "Админ Панель", link: RouteNames.ADMIN_ROUTE})
+  }
 
   return (
     <BrowserRouter>
-      <div className='PolygonWrapper' />
-      
       <Header />
       <AppRouter />
-
-      <div>
-        <div className='FooterPolygonWrapper' />
-        <Footer links={footerLinks} />
-      </div>
+      <Footer links={footerLinks} />
 
       <MobileNavbar
         setIsMenuActive={setIsMenuActive}

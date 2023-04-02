@@ -31,23 +31,27 @@ const AuthForm: React.FC = () => {
   const swapForm = () => {
     setIsRegistration(prev => !prev)
     if(emailInput.current) {
-      console.log(emailInput.current)
-      emailInput.current.value = '';
+      let event = new Event("change")
+      emailInput.current.value = ''
+      emailInput.current.dispatchEvent(event)
     }
     if(passwordInput.current) {
-      console.log(passwordInput.current)
-      passwordInput.current.value = '';
+      let event = new Event("change")
+      passwordInput.current.value = ''
+      passwordInput.current.dispatchEvent(event)
     }
   }
 
+  console.log('EMAIL: ', email.value)
+  console.log('EMAIL REF: ', emailInput.current)
+  console.log('PASSWORD: ', password.value)
+  console.log('PASSWORD REF: ', passwordInput.current)
+
   const submit = () => {
     if(isRegistration) {
-      // register user
-      dispatch(registration({email: email.value, password: password.value }))
-      // swap form
-      setIsRegistration(false)
-      // redirect to login
-      navigate(RouteNames.LOGIN_ROUTE)
+      dispatch(registration({email: email.value, password: password.value })) // register user
+      setIsRegistration(false) // swap form
+      navigate(RouteNames.LOGIN_ROUTE) // redirect to login
     } else {
       // login
       dispatch(login({email: email.value, password: password.value}))      
@@ -56,40 +60,25 @@ const AuthForm: React.FC = () => {
 
   useEffect(() => {
     if(!isUserAuth) return;
-    // redirect to shop
-    navigate(RouteNames.SHOP_ROUTE)
+    navigate(RouteNames.SHOP_ROUTE) // redirect to shop
   }, [isUserAuth])
 
-  // css classes adding
+  // email validation
   const emailClasses = [css.LabelHidden]
-  // on validate
-  if(email.value && !isEmailValidating) {
-    setIsEmailValidating(true)
-  }
-  // show label
-  if(!email.value && isEmailValidating) {
-    emailClasses.push(css.Label)
-  }
+  if(email.value && !isEmailValidating) setIsEmailValidating(true)
+  if(!email.value && isEmailValidating) emailClasses.push(css.Label)
 
+  // password validation
   const passwordClasses = [css.LabelHidden]
-  // on validate
-  if(password.value && !isPasswordValidating) {
-    setIsPasswordValidating(true)
-  }
-  // show label
-  if(!password.value && isPasswordValidating) {
-    passwordClasses.push(css.Label)
-  }
+  if(password.value && !isPasswordValidating) setIsPasswordValidating(true)
+  if(!password.value && isPasswordValidating) passwordClasses.push(css.Label)
 
   return (
     <section className={css.AuthWrapper}>
-      {isRegistration
-        ? <h1>Регистрация</h1>
-        : <h1>Авторизация</h1>
-      }
+      {isRegistration ? <h1>Регистрация</h1> : <h1>Авторизация</h1>}
 
       <Input
-        // ref={emailInput}
+        ref={emailInput}
         {...email}
         borderColor={emailClasses.includes(css.Label) ? "#cc4e5c" : ""}
         width={'90%'}
@@ -97,11 +86,10 @@ const AuthForm: React.FC = () => {
       >
         Адрес электронной почты
       </Input>
-      <label className={emailClasses.join(" ")}>
-        Обязательное поле
-      </label>
+      <label className={emailClasses.join(" ")}>Обязательное поле</label>
       
       <Input
+        ref={passwordInput}
         {...password}
         borderColor={passwordClasses.includes(css.Label) ? "#cc4e5c" : ""}
         isPassword={true}
@@ -110,17 +98,13 @@ const AuthForm: React.FC = () => {
       >
         Пароль
       </Input>
-      <label className={passwordClasses.join(" ")}>
-        Обязательное поле
-      </label>
+      <label className={passwordClasses.join(" ")}>Обязательное поле</label>
 
       <div className={css.AuthLinks}>
-        <span
-          onClick={swapForm}
-        >
+        <span onClick={swapForm} >
           {isRegistration
-          ? 'Уже зарегистрированы? Войдите'
-          : 'Нету аккаунта? Зарегистрируйтесь'
+            ? 'Уже зарегистрированы? Войдите'
+            : 'Нету аккаунта? Зарегистрируйтесь'
           }
         </span>
 

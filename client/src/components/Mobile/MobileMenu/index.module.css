@@ -10,7 +10,7 @@
 }
 
 .Menu {
-  transform: translateX(-160%);
+  transform: translateX(-170%);
   transition: transform .3s ease-in-out;
 }
 
@@ -25,14 +25,14 @@
   backdrop-filter: blur(2px);
 
   position: absolute;
-  left: 60%
+  left: 70%
 }
 
 .MenuContent {
   display: flex;
   flex-flow: column nowrap;
 
-  width: 60%;
+  width: 70%;
   height: 100%;
   background: white;
 
