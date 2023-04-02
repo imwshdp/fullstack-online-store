@@ -1,5 +1,6 @@
 import React from 'react';
 import PageHeader from 'components/General/PageHeader';
+import AboutMeInfo from 'components/InfoContainers/AboutMeInfo';
 
 const AboutMe: React.FC = () => {
 
@@ -8,6 +9,7 @@ const AboutMe: React.FC = () => {
       <PageHeader>
         Обо Мне
       </PageHeader>
+      <AboutMeInfo />
     </div>
   );
 }

@@ -1,26 +1,28 @@
-input {
+.Input {
   width: 100%;
   padding: 5px 15px;
-  border-radius: 10px;
+  border-radius: .5em;
+  background-color: whitesmoke;
+  border-color: #aaa;
   transition: border .3s ease-in-out;
 }
 
-input::placeholder {
+.Input::placeholder {
   opacity: 1;
   transition: opacity .5s ease-in-out;
 }
 
-input:hover::placeholder {
+.Input:hover::placeholder {
   opacity: 0;
   transition: opacity .5s ease-in-out;
 }
 
-input:focus::placeholder,
-input:active::placeholder {
+.Input:focus::placeholder,
+.Input:active::placeholder {
   opacity: 0;
 }
 
-input:active,
-input:focus {
+.Input:active,
+.Input:focus {
   outline: none;
 }

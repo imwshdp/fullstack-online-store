@@ -1,5 +1,5 @@
 import React from 'react';
-import "./index.module.css"
+import css from "./index.module.css"
 
 interface TProps {
   children: string[];
@@ -10,11 +10,13 @@ interface TProps {
 const Select: React.FC<TProps> = ({children, onchange, width}) => {
   return (
     <select
+      className={css.Select}
       onChange={onchange}
       style={{width}}
     >
       {children.map( (option) =>
         <option
+          className={css.Option}
           key={option}
           value={option}
         >

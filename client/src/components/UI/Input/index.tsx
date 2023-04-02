@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, forwardRef } from 'react';
-import "./index.module.css";
+import css from "./index.module.css";
 
 interface TProps {
   children?: string | undefined;
@@ -16,6 +16,7 @@ interface TProps {
 const Input: React.FC<TProps> = ({children, value, onChange, width, height, borderColor, isPassword}) => {
   return (
     <input
+      className={css.Input}
       placeholder={children}
       value={value}
       onChange={onChange}
@@ -24,7 +25,7 @@ const Input: React.FC<TProps> = ({children, value, onChange, width, height, bord
         width: width ? width : "inherit",
         borderColor: borderColor
       }}
-      type={isPassword ? "password" : ""}
+      type={isPassword ? "password" : "text"}
     >
     </input>
   );

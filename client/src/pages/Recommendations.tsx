@@ -1,5 +1,6 @@
 import React from 'react';
 import PageHeader from 'components/General/PageHeader';
+import RecsInfo from 'components/InfoContainers/RecsInfo';
 
 const Recommendations: React.FC = () => {
 
@@ -8,6 +9,7 @@ const Recommendations: React.FC = () => {
       <PageHeader>
         Правила Ухода
       </PageHeader>
+      <RecsInfo />
     </div>
   );
 }

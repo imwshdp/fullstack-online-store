@@ -1,5 +1,6 @@
 import React from 'react';
 import PageHeader from 'components/General/PageHeader';
+import SizesList from 'components/InfoContainers/SizesInfo';
 
 const Sizes: React.FC = () => {
 
@@ -8,6 +9,7 @@ const Sizes: React.FC = () => {
       <PageHeader>
         Как Подобрать Размер
       </PageHeader>
+      <SizesList />
     </div>
   );
 }
