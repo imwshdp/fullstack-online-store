@@ -1,0 +1,26 @@
+textarea {
+  width: 100%;
+  padding: 1px;
+
+  border: 1px solid black;
+}
+
+textarea::placeholder {
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
+
+textarea:hover::placeholder {
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+textarea:focus::placeholder,
+textarea:active::placeholder {
+  opacity: 0;
+}
+
+textarea:active,
+textarea:focus {
+  outline: none;
+}

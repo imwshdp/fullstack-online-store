@@ -1,0 +1,48 @@
+/* mobile */
+.FilterPanel {
+  display: flex;
+  width: 70%;
+
+  align-self: center;
+  justify-content: center;
+}
+
+.MainFilter {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+/* contextual editing of component styles */
+.MainFilter select {
+  margin-top: 10px;
+}
+
+/* desktop */
+@media (min-width: 750px) {
+
+  .FilterPanel {
+    flex-flow: row;
+    width: 70%;
+  }
+
+  .MainFilter {
+    flex-flow: row nowrap;
+    flex: 1 0 auto;
+    width: 70%;
+    justify-content: center;
+    margin: 0 15%;
+  }
+
+  /* contextual editing of component styles */
+  .MainFilter input {
+    width: 50%;
+    margin-right: 3%;
+  }
+
+  .MainFilter select {
+    width: 40%;
+    margin: 0;
+  }
+}

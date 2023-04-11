@@ -1,0 +1,61 @@
+/* container */
+.Item {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  border: thin solid var(--lightgray);
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* item image */
+.Item img {
+  width: 100%;
+  height: auto;
+}
+
+/* item info panel */
+.ItemNav {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.ItemNav b {
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.ItemNav>*:last-child {
+  display: inherit;
+  margin-left: auto;
+}
+
+.Item button {
+  height: 30px !important;
+}
+
+@media (min-width: 500px) {
+  .Item {
+    max-width: 300px;
+    padding: 5px;
+    font-size: 1rem;
+  }
+
+  .Item button {
+    height: 25px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .Item {
+    font-size: 1.2rem;
+  }
+
+  .Item button {
+    height: 30px !important;
+    font-size: 1rem !important;
+  }
+}

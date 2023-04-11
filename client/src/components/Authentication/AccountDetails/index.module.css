@@ -1,0 +1,58 @@
+.AccountInfo {
+  display: flex;
+  flex-flow: column nowrap;
+
+  width: 50%;
+  min-width: 300px;
+  margin: 0 auto;
+
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+
+.AccountInfo div {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px 0;
+  padding: 0 5%;
+  align-items: center;
+}
+
+.AccountInfo b {
+  width: 25%;
+  padding: 5px;
+  font-family: var(--mainFont);
+}
+
+.AccountInfo input {
+  width: 60% !important;
+  margin-left: auto;
+}
+
+.AccountInfo button {
+  width: 45px;
+}
+
+.AccountInfo input:last-child {
+  width: calc(60% + 45px + 2.5px) !important;
+  margin-right: 5px;
+}
+
+/* changing buttons */
+.AccountInfo button {
+  padding: 4px 10px;
+  margin: 0 5px;
+}
+
+.AccountInfo svg {
+  stroke: black;
+  height: 20px;
+  width: 20px;
+  padding: 2px;
+}
+
+/* last buttons */
+.userChangingButtons button {
+  padding: 10px 0;
+  margin: 10px 5px;
+}

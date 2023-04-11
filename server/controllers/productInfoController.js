@@ -1,51 +1,61 @@
-const ApiError = require('../error/ApiError')
-const { ProductInfo } = require('../models/models')
+const ApiError = require('../error/ApiError');
+const { ProductInfo } = require('../models/models');
 
 class ProductInfoController {
-  async create(req, res, next) {
+
+  // CREATE (product id, title, description) => (status 204)
+  async create(req, res) {
     const { productId, title, description } = req.body;
 
-    if (!productId || !title || !description)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !title || !description) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const candidate = await ProductInfo.findOne({
-      productId,
-      title,
-    })
-    if (candidate)
-      throw ApiError.badRequest('Характеристика товара уже задана')
+      where: {
+        productId,
+        title,
+      },
+    });
+    if (candidate) {
+      throw ApiError.badRequest('Характеристика товара уже задана');
+    }
 
-    const newInfo = await ProductInfo.create({
+    await ProductInfo.create({
       productId,
       title,
       description,
-    })
+    });
 
-    return res.json(newInfo);
+    return res.status(204).json();
   }
 
-  async delete(req, res, next) {
+  // DELETE (id) => (status 204)
+  async delete(req, res) {
     const { id } = req.body;
+    if (!id) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
-    if (!id)
-      throw ApiError.badRequest('Некорректные данные')
-
-    const destroyed = await ProductInfo.destroy({
+    await ProductInfo.destroy({
       where: { id }
-    })
+    });
 
-    return res.json(destroyed);
+    return res.status(204).json();
   }
 
+  // GET (product id) => (infos)
   async getAll(req, res) {
     const { productId } = req.query;
 
-    if (!productId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const images = await ProductInfo.findAll({
-      where: { productId }
-    })
+      where: { productId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     return res.json(images);
   }

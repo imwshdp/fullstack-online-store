@@ -1,0 +1,28 @@
+.Input {
+  width: 100%;
+  padding: 5px 15px;
+  border-radius: .5em;
+  background-color: whitesmoke;
+  border-color: #aaa;
+  transition: border .3s ease-in-out;
+}
+
+.Input::placeholder {
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
+
+.Input:hover::placeholder {
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.Input:focus::placeholder,
+.Input:active::placeholder {
+  opacity: 0;
+}
+
+.Input:active,
+.Input:focus {
+  outline: none;
+}

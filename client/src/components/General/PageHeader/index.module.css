@@ -1,0 +1,12 @@
+.PageHeader {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 70%;
+
+  margin-bottom: 30px;
+  align-self: center;
+  align-items: center;
+
+  font-family: var(--mainFont);
+  border-bottom: 2px solid var(--lightgray);
+}

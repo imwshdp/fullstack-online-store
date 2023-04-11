@@ -1,0 +1,90 @@
+/* PROPERTIES */
+.CatalogModalPropsWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.CatalogModalPropRow {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  stroke: black;
+  margin: 0 !important;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.CatalogModalPropRow>* {
+  padding: 3px;
+}
+
+.CatalogModalPropRow svg {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: var(--cancelColor);
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* NEW IMAGES AND PROPS */
+.AddInputsButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddInputsButtons>* {
+  flex: 1 0 auto;
+}
+
+/* PICTURES */
+.CatalogModalPicturesFeed {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+}
+
+.ImageWrapper {
+  position: relative;
+  color: transparent;
+  transition: color .3s ease-in-out;
+}
+
+.ImageWrapper>* {
+  max-width: 200px;
+  height: fit-content;
+  position: relative;
+
+  border: 1px solid var(--dark);
+  background-color: rgba(0, 0, 0, 0);
+  transition: filter .5s ease-in-out;
+  cursor: pointer;
+}
+
+.ImageLabel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: auto auto;
+
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.ImageWrapper img:hover,
+.ImageLabel:hover+img {
+  filter: brightness(30%);
+  transition: filter .5s ease-in-out;
+}
+
+.ImageWrapper:hover {
+  color: tomato;
+  transition: color .3s ease-in-out;
+}

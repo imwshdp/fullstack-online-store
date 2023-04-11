@@ -1,0 +1,54 @@
+/* mobile */
+.MobileNavbar {
+  display: inline-flex;
+  width: 100%;
+  height: 50px;
+
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+
+  justify-content: space-around;
+
+  background: var(--navbarColor);
+  border-top: thin solid rgba(189, 195, 199, 0.5);
+
+  box-sizing: content-box;
+  stroke: var(--gray);
+}
+
+.MobileNavbar>button {
+  display: flex;
+  width: 10%;
+  min-width: 45px;
+
+  justify-self: auto;
+  align-self: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: stroke .3s ease-in-out;
+}
+
+button>* {
+  height: 50%;
+  width: auto;
+  margin: auto;
+}
+
+#UpIcon>* {
+  height: 35%;
+}
+
+.MobileNavbar>button:hover {
+  stroke: #080808;
+  transition: stroke .3s ease-in-out;
+}
+
+/* desktop */
+@media (min-width: 750px) {
+  .MobileNavbar {
+    display: none;
+  }
+}

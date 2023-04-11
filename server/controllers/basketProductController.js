@@ -1,112 +1,139 @@
-const ApiError = require('../error/ApiError')
-const { BasketProduct } = require('../models/models')
+const ApiError = require('../error/ApiError');
+const { BasketProduct } = require('../models/models');
 
 class BasketProductController {
-  async create(req, res, next) {
+
+  // CREATE (product id, basket id) => (status 204)
+  async create(req, res) {
     const { productId, basketId } = req.body;
 
-    if (!productId || !basketId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !basketId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     let basketProduct = await BasketProduct.findOne({
       where: {
         productId,
         basketId,
-      }
-    })
+      },
+    });
 
     // if row founded
     if (basketProduct) {
-      basketProduct = await BasketProduct.upsert({
+      // update quantity
+      await BasketProduct.upsert({
         id: basketProduct.id,
         quantity: basketProduct.quantity + 1,
       });
-      return res.json(basketProduct[0]);
 
     } else {
-      // add for the first time
+      // else add for the first time
       basketProduct = await BasketProduct.create({
         productId,
         basketId,
         quantity: 1,
-      })
-      return res.json(basketProduct);
+      });
     }
+
+    return res.status(204).json();
   }
 
+  // DELETE (product id, basket id) => (status 204)
   async delete(req, res, next) {
     const { productId, basketId } = req.body;
 
-    if (!productId || !basketId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !basketId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
-    const productReview = await BasketProduct.destroy({
+    // destroy product in basket
+    await BasketProduct.destroy({
       where: {
         productId,
         basketId,
-      }
-    })
+      },
+    });
 
-    return res.json(productReview);
+    return res.status(204).json();
   }
 
-  async getAll(req, res, next) {
+  // GET (basket id) => (all products in basket)
+  async getAll(req, res) {
     const { basketId } = req.query;
 
-    if (!basketId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!basketId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     const basketProducts = await BasketProduct.findAll({
-      where: { basketId }
-    })
+      where: { basketId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     return res.json(basketProducts);
   }
 
-  async increase(req, res, next) {
+  // INCREASE (product id, basket id) => (status 204)
+  async increase(req, res) {
     const { productId, basketId } = req.body;
 
-    if (!productId || !basketId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !basketId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     let increasedProduct = await BasketProduct.findOne({
       where: {
         productId,
         basketId,
-      }
-    })
+      },
+    });
 
-    increasedProduct = await BasketProduct.upsert({
+    await BasketProduct.upsert({
       id: increasedProduct.id,
       quantity: increasedProduct.quantity + 1,
     });
-    return res.json(increasedProduct[0]);
+
+    increasedProduct = await BasketProduct.findOne({
+      where: { productId, basketId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(increasedProduct);
   }
 
-  async decrease(req, res, next) {
+  // DECREASE (product id, basket id) => (status 204)
+  async decrease(req, res) {
     const { productId, basketId } = req.body;
 
-    if (!productId || !basketId)
-      throw ApiError.badRequest('Некорректные данные')
+    if (!productId || !basketId) {
+      throw ApiError.badRequest('Некорректные данные');
+    }
 
     let decreasedProduct = await BasketProduct.findOne({
       where: {
         productId,
         basketId,
       }
-    })
+    });
 
+    // delete product if quantity equals 1
     if (decreasedProduct.quantity === 1) {
       decreasedProduct.destroy();
-      return res.json(decreasedProduct);
 
     } else {
+      // decrease product's quantity if quantity > 1
       decreasedProduct = await BasketProduct.upsert({
         id: decreasedProduct.id,
         quantity: decreasedProduct.quantity - 1,
       });
-      return res.json(decreasedProduct[0]);
     }
+
+    decreasedProduct = await BasketProduct.findOne({
+      where: { productId, basketId },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return res.json(decreasedProduct);
   }
 }
 

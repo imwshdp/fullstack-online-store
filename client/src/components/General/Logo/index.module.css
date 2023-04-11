@@ -1,0 +1,49 @@
+/* mobile */
+.Logo,
+.Logo>a {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 1rem;
+  line-height: 30px;
+}
+
+.Logo {
+  justify-content: center;
+  align-items: center;
+}
+
+.Logo a {
+  cursor: pointer;
+}
+
+.Logotype {
+  height: 120px;
+  width: 120px;
+}
+
+.Title {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 10px;
+}
+
+h1 span {
+  display: flex;
+  font-family: var(--titleFont);
+  font-size: 1em;
+  color: #000000;
+  text-shadow: 1.5px 3px 6px var(--gray);
+}
+
+h1 span:last-child {
+  font-size: 1.1em;
+  color: var(--dark);
+}
+
+/* logo sizes changing */
+@media (min-width: 750px) and (max-width: 1080px) {
+  .Logotype {
+    height: 100px;
+    width: 100px;
+  }
+}

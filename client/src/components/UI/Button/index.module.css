@@ -1,0 +1,52 @@
+button {
+  display: flex;
+  padding: 5px 15px;
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+
+  background: var(--buttonColor);
+  border: thin solid var(--lightgray);
+  border-radius: 40px;
+
+  color: white;
+  letter-spacing: 1px;
+  font-family: var(--commonFont);
+  font-size: 1rem;
+  font-variant: small-caps;
+
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color .4s ease-in-out;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+.Ripples {
+  position: absolute;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: ripples 1s linear infinite;
+}
+
+@keyframes ripples {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: .5;
+  }
+
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}

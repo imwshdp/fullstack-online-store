@@ -1,0 +1,58 @@
+.ProductSection,
+.Panel,
+.Buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1%;
+  text-align: center;
+}
+
+.ProductSection {
+  width: 70%;
+  max-width: 1000px;
+
+  margin-top: 50px;
+  padding: 1%;
+  align-self: center;
+  align-content: center;
+
+  border: thin solid var(--dark);
+}
+
+.ProductSection * {
+  margin-top: 10px;
+}
+
+.ProductSection h1 {
+  margin-bottom: 0;
+}
+
+.ProductSection * {
+  margin-top: 10px;
+}
+
+.ProductSection h1 {
+  margin-bottom: 0;
+}
+
+.Panel,
+.Buttons {
+  width: 100%;
+  align-items: center;
+}
+
+.Buttons {
+  width: 100%;
+  margin-top: 0;
+}
+
+.Buttons button:last-child {
+  margin-left: auto;
+}
+
+/* mobile */
+@media (max-width: 500px) {
+  .Buttons button:first-child {
+    width: 100% !important;
+  }
+}

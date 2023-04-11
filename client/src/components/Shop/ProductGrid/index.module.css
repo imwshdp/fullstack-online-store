@@ -1,0 +1,28 @@
+/* mobile */
+.ProductsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-auto-flow: row dense;
+  gap: 1em;
+  width: 100%;
+  margin: 3% 0 3% 0%;
+
+  justify-items: center;
+}
+
+/* desktop */
+@media (min-width: 500px) {
+  .ProductsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 70%;
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ProductsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+  }
+}

@@ -1,0 +1,38 @@
+.MobileLoaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.ButtonLoader {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  background: var(--gray);
+  box-shadow: -10px 0 var(--gray), 10px 0 var(--gray);
+  box-sizing: border-box;
+  animation: shadowPulse 1.5s linear infinite;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: var(--gray);
+    box-shadow: -10px 0 black, 10px 0 var(--gray);
+  }
+
+  66% {
+    background: black;
+    box-shadow: -10px 0 var(--gray), 10px 0 var(--gray);
+  }
+
+  100% {
+    background: var(--gray);
+    box-shadow: -10px 0 var(--gray), 10px 0 black;
+  }
+}

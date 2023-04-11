@@ -1,0 +1,25 @@
+.Select {
+  display: flex;
+  width: 100%;
+  padding: 5px 15px;
+
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+  border-radius: .5em;
+
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.Option {
+  background-color: whitesmoke;
+}
+
+.Option {
+  background-color: whitesmoke;
+}
+
+.Select:active,
+.Select:focus {
+  outline: none;
+}

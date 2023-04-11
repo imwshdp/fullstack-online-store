@@ -1,0 +1,14 @@
+.ProductLayout {
+  display: flex;
+  flex-flow: column;
+  width: 70%;
+  margin-left: 15%;
+  justify-content: space-between;
+}
+
+/* desktop */
+@media (min-width: 750px) {
+  .ProductLayout {
+    flex-flow: row;
+  }
+}
