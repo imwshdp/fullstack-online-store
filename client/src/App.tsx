@@ -41,12 +41,12 @@ const App: React.FC = () => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
 
   const menuLinks: ExtraLinks[] = [
-    {value: "Обо мне", link: ''},
-    {value: "Каталог", link: RouteNames.SHOP_ROUTE},
-    {value: "Корзина", link: RouteNames.BASKET_ROUTE},
-    {value: "Заказы", link: RouteNames.ORDER_ROUTE},
-    {value: "Правила ухода", link: ''},
-    {value: "Как подобрать размер", link: ''},
+    {value: "Обо мне", link: RouteNames.ABOUT_ME_ROUTE },
+    {value: "Каталог", link: RouteNames.SHOP_ROUTE },
+    {value: "Корзина", link: RouteNames.BASKET_ROUTE },
+    {value: "Заказы", link: RouteNames.ORDER_ROUTE },
+    {value: "Правила ухода", link: RouteNames.RECS_ROUTE },
+    {value: "Как подобрать размер", link: RouteNames.SIZES_ROUTE },
   ]
 
   const footerLinks: ExtraLinks[] = [

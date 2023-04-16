@@ -116,7 +116,7 @@ class ProductController {
     await OrderProduct.destroy({ where: { productId: id } });
 
     // instance destroying
-    await Product.destroy({ where: { productId: id } });
+    await Product.destroy({ where: { id } });
 
     return res.status(204).json();
   }

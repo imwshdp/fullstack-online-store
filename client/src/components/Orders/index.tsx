@@ -36,6 +36,8 @@ const OrdersList: React.FC<TProps> = ({productsList}) => {
               <span>Сумма заказа: {ordersState.prices && ordersState.prices[index]} &#8381;</span>
           </section>
         )}
+        {!ordersState.ordersIds?.length &&
+        <h1 style={{margin: 'auto'}}>История заказов пуста</h1> }
     </div>
   );
 }
